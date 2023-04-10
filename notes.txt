@@ -1,0 +1,22 @@
+
+Allowed functions: open, close, read, write, printf, malloc, free, perror, strerror, exit
+math library + MinilibX
+
+=/= textures for wall North, South, East, West
+=/= colors for floor and ceilling
+move WASD
+esc/red cross: close window
+
+Scene description file: .cub
+MAP: 0 empty space
+	 1 wall
+	 N/S/E/W player start position + spawning orientation
+	 closed by walls
+TEXTURE: NO (North) + path
+		 SO (South) + path
+		 WE (West) + path
+		 EA (East) + path
+COLOR:   F (Floor) + rgb colors
+		 C (Ceilling) + rgb colors
+
+Map error: return "Error\n" followed by explicit message 
