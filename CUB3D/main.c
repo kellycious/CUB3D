@@ -1,7 +1,6 @@
-#include <unistd.h>
+#include "LIB/cub3d.h"
 
-int	main()
+int	main(int ac, char **av)
 {
-	write(1, "youpi\n", 6);
-	return (0);
+	check_arg(ac, av);
 }

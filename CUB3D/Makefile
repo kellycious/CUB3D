@@ -2,7 +2,8 @@
 
 NAME = cub3D
 
-CFILES = main.c
+CFILES = main.c	\
+		 PARSING/p_arguments.c 
 
 
 OBJS :=  	${addprefix ./OBJ/,${CFILES:%.c=%.o}}

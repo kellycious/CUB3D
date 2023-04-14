@@ -20,3 +20,4 @@ COLOR:   F (Floor) + rgb colors
 		 C (Ceilling) + rgb colors
 
 Map error: return "Error\n" followed by explicit message 
+
