@@ -1,6 +1,6 @@
 #include "../LIB/cub3d.h"
 
-int get_cub(t_map *map, char *argv)
+int	get_cub(t_map *map, char *argv)
 {
 	int	i;
 	int	fd;
