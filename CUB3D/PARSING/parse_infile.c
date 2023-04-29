@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_infile.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/29 17:43:11 by fwong             #+#    #+#             */
+/*   Updated: 2023/04/29 17:50:52 by fwong            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../LIB/cub3d.h"
 
 int	get_cub(t_map *map, char *argv)
@@ -19,4 +31,21 @@ int	get_cub(t_map *map, char *argv)
 	close(fd);
 	ft_remove_nl(map);
 	return (1);
+}
+
+int	ft_check_textures(t_map *map)
+{
+	int	i;
+	int	j;
+	
+	i = -1;
+	j = -1;
+	while (map->cub[++i])
+	{
+		while (map->cub[i][++j])
+		{
+			if (map->cub[i] == 'N' && map->cub[i + 1] == 'O')
+				ft_check_textures()
+		}
+	}
 }
