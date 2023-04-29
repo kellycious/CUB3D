@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_elements.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
+/*   By: khuynh <khuynh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 19:42:08 by fwong             #+#    #+#             */
-/*   Updated: 2023/04/25 19:48:48 by fwong            ###   ########.fr       */
+/*   Updated: 2023/04/28 20:44:40 by khuynh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_check_elements(t_map *map, t_elements *elements)
 {
 	int	i;
 	int	j;
-	
+
 	i = -1;
 	j = -1;
 	while (map->cub[++i])
@@ -24,7 +24,7 @@ void	ft_check_elements(t_map *map, t_elements *elements)
 		while (map->cub[i][++j])
 		{
 			ft_assign_elements(map->cub[i][j],
-			map->cub[i][j + 1], map->cub[i][j + 2], elements);
+				map->cub[i][j + 1], map->cub[i][j + 2], elements);
 		}
 	}
 }
@@ -93,7 +93,7 @@ void	ft_assign_elements(char c, char c2, char c3, t_elements *elements)
 	if (c == 'C' && is_whitespace(c3))
 		elements->ceiling = true;
 	if (c == 'F' && is_whitespace(c3))
-		elements->floor	= true;
+		elements->floor = true;
 }
 
 int	is_whitespace(char c)

@@ -27,6 +27,7 @@ void	ft_count_line_map(t_map *map, t_elements *elements)
 	}
 	map->height = count;
 }
+
 int	ft_check_players(t_map *map, t_elements *elements)
 {
 	int		i;
@@ -91,4 +92,3 @@ int	ft_check_player(t_map *map, int i, int j)
 		return (0);
 	return (1);
 }
-

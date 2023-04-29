@@ -3,14 +3,14 @@
 
 // ========== LIBRARY ========== //
 
-#include "libft/libft.h"
-#include <fcntl.h>
-#include <stdio.h>
-#include <stdbool.h>
+# include "libft/libft.h"
+# include <fcntl.h>
+# include <stdio.h>
+# include <stdbool.h>
 
 typedef struct s_elements
 {
-	bool 	no;
+	bool	no;
 	bool	so;
 	bool	we;
 	bool	ea;

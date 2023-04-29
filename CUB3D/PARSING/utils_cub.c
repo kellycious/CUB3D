@@ -1,9 +1,9 @@
 #include "../LIB/cub3d.h"
 
-int ft_count_line_cub(char *argv, t_map *map)
+int	ft_count_line_cub(char *argv, t_map *map)
 {
-	int	count;
-	int	fd;
+	int		count;
+	int		fd;
 	char	*map;
 
 	count = 0;
@@ -12,7 +12,7 @@ int ft_count_line_cub(char *argv, t_map *map)
 		return (0);
 	map = get_next_line(fd);
 	if (map == NULL)
-		return(close(fd), free(map), ft_error(map), exit(0), 0);
+		return (close(fd), free(map), ft_error(map), exit(0), 0);
 	if (!map)
 		return (close(fd), exit(0), 0);
 	while (map)

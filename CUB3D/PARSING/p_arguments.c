@@ -30,10 +30,14 @@ int	open_cub(char *file)
 {
 	int	fd;
 
-	if ((fd = open(file, O_DIRECTORY)) != -1)
-		return (ft_putstr_fd("ERROR: map file is a directory\n", 2), 0);
-	if ((fd = open(file, O_RDONLY)) == -1)
-		return (ft_putstr_fd("ERROR: map file does not exist\n", 2), 0);
+	fd = open(file, O_DIRECTORY);
+	if (fd != -1)
+		return (close(fd), \
+			ft_putstr_fd("ERROR: map file is a directory\n", 2), 0);
+	fd = open(file, O_RDONLY);
+	if (fd == -1)
+		return (close(fd), \
+			ft_putstr_fd("ERROR: map file does not exist\n", 2), 0);
 	// ajouter fonction copy_map
 	close (fd);
 	return (0);

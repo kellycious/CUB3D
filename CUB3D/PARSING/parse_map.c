@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
+/*   By: khuynh <khuynh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 01:19:53 by fwong             #+#    #+#             */
-/*   Updated: 2023/04/24 01:22:35 by fwong            ###   ########.fr       */
+/*   Updated: 2023/04/28 20:43:09 by khuynh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../LIB/cub3d.h"
 
-int ft_find_map(t_map *map, t_elements *elements)
+int	ft_find_map(t_map *map, t_elements *elements)
 {
 	int	i;
 	int	j;
