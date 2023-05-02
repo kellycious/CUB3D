@@ -4,9 +4,12 @@
 // ========== LIBRARY ========== //
 
 # include "libft/libft.h"
+# include "minilibx-linux/mlx.h"
 # include <fcntl.h>
 # include <stdio.h>
+# include <stddef.h>
 # include <stdbool.h>
+# include <X11/X.h>
 
 typedef struct s_elements
 {
@@ -44,6 +47,11 @@ typedef	struct s_mlxy
 	void	*mlx;
 	void	*win;
 	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line;
+	int		endian;
+	t_map	*map;
 }				t_mlxy;
 
 int	main(int ac, char **av);
