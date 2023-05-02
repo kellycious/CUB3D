@@ -39,6 +39,13 @@ typedef struct s_map
 	char	**cub;
 }				t_map;
 
+typedef	struct s_mlxy
+{
+	void	*mlx;
+	void	*win;
+	void	*img;
+}				t_mlxy;
+
 int	main(int ac, char **av);
 
 // ========================================================================= //
