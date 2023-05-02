@@ -30,7 +30,7 @@ int	open_cub(char *file)
 {
 	int	fd;
 
-	fd = open(file, O_DIRECTORY);
+	fd = open(file, __O_DIRECTORY);
 	if (fd != -1)
 		return (close(fd), \
 			ft_putstr_fd("ERROR: map file is a directory\n", 2), 0);

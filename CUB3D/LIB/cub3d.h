@@ -18,14 +18,25 @@ typedef struct s_elements
 	bool	ceiling;
 }				t_elements;
 
+typedef struct s_img
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+	int		width;
+	int		height;
+}				t_img;
+
 typedef struct s_map
 {
 	int		height;
 	int		width;
-	void	*no;
-	void	*so;
-	void	*we;
-	void	*ea;
+	char	*no;
+	char	*so;
+	char	*we;
+	char	*ea;
 	int		player_x;
 	int		player_y;
 	int		floor_r;
@@ -37,6 +48,7 @@ typedef struct s_map
 	char	**map;
 	char	**map_fill;
 	char	**cub;
+	t_img	texture[4];
 }				t_map;
 
 int	main(int ac, char **av);
