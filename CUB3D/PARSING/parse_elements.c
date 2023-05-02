@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 19:42:08 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/02 15:49:23 by fwong            ###   ########.fr       */
+/*   Updated: 2023/05/02 16:15:06 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@ void	ft_check_elements(t_map *map, t_elements *elements)
 	while (map->cub[++i])
 	{
 		while (map->cub[i][++j])
-		{ 
+		{
+			while (map->cub[i][j] == ' ' || map->cub[i][j] == '\t')
+				j++;
 			ft_assign_elements(map->cub[i][j],
 			map->cub[i][j + 1], map->cub[i][j + 2], elements);
 		}
@@ -47,6 +49,14 @@ void	ft_assign_elements(char c, char c2, char c3, t_elements *element)
 	else
 		ft_elements_error(c, c2, c3);
 }
+void	ft_parse_textures(t_map *map, t_elements *elements)
+{
+	int	i;
+	
+	i = -1;
+	while (map->cub[++i])
+		ft_get_textures(i, map, elements);
+}
 
 // 3rd step: get the path of the textures
 void	ft_get_texture(int i, t_map *map, t_elements *elements)
@@ -55,13 +65,13 @@ void	ft_get_texture(int i, t_map *map, t_elements *elements)
 
 	j = i;
 	i = ft_skip_spaces(i, map);
-	if (ft_strncmp(map->cub[j] + i, "NO", 2) && is_whitespace(map->cub[j + 2]))
+	if (ft_strncmp(map->cub[j] + i, "NO", 2) && is_whitespace(map->cub[j][i + 2]))
 		map->no = ft_strdup(map->cub[i]);
-	if (ft_strncmp(map->cub[j] + i, "SO", 2) && is_whitespace(map->cub[j + 2]))
+	if (ft_strncmp(map->cub[j] + i, "SO", 2) && is_whitespace(map->cub[j][i + 2]))
 		map->so = ft_strdup(map->cub[i]);
-	if (ft_strncmp(map->cub[j] + i, "WE", 2) && is_whitespace(map->cub[j + 2]))
+	if (ft_strncmp(map->cub[j] + i, "WE", 2) && is_whitespace(map->cub[j][i + 2]))
 		map->we = ft_strdup(map->cub[i]);
-	if (ft_strncmp(map->cub[j] + i, "EA", 2) && is_whitespace(map->cub[j + 2]))
+	if (ft_strncmp(map->cub[j] + i, "EA", 2) && is_whitespace(map->cub[j][i + 2]))
 		map->ea = ft_strdup(map->cub[i]);
 }
 
