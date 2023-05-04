@@ -9,6 +9,7 @@
 # include <stdio.h>
 # include <stddef.h>
 # include <stdbool.h>
+# include <math.h>
 # include <X11/X.h>
 
 typedef struct s_elements
@@ -51,8 +52,21 @@ typedef	struct s_mlxy
 	int		bpp;
 	int		line;
 	int		endian;
-	t_map	*map;
+	t_map	map;
 }				t_mlxy;
+
+typedef struct s_coor
+{
+	float	x;
+	float	y;
+
+}				t_coor;
+
+typedef struct s_rayc
+{
+	float	angle;
+	float	distance;
+}				t_rayc;
 
 int	main(int ac, char **av);
 

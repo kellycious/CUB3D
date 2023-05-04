@@ -16,7 +16,7 @@ int	init_img(t_mlxy *mlxy)
 	mlxy->addr = mlx_get_data_addr(mlxy->img, &mlxy->bpp, &mlxy->line, &mlxy->endian);
 	if (!mlxy->addr)
 		return (ft_putstr_fd("Error: mlx addr\n", 2), 0);
-	ft_memset(mlxy->addr, 0, mlxy->map.height * mlxy->map.width * (mlxy->bpp / 8));
+	ft_memset(mlxy->addr, 0, (mlxy->map.height * mlxy->map.width * (mlxy->bpp / 8)));
 	return (1);
 }
 
