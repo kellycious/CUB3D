@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 14:00:40 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/02 16:42:08 by fwong            ###   ########.fr       */
+/*   Updated: 2023/05/04 17:21:55 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ void	ft_count_elements(t_map *map, t_elements *elements, int count)
 		while (map->cub[i][++j])
 		{  
 			if (map->cub[i][j] == 'C')
-				ft_check_and_parse_c(i, j, map, elements);
+				ft_check_and_parse_c(i, j + 1, map, elements);
 			if (map->cub[i][j] == 'F')
-				ft_check_and_parse_f(i, j, map, elements);
+				ft_check_and_parse_f(i, j + 1, map, elements);
 		}
 	}
 }
@@ -57,26 +57,12 @@ void	ft_check_and_parse_c(int i, int j, t_map *map, t_elements *elements)
 
 void	ft_parse_c(int i, int k, t_map *map, t_elements *elements)
 {
-	int	j;
-	int	count;
-	int	color[3];
+	int		count;
+	int		color[3];
+	char	*nbr;
 
-	j = k;
-	count = 0;
-	while (map->cub[i][j] == ' ' || map->cub[i][j] == '\t')
-		j++;
-	j++;
-	while (map->cub[i][j])
-	{
-		if (map->cub[i][j] >= '0' && map->cub[i][j] <= '9')
-		{
-			color[count] = ft_atoi(&map->cub[i][j]);
-			while (map->cub[i][j] >= '0' && map->cub[i][j] <= '9')
-				j++;
-			count++;
-		}
-		j++;
-	}
+	nbr = ft_strdup(map->cub[i] + 1);
+	
 	if (count != 3)
 		ft_elements_error('0', '0', '0');
 	elements->c = ft_create_trgb(0, color[0], color[1], color[2]);
