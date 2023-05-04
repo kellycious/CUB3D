@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 14:00:40 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/04 19:58:18 by fwong            ###   ########.fr       */
+/*   Updated: 2023/05/04 21:21:03 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ void	ft_parse_c(int k, int l, t_map *map, t_elements *elements)
 {
 	int		i;
 	int		j;
-	char	color[3];
 	char	*nbr;
 	char	**rgb;
 
@@ -67,6 +66,7 @@ void	ft_parse_c(int k, int l, t_map *map, t_elements *elements)
 	j = 0;
 	nbr = ft_strdup(map->cub[i] + 1);
 	rgb = ft_split(nbr, ',');
+	ft_assign_rgb(0, 0, l, rgb);
 	while (rgb[i])
 	{
 		while (rgb[i][l] == ' ' || rgb[i][l] == '\t')
@@ -81,4 +81,22 @@ void	ft_parse_c(int k, int l, t_map *map, t_elements *elements)
 		}
 	}
 	
+}
+
+void	ft_assign_rgb(int i, int j, int l, char **rgb)
+{
+	char	*color[3];
+	
+	while (rgb[i])
+	{
+		while (rgb[i][l] == ' ' || rgb[i][l] == '\t')
+			l++;
+		while (rgb[i][l] >= '0' && rgb[i][l] <= '9')
+		{
+			if (j > 3)
+				ft_elements_error('0', '0', '0');
+			color[j] = rgb[i][l];
+			j++;
+			l++;
+		}
 }
