@@ -65,7 +65,13 @@ typedef struct s_coor
 typedef struct s_rayc
 {
 	float	angle;
-	float	distance;
+	t_coor	start;
+	t_coor	dir;
+	t_coor	length;
+	t_coor	unit;
+	t_coor	step;
+	int		istartx;
+	int		istarty;
 }				t_rayc;
 
 int	main(int ac, char **av);
