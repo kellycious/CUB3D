@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 19:42:08 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/02 16:15:06 by fwong            ###   ########.fr       */
+/*   Updated: 2023/05/06 19:01:30 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,33 @@ void	ft_check_elements(t_map *map, t_elements *elements)
 {
 	int	i;
 	int	j;
+	(void)elements;
 	
-	i = -1;
-	j = -1;
-	while (map->cub[++i])
+	i = 0;
+	while (i < map->height)
 	{
-		while (map->cub[i][++j])
-		{
-			while (map->cub[i][j] == ' ' || map->cub[i][j] == '\t')
-				j++;
-			ft_assign_elements(map->cub[i][j],
-			map->cub[i][j + 1], map->cub[i][j + 2], elements);
-		}
+		j = 0;
+		printf("map->cub[%d] = %s\n", i, map->cub[i]);
+		while (map->cub[i][j] == ' ' || map->cub[i][j] == '\t')
+			j++;
+		ft_assign_elements(map->cub[i][j], map->cub[i][j + 1], map->cub[i][j + 2], elements);
+		i++;
 	}
 }
 
+void	ft_not_elements(char c, char c2, char c3)
+{
+	if (!((c == 'N' && c2 == 'O' && is_whitespace(c3))
+		|| (c == 'S' && c2 == 'O' && is_whitespace(c3))
+		|| (c == 'W' && c2 == 'E' && is_whitespace(c3))
+		|| (c == 'E' && c2 == 'A' && is_whitespace(c3))
+		|| (c == 'C' && is_whitespace(c2)) || (c == 'F' && is_whitespace(c2))
+		|| (c == ' ') || (c == '\t') || (c == '\n')))
+	{
+		ft_putstr_fd("Error\nFormat of infile is wrong\n", 2);
+		exit(0);
+	}
+}
 void	ft_assign_elements(char c, char c2, char c3, t_elements *element)
 {
 	if (c == 'N' && c2 == 'O' && is_whitespace(c3) && element->no == false)
@@ -46,20 +58,29 @@ void	ft_assign_elements(char c, char c2, char c3, t_elements *element)
 		element->ceiling = true;
 	else if (c == 'F' && is_whitespace(c3) && element->floor == false)
 		element->floor	= true;
-	else
-		ft_elements_error(c, c2, c3);
+	else if ((c == 'N' && c2 == 'O' && element->no == true)
+			|| (c == 'S' && c2 == 'O' && element->so == true)
+			|| (c == 'W' && c2 == 'O' && element->we == true)
+			|| (c == 'E' && c2 == 'O' && element->ea == true)
+			|| (c == 'C' && element->ceiling == true)
+			|| (c == 'F' && element->floor == true))
+			{
+				printf("FDPPPPPPPPPPPPPPPPPPPP");
+				ft_elements_error(c, c2, c3);
+			}
 }
-void	ft_parse_textures(t_map *map, t_elements *elements)
+
+void	ft_parse_textures(t_map *map)
 {
 	int	i;
 	
 	i = -1;
 	while (map->cub[++i])
-		ft_get_textures(i, map, elements);
+		ft_get_texture(i, map);
 }
 
 // 3rd step: get the path of the textures
-void	ft_get_texture(int i, t_map *map, t_elements *elements)
+void	ft_get_texture(int i, t_map *map)
 {
 	int	j;
 
@@ -75,7 +96,7 @@ void	ft_get_texture(int i, t_map *map, t_elements *elements)
 		map->ea = ft_strdup(map->cub[i]);
 }
 
-int	ft_count_elements(t_map *map, t_elements *elements, int count)
+int	ft_count_elements(t_map *map, int count)
 {
 	int	i;
 	int	j;
@@ -102,4 +123,5 @@ int	ft_count_elements(t_map *map, t_elements *elements, int count)
 		if (count == 6)
 			return (i + 1);
 	}
+	return (0);
 }

@@ -6,14 +6,24 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 16:40:55 by fwong             #+#    #+#             */
-/*   Updated: 2023/04/30 13:57:37 by fwong            ###   ########.fr       */
+/*   Updated: 2023/05/06 19:01:58 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../LIB/cub3d.h"
 
+int	is_whitespace(char c)
+{
+	if (c == ' ' || c == '\t')
+		return (1);
+	return (0);
+}
+
 void	ft_elements_error(char c, char c2, char c3)
 {
+	t_map	*map;
+	
+	map = NULL;
 	if (c == 'N' && c2 == '0' && is_whitespace(c3))
 		ft_putstr_fd("Error\nElements can't be set more than once\n", 2);
 	else if (c == 'S' && c2 == '0' && is_whitespace(c3))
@@ -28,6 +38,7 @@ void	ft_elements_error(char c, char c2, char c3)
 		ft_putstr_fd("Error\nElements can't be set more than once\n", 2);
 	else
 		ft_putstr_fd("Error\nElements are not well formated\n", 2);
+	ft_clean(map);
 	exit(0);
 }
 
@@ -42,9 +53,3 @@ int	ft_skip_spaces(int i, t_map *map)
 }
 
 
-int	is_whitespace(char c)
-{
-	if (c == ' ' || c == '\t')
-		return (1);
-	return (0);
-}

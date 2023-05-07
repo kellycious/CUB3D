@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 19:47:21 by fwong             #+#    #+#             */
-/*   Updated: 2023/04/23 19:47:22 by fwong            ###   ########.fr       */
+/*   Updated: 2023/05/06 00:33:27 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*get_next_line(int fd)
 		if (red == -1)
 			return (free(cache), free(buffer), NULL);
 		buffer[red] = '\0';
-		cache = ft_strjoin(cache, buffer);
+		cache = ft_strjoiny(cache, buffer);
 	}
 	line = ft_get_line(cache);
 	cache = ft_get_endline(cache);

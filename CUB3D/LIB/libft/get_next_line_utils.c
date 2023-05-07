@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 19:47:31 by fwong             #+#    #+#             */
-/*   Updated: 2023/04/23 19:47:32 by fwong            ###   ########.fr       */
+/*   Updated: 2023/05/06 00:18:07 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	ft_is_newline(char *str)
 	return (0);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoiny(char *s1, char *s2)
 {
 	int		i;
 	int		j;
@@ -36,14 +36,14 @@ char	*ft_strjoin(char *s1, char *s2)
 
 	if (!s1)
 	{
-		s1 = (char *)(malloc(sizeof(char) * 1));
+		s1 = (char *)(ft_calloc(1, sizeof(char)));
 		if (!s1)
 			return (NULL);
 		s1[0] = '\0';
 	}
 	if (!s1 || !s2)
 		return (NULL);
-	dest = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2)) + 1);
+	dest = ft_calloc((ft_strlen(s1) + ft_strlen(s2)) + 1, sizeof(char));
 	if (!dest)
 		return (NULL);
 	i = -1;
@@ -66,7 +66,7 @@ char	*ft_get_line(char *str)
 		return (NULL);
 	while (str[i] && str[i] != '\n')
 		i++;
-	dest = malloc(sizeof(char) * i + 2);
+	dest = ft_calloc(i + 2, sizeof(char));
 	if (!dest)
 		return (NULL);
 	i = 0;
@@ -97,7 +97,7 @@ char	*ft_get_endline(char *str)
 		i++;
 	if (!str[i])
 		return (free(str), NULL);
-	dest = malloc(sizeof(char) * (ft_strlen(str) - i + 1));
+	dest = ft_calloc((ft_strlen(str) - i + 1), sizeof(char));
 	if (!dest)
 		return (free(str), NULL);
 	j = 0;

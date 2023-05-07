@@ -6,32 +6,32 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 14:00:40 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/04 21:21:03 by fwong            ###   ########.fr       */
+/*   Updated: 2023/05/05 23:33:23 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../LIB/cub3d.h"
 
-void	ft_count_elements(t_map *map, t_elements *elements, int count)
+void	ft_parse_colors(t_map *map)
 {
 	int	i;
 	int	j;
 
-	i = -1; 
+	i = -1; 	
 	j = -1;
 	while (map->cub[++i])
 	{
 		while (map->cub[i][++j])
 		{  
 			if (map->cub[i][j] == 'C')
-				ft_check_and_parse_c(i, j + 1, map, elements);
+				ft_check_and_parse_c(i, j + 1, map);
 			if (map->cub[i][j] == 'F')
-				ft_check_and_parse_f(i, j + 1, map, elements);
+				ft_check_and_parse_c(i, j + 1, map);
 		}
 	}
 }
 
-void	ft_check_and_parse_c(int i, int j, t_map *map, t_elements *elements)
+void	ft_check_and_parse_c(int i, int j, t_map *map)
 {
 	int	k;
 	int	count;
@@ -41,7 +41,7 @@ void	ft_check_and_parse_c(int i, int j, t_map *map, t_elements *elements)
 	while (map->cub[i][k] == ' ' || map->cub[i][k] == '\t')
 		k++;
 	k++;
-	if (map->cub[i][k] < '0' || map->cub[i][k] > '9')
+	if (map->cub[i][k] < '0' && map->cub[i][k] > '9')
 		ft_elements_error('0', '0', '0');
 	while (map->cub[i][k])
 	{
@@ -51,52 +51,68 @@ void	ft_check_and_parse_c(int i, int j, t_map *map, t_elements *elements)
 	}
 	if (count != 2)
 		ft_elements_error('0', '0', '0');
-	k = j;
-	ft_parse_c(i, 0, map, elements);
+	if (map->cub[i][j] == 'C')
+		ft_parse_c(i, map);
+	if (map->cub[i][j] == 'F')
+		ft_parse_f(i, map);
 }
 
-void	ft_parse_c(int k, int l, t_map *map, t_elements *elements)
+void	ft_parse_c(int i, t_map *map)
 {
-	int		i;
-	int		j;
 	char	*nbr;
 	char	**rgb;
 
-	i = 0;
-	j = 0;
 	nbr = ft_strdup(map->cub[i] + 1);
 	rgb = ft_split(nbr, ',');
-	ft_assign_rgb(0, 0, l, rgb);
-	while (rgb[i])
-	{
-		while (rgb[i][l] == ' ' || rgb[i][l] == '\t')
-			l++;
-		while (rgb[i][l] >= '0' && rgb[i][l] <= '9')
-		{
-			if (j > 3)
-				ft_elements_error('0', '0', '0');
-			color[j] = rgb[i][l];
-			j++;
-			l++;
-		}
-	}
-	
+	if (nbr)
+		free(nbr);
+	rgb = ft_get_rgb(0, 0, 0, rgb);
+	ft_assign_rgb_c(map, rgb);
+	if (rgb)
+		free(rgb);
 }
 
-void	ft_assign_rgb(int i, int j, int l, char **rgb)
+void	ft_parse_f(int i, t_map *map)
 {
-	char	*color[3];
+	char	*nbr;
+	char	**rgb;
+
+	nbr = ft_strdup(map->cub[i] + 1);
+	rgb = ft_split(nbr, ',');
+	if (nbr)
+		free(nbr);
+	rgb = ft_get_rgb(0, 0, 0, rgb);
+	ft_assign_rgb_f(map, rgb);
+	if (rgb)
+		free(rgb);
+}
+
+char	**ft_get_rgb(int i, int j, int l, char **rgb)
+{
+	char	**rgb_final;
 	
-	while (rgb[i])
+	rgb_final = ft_calloc(3, sizeof(char *));
+	while (i < 3)
 	{
+		l = 0;
+		j = 0;
 		while (rgb[i][l] == ' ' || rgb[i][l] == '\t')
 			l++;
+		if (rgb[i][l] < '0' || rgb[i][l] > '9')
+			ft_clean_colors(rgb, rgb_final);
 		while (rgb[i][l] >= '0' && rgb[i][l] <= '9')
 		{
 			if (j > 3)
-				ft_elements_error('0', '0', '0');
-			color[j] = rgb[i][l];
+				ft_clean_colors(rgb, rgb_final);
 			j++;
 			l++;
 		}
+		rgb_final[i] = ft_calloc(j + 1, sizeof(char));
+		ft_skip_spaces_rgb(rgb, i, l);
+		i++;
+	}
+	ft_get_rgb_final(rgb_final, rgb);
+	return (rgb_final);
 }
+
+
