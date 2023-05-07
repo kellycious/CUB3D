@@ -12,6 +12,11 @@
 # include <math.h>
 # include <X11/X.h>
 
+# define NORTH			0
+# define SOUTH			1
+# define EAST			2
+# define WEST			3
+
 typedef struct s_elements
 {
 	bool	no;
@@ -32,6 +37,7 @@ typedef struct s_map
 	char	*ea;
 	int		player_x;
 	int		player_y;
+	int		player_angle;
 	int		floor_r;
 	int		floor_g;
 	int		floor_b;
@@ -73,6 +79,9 @@ typedef struct s_rayc
 	t_coor	step;
 	int		istartx;
 	int		istarty;
+	int		hit_dir;
+	t_coor	result;
+	float	distance;
 }				t_rayc;
 
 int	main(int ac, char **av);
@@ -86,5 +95,14 @@ int	main(int ac, char **av);
 int	check_arg(int ac, char **av);
 int	valid_cub(char **av);
 int	open_cub(char *file);
+
+// RAYCASTING //
+
+void	ray_length(t_rayc *ray);
+void	ft_init_ray(t_rayc *ray, t_map *map, float angle);
+float	ray_hit_length(t_rayc *ray);
+int		ray_caster(t_map *map, t_rayc *ray, float max);
+void	move_player(t_map *map, float angle);
+
 
 #endif
