@@ -22,17 +22,6 @@ typedef struct s_elements
 	bool	ceiling;
 }				t_elements;
 
-typedef struct s_img
-{
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-	int		width;
-	int		height;
-}				t_img;
-
 typedef struct s_map
 {
 	int		height;
@@ -80,7 +69,7 @@ typedef struct s_rayc
 	t_coor	start;
 	t_coor	dir;
 	t_coor	length;
-	t_coor	unit;
+	t_coor	gline;
 	t_coor	step;
 	int		istartx;
 	int		istarty;
