@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khuynh <khuynh@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 00:51:19 by khuynh            #+#    #+#             */
-/*   Updated: 2022/05/06 11:49:31 by khuynh           ###   ########.fr       */
+/*   Updated: 2023/05/04 17:15:26 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static char	**ft_split_words(char const *s, char c, char **s2, int num_words)
 			i++;
 			word_len++;
 		}
-		s2[word] = (char *)malloc(sizeof(char) * (word_len + 1));
+		s2[word] = (char *)ft_calloc(word_len + 1, sizeof(char));
 		if (!s2)
 			return (0);
 		ft_putword(s2[word], s, i, word_len);
