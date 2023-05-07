@@ -97,9 +97,9 @@ int	main(int ac, char **av);
 
 // ARGS //
 
-int	check_arg(int ac, char **av);
-int	valid_cub(char **av);
-int	open_cub(char *file);
+int		check_arg(int ac, char **av);
+int		valid_cub(char **av);
+int		open_cub(char *file);
 void	ft_parsing(t_map *map, t_elements *elements, char *argv);
 
 /* clean_parsing.c */
@@ -165,13 +165,14 @@ int		ft_check_players(t_map *map);
 void	ft_find_player(t_map *map);
 int		ft_check_player(t_map *map, int i, int j);
 
-// RAYCASTING //
+// ========================================================================= //
+//                               RCASTING                                    //
+// ========================================================================= //
 
 void	ray_length(t_rayc *ray);
 void	ft_init_ray(t_rayc *ray, t_map *map, float angle);
 float	ray_hit_length(t_rayc *ray);
 int		ray_caster(t_map *map, t_rayc *ray, float max);
 void	move_player(t_map *map, float angle);
-
 
 #endif
