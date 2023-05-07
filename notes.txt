@@ -21,3 +21,18 @@ COLOR:   F (Floor) + rgb colors
 
 Map error: return "Error\n" followed by explicit message 
 
+RAYCASTING
+
+simulate the way the light rays interact with objects in 3D
+
+calculte how far a ray travels before it hits something: step size + length
+	si dir.x < 0
+		step.x = -1  (tracing backwards through x axis)
+		length.x = (start.x - check.x) * unit.x    (distance to next vertical grid line)
+
+	dir.x = cos(angle) | dir.y = sin(angle)
+	start.x.y = position du joueur
+	unit.x = sqrt(1 + pow(dir.y / dir.x, 2))
+	check.x = (int)start.x  => float de base
+
+for angles, M_PI = pi value | M_PI_2 = pi value / 2
