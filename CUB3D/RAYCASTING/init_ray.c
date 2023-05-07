@@ -1,9 +1,9 @@
-
 #include "../LIB/cub3d.h"
 
 /* ---------------
 fill step and length var: longueur segment du rayon selon sa direction
-1. check if the vector is pos or neg => to set if we're tracing backwards or forward (step)
+1. check if the vector is pos or neg => to set if we're tracing 
+   backwards or forward (step)
 2. distance to next vertical grid line : start.x * current g.line
 ------------------ */
 
@@ -32,7 +32,8 @@ void	ray_length(t_rayc *ray)
 }
 
 /* ---------------
-1.Depending on the player move (up/down/right/left) we use pi or pi/2 as the angle
+1.Depending on the player move (up/down/right/left) 
+   we use pi or pi/2 as the angle
 2.Start registers the position of the player at the start
 3. dir = length of the adjacent side of the ray's dir vector
 	ps: length of hypothenuse always 1 
@@ -115,12 +116,21 @@ int	ray_caster(t_map *map, t_rayc *ray, float max)
 
 void	move_player(t_map *map, float angle)
 {
-	float const	x;
-	float const	y;
+	float const	x = 0.1f * cos(map->player_angle + angle);
+	float const	y = 0.1f * sin(map->player_angle + angle);
+	int			i;
+	char		*cardinal;
 	t_rayc		*ray;
-	
-	x = 0.1f * cos(map->player_angle + angle);
-	y = 0.1f * sin(map->player_angle + angle);
-	ft_init_ray(&ray, &map, map->player_angle + angle);
 
+	cardinal = "NSWE";
+	i = 0;
+	while (cardinal[i] != p_position(map))
+		i++;
+	map->player_angle = i * M_PI_2;
+	ft_init_ray(&ray, &map, map->player_angle + angle);
+	if (!ray_caster(map, &ray, 0.1) || ray->distance > 0.1)
+	{
+		map->player_x += x;
+		map->player_y += y;
+	}
 }
