@@ -114,6 +114,13 @@ int	ray_caster(t_map *map, t_rayc *ray, float max)
 	return (hit);
 }
 
+/*
+
+updating the player position and checking if it hits a wall
+0.1, distance between player and wall needs to be greater
+
+*/
+
 void	move_player(t_map *map, float angle)
 {
 	float const	x = 0.1f * cos(map->player_angle + angle);
