@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 19:47:49 by fwong             #+#    #+#             */
-/*   Updated: 2023/04/23 19:47:50 by fwong            ###   ########.fr       */
+/*   Updated: 2023/05/06 00:15:58 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 
 size_t	ft_strlen(const char *s);
 int		ft_is_newline(char *str);
-char	*ft_strjoin(char *s1, char *s2);
+char	*ft_strjoiny(char *s1, char *s2);
 char	*ft_get_line(char *str);
 char	*ft_get_endline(char *str);
 char	*get_next_line(int fd);

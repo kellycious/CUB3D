@@ -3,7 +3,17 @@
 NAME = cub3D
 
 CFILES = main.c	\
-		 PARSING/p_arguments.c 
+		 PARSING/clean_parsing.c \
+		 PARSING/p_arguments.c \
+		 PARSING/parse_colors.c \
+		 PARSING/parse_elements.c \
+		 PARSING/parse_infile.c \
+		 PARSING/parse_map.c \
+		 PARSING/parsing.c \
+		 PARSING/utils_colors.c \
+		 PARSING/utils_cub.c \
+		 PARSING/utils_elements.c \
+		 PARSING/utils_map.c \
 
 
 OBJS :=  	${addprefix ./OBJ/,${CFILES:%.c=%.o}}
@@ -13,7 +23,7 @@ DEP   = 	${addprefix ./OBJ/,${OBJS:%.o=%.d}}
 
 CFLAGS = -Wall -Werror -Wextra -MMD -MP -I./includes -g3
 RL = -lreadline
-LIB	   = -L./LIB/libft/ -lft -L LIB/minilibx-linux -l mlx -lX11 -lXext
+LIB	   = -L./LIB/libft/ -lft
 
 #------  3.COLORS VARIABLES
 
@@ -39,7 +49,6 @@ all: ${NAME}
 ./OBJ/%.o: ./%.c
 	@mkdir -p ${@D}
 	@make -C ./LIB/libft/
-	@make -C ../lib/minilibx-linux
 	@cc ${CFLAGS} -o $@ -c $<
 	
 ${NAME} : ${OBJS}

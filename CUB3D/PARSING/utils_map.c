@@ -3,14 +3,16 @@
 void	ft_copy_map(t_map *map)
 {
 	int	i;
-	int	j;
 
 	map->map_fill = ft_calloc((map->height + 1), sizeof(char *));
 	if (!map->map_fill)
-		return (ft_putstr_fd("Error\nMalloc error!\n", 2), exit(0));
+		return (ft_putstr_fd("Error\nMalloc error!\n", 2), ft_clean(map));
 	i = -1;
-	while (map->map[++i])
+	while (++i < map->height)
+	{
 		map->map_fill[i] = ft_strdup(map->map[i]);
+		printf("map->map_fill[%d] = %s\n", i, map->map_fill[i]);
+	}
 }
 
 void	ft_count_line_map(t_map *map, t_elements *elements)
@@ -28,7 +30,7 @@ void	ft_count_line_map(t_map *map, t_elements *elements)
 	map->height = count;
 }
 
-int	ft_check_players(t_map *map, t_elements *elements)
+int	ft_check_players(t_map *map)
 {
 	int		i;
 	int		j;
@@ -53,14 +55,14 @@ int	ft_check_players(t_map *map, t_elements *elements)
 	return (1);
 }
 
-void	ft_find_player(t_map *map, t_elements *elements)
+void	ft_find_player(t_map *map)
 {
 	int	i;
 	int	j;
 
 	i = -1;
-	if (!ft_check_players(map, elements))
-		exit(0);
+	if (!ft_check_players(map))
+		ft_clean(map);
 	while (++i < map->height)
 	{
 		j = -1;
@@ -80,15 +82,10 @@ int	ft_check_player(t_map *map, int i, int j)
 {
 	if ((map->map_fill[i][j] == 'N' || map->map_fill[i][j] == 'S'
 		|| map->map_fill[i][j] == 'E' || map->map_fill[i][j] == 'W')
-		&&
-		(((map->map_fill[i][j + 1] >= 9 && map->map_fill[i][j + 1] <= 13)
-		|| map->map_fill[i][j + 1] == ' ')
-		|| ((map->map_fill[i][j - 1] >= 9 && map->map_fill[i][j - 1] <= 13)
-		|| map->map_fill[i][j + 1] == ' ')
-		|| ((map->map_fill[i + 1][j] >= 9 && map->map_fill[i + 1][j] <= 13)
-		|| map->map_fill[i + 1][j] == ' ')
-		|| ((map->map_fill[i - 1][j] >= 9 && map->map_fill[i - 1][j] <= 13)
-		|| map->map_fill[i - 1][j] == ' ')))
-		return (0);
-	return (1);
+		&& (map->map_fill[i][j + 1] == '0'
+		||	map->map_fill[i][j - 1] == '0'
+		||	map->map_fill[i + 1][j] == '0'
+		||	map->map_fill[i - 1][j] == '0'))
+		return (1);
+	return (0);
 }

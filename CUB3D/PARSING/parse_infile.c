@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 17:43:11 by fwong             #+#    #+#             */
-/*   Updated: 2023/04/29 17:50:52 by fwong            ###   ########.fr       */
+/*   Updated: 2023/05/06 18:13:14 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	get_cub(t_map *map, char *argv)
 	int	i;
 	int	fd;
 	int	size;
-
+	
 	size = ft_count_line_cub(argv, map);
 	fd = open(argv, O_RDONLY);
 	if (fd <= -1)
@@ -26,26 +26,11 @@ int	get_cub(t_map *map, char *argv)
 	if (!map->cub)
 		return (close(fd), 0);
 	i = 0;
-	while (i < size + 1)
+	while (i < size)
 		map->cub[i++] = get_next_line(fd);
+	map->cub[i] = NULL;
 	close(fd);
 	ft_remove_nl(map);
 	return (1);
 }
 
-int	ft_check_textures(t_map *map)
-{
-	int	i;
-	int	j;
-	
-	i = -1;
-	j = -1;
-	while (map->cub[++i])
-	{
-		while (map->cub[i][++j])
-		{
-			if (map->cub[i] == 'N' && map->cub[i + 1] == 'O')
-				ft_check_textures()
-		}
-	}
-}

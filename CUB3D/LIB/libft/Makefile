@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: khuynh <khuynh@student.42.fr>              +#+  +:+       +#+         #
+#    By: fwong <fwong@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/11 23:10:17 by khuynh            #+#    #+#              #
-#    Updated: 2022/08/12 01:39:54 by khuynh           ###   ########.fr        #
+#    Updated: 2023/05/06 00:30:55 by fwong            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,9 @@ SRCS =  \
         ft_putchar_fd.c \
         ft_putstr_fd.c  \
         ft_putendl_fd.c \
-        ft_putnbr_fd.c
+        ft_putnbr_fd.c	\
+        get_next_line.c \
+        get_next_line_utils.c \
 
 BONUS = \
 		ft_lstmap.c		\
