@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 16:40:55 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/06 19:01:58 by fwong            ###   ########.fr       */
+/*   Updated: 2023/05/08 19:42:01 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	is_whitespace(char c)
 		return (1);
 	return (0);
 }
-
+ 
 void	ft_elements_error(char c, char c2, char c3)
 {
 	t_map	*map;
@@ -51,5 +51,3 @@ int	ft_skip_spaces(int i, t_map *map)
 		j++;
 	return (j);
 }
-
-

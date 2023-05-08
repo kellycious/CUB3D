@@ -9,11 +9,6 @@
 # include <stdio.h>
 # include <stdbool.h>
 
-# define NORTH			0
-# define SOUTH			1
-# define EAST			2
-# define WEST			3
-
 typedef struct s_elements
 {
 	bool	n;
@@ -27,6 +22,17 @@ typedef struct s_elements
 	bool	floor;
 	bool	ceiling;
 }				t_elements;
+
+typedef struct s_img
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+	int		width;
+	int		height;
+}				t_img;
 
 typedef struct s_map
 {
@@ -42,7 +48,6 @@ typedef struct s_map
 	char	*ea;
 	int		player_x;
 	int		player_y;
-	int		player_angle;
 	int		floor_r;
 	int		floor_g;
 	int		floor_b;
@@ -55,41 +60,7 @@ typedef struct s_map
 	t_img	texture[4];
 }				t_map;
 
-typedef	struct s_mlxy
-{
-	void	*mlx;
-	void	*win;
-	void	*img;
-	char	*addr;
-	int		bpp;
-	int		line;
-	int		endian;
-	t_map	map;
-}				t_mlxy;
-
-typedef struct s_coor
-{
-	float	x;
-	float	y;
-
-}				t_coor;
-
-typedef struct s_rayc
-{
-	float	angle;
-	t_coor	start;
-	t_coor	dir;
-	t_coor	length;
-	t_coor	gline;
-	t_coor	step;
-	int		istartx;
-	int		istarty;
-	int		hit_dir;
-	t_coor	result;
-	float	distance;
-}				t_rayc;
-
-int	main(int ac, char **av);
+int	main();
 
 // ========================================================================= //
 //                               PARSING                                     //
@@ -129,7 +100,7 @@ void	ft_check_elements(t_map *map, t_elements *elements);
 void	ft_not_elements(char c, char c2, char c3);
 void	ft_assign_elements(char c, char c2, char c3, t_elements *element);
 void	ft_parse_textures(t_map *map);
-void	ft_get_texture(int i, t_map *map);
+void	ft_get_texture(t_map *map, int i, int j);
 int		ft_count_elements(t_map *map, int count);
 
 /* util_elements.c */
@@ -165,13 +136,13 @@ int		ft_check_players(t_map *map);
 void	ft_find_player(t_map *map);
 int		ft_check_player(t_map *map, int i, int j);
 
-// RAYCASTING //
+/* utils_map_fill.c */
 
-void	ray_length(t_rayc *ray);
-void	ft_init_ray(t_rayc *ray, t_map *map, float angle);
-float	ray_hit_length(t_rayc *ray);
-int		ray_caster(t_map *map, t_rayc *ray, float max);
-void	move_player(t_map *map, float angle);
+void	ft_player_position(t_map *map, int i, int j);
+void	ft_change_to(t_map *map, int i, int j);
+int		ft_check_closed(t_map *map);
+int		ft_check_player_around(t_map *map, int i, int j);
+int		ft_is_player(t_map *map, int i, int j);
 
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 19:42:08 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/06 19:01:30 by fwong            ###   ########.fr       */
+/*   Updated: 2023/05/09 00:37:29 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	ft_check_elements(t_map *map, t_elements *elements)
 	while (i < map->height)
 	{
 		j = 0;
-		printf("map->cub[%d] = %s\n", i, map->cub[i]);
 		while (map->cub[i][j] == ' ' || map->cub[i][j] == '\t')
 			j++;
 		ft_assign_elements(map->cub[i][j], map->cub[i][j + 1], map->cub[i][j + 2], elements);
@@ -64,36 +63,55 @@ void	ft_assign_elements(char c, char c2, char c3, t_elements *element)
 			|| (c == 'E' && c2 == 'O' && element->ea == true)
 			|| (c == 'C' && element->ceiling == true)
 			|| (c == 'F' && element->floor == true))
-			{
-				printf("FDPPPPPPPPPPPPPPPPPPPP");
 				ft_elements_error(c, c2, c3);
-			}
 }
 
 void	ft_parse_textures(t_map *map)
 {
 	int	i;
+	int	j;
 	
 	i = -1;
 	while (map->cub[++i])
-		ft_get_texture(i, map);
+	{
+		j = 0;
+		while (map->cub[i][j])
+		{
+			while(map->cub[i][j] == ' ' || map->cub[i][j] == '\t')
+				j++;
+			ft_get_texture(map, i, j);
+			j++;
+		}		
+	}
 }
 
 // 3rd step: get the path of the textures
-void	ft_get_texture(int i, t_map *map)
+void	ft_get_texture(t_map *map, int i, int j)
 {
-	int	j;
-
-	j = i;
-	i = ft_skip_spaces(i, map);
-	if (ft_strncmp(map->cub[j] + i, "NO", 2) && is_whitespace(map->cub[j][i + 2]))
-		map->no = ft_strdup(map->cub[i]);
-	if (ft_strncmp(map->cub[j] + i, "SO", 2) && is_whitespace(map->cub[j][i + 2]))
-		map->so = ft_strdup(map->cub[i]);
-	if (ft_strncmp(map->cub[j] + i, "WE", 2) && is_whitespace(map->cub[j][i + 2]))
-		map->we = ft_strdup(map->cub[i]);
-	if (ft_strncmp(map->cub[j] + i, "EA", 2) && is_whitespace(map->cub[j][i + 2]))
-		map->ea = ft_strdup(map->cub[i]);
+	if (map->cub[i][j] == 'N' && map->cub[i][j + 1] == 'O' && is_whitespace(map->cub[i][j + 2]))
+	{
+		while (map->cub[i][j + 2] == ' ' || map->cub[i][j + 2] == '\t')
+			j++;
+		map->no = ft_strdup(map->cub[i] + j + 2);
+	}
+	else if (map->cub[i][j] == 'S' && map->cub[i][j + 1] == 'O' && is_whitespace(map->cub[i][j + 2]))
+	{
+		while (map->cub[i][j + 2] == ' ' || map->cub[i][j + 2] == '\t')
+			j++;
+		map->so = ft_strdup(map->cub[i] + j + 2);
+	}
+	else if (map->cub[i][j] == 'W' && map->cub[i][j + 1] == 'E' && is_whitespace(map->cub[i][j + 2]))
+	{
+		while (map->cub[i][j + 2] == ' ' || map->cub[i][j + 2] == '\t')
+			j++;
+		map->we	= ft_strdup(map->cub[i] + j + 2);
+	}
+	else if (map->cub[i][j] == 'E' && map->cub[i][j + 1] == 'A' && is_whitespace(map->cub[i][j + 2]))
+	{
+		while (map->cub[i][j + 2] == ' ' || map->cub[i][j + 2] == '\t')
+			j++;
+		map->ea = ft_strdup(map->cub[i] + j + 2);
+	}
 }
 
 int	ft_count_elements(t_map *map, int count)
@@ -102,22 +120,22 @@ int	ft_count_elements(t_map *map, int count)
 	int	j;
 
 	i = -1;
-	j = -1;
 	while (map->cub[++i])
 	{
+		j = -1;
 		while (map->cub[i][++j])
 		{  
-			if (map->cub[i][j] == 'N' && map->cub[i][j + 1] == 'O')
+			if (map->cub[i][j] == 'N' && map->cub[i][j + 1] == 'O' && map->cub[i][j + 2] == ' ')
 				count++;
-			if (map->cub[i][j] == 'S' && map->cub[i][j + 1] == 'O')
+			if (map->cub[i][j] == 'S' && map->cub[i][j + 1] == 'O' && map->cub[i][j + 2] == ' ')
 				count++;
-			if (map->cub[i][j] == 'W' && map->cub[i][j + 1] == 'E')
+			if (map->cub[i][j] == 'W' && map->cub[i][j + 1] == 'E' && map->cub[i][j + 2] == ' ')
 				count++;
-			if (map->cub[i][j] == 'E' && map->cub[i][j + 1] == 'A')
+			if (map->cub[i][j] == 'E' && map->cub[i][j + 1] == 'A' && map->cub[i][j + 2] == ' ')
 				count++;
-			if (map->cub[i][j] == 'C')
+			if (map->cub[i][j] == 'C' && map->cub[i][j + 1] == ' ')
 				count++;
-			if (map->cub[i][j] == 'F')
+			if (map->cub[i][j] == 'F' && map->cub[i][j + 1] == ' ')
 				count++;
 		}
 		if (count == 6)
