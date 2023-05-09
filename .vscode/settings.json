@@ -35,6 +35,7 @@
   ],
 "C_Cpp_Runner.useAddressSanitizer": false,
 "files.associations": {
-	"cub3d.h": "c"
+	"cub3d.h": "c",
+	"random": "c"
 }
 }
