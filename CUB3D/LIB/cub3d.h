@@ -7,6 +7,7 @@
 # include "libft/get_next_line.h"
 # include <fcntl.h>
 # include <stdio.h>
+# include <math.h>
 # include <stdbool.h>
 
 # define NORTH			0
