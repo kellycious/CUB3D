@@ -34,17 +34,6 @@ typedef struct s_elements
 	bool	ceiling;
 }				t_elements;
 
-typedef struct s_img
-{
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-	int		width;
-	int		height;
-}				t_img;
-
 typedef struct s_map
 {
 	bool	n;
@@ -68,6 +57,7 @@ typedef struct s_map
 	char	**map;
 	char	**map_fill;
 	char	**cub;
+	t_mlxy	textures[4];
 }				t_map;
 
 typedef	struct s_mlxy
