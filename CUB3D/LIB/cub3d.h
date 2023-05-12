@@ -5,10 +5,15 @@
 
 # include "libft/libft.h"
 # include "libft/get_next_line.h"
+# include "minilibx-linux/mlx.h"
 # include <fcntl.h>
 # include <stdio.h>
 # include <math.h>
 # include <stdbool.h>
+# include <X11/Xlib.h>
+# include <X11/X.h>
+# include <X11/Xutil.h>
+# include <X11/keysym.h>
 
 # define NORTH			0
 # define SOUTH			1
@@ -53,7 +58,6 @@ typedef struct s_map
 	char	**map;
 	char	**map_fill;
 	char	**cub;
-	t_img	texture[4];
 }				t_map;
 
 typedef	struct s_mlxy

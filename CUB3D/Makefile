@@ -23,7 +23,7 @@ DEP   = 	${addprefix ./OBJ/,${OBJS:%.o=%.d}}
 
 CFLAGS = -Wall -Werror -Wextra -MMD -MP -I./includes -g3
 RL = -lreadline
-LIB	   = -L./LIB/libft/ -lft
+LIB	   = -L./LIB/libft/ -lft -L ../lib/minilibx-linux -l mlx -lX11 -lXext
 
 #------  3.COLORS VARIABLES
 
@@ -49,6 +49,7 @@ all: ${NAME}
 ./OBJ/%.o: ./%.c
 	@mkdir -p ${@D}
 	@make -C ./LIB/libft/
+	@make -C ./LIB/minilibx-linux/
 	@cc ${CFLAGS} -o $@ -c $<
 	
 ${NAME} : ${OBJS}

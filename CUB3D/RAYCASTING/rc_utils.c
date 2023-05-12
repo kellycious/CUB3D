@@ -1,4 +1,3 @@
-
 #include "../LIB/cub3d.h"
 
 char	p_position(t_map *cub)
