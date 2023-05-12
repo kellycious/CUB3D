@@ -13,6 +13,7 @@ CFILES = main.c	\
 		 PARSING/utils_colors.c \
 		 PARSING/utils_cub.c \
 		 PARSING/utils_elements.c \
+		 PARSING/utils_map_fill.c \
 		 PARSING/utils_map.c \
 
 

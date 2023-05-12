@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 14:00:40 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/05 23:33:23 by fwong            ###   ########.fr       */
+/*   Updated: 2023/05/09 01:04:37 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,15 @@ void	ft_parse_colors(t_map *map)
 	int	j;
 
 	i = -1; 	
-	j = -1;
 	while (map->cub[++i])
 	{
+		j = -1;
 		while (map->cub[i][++j])
-		{  
-			if (map->cub[i][j] == 'C')
-				ft_check_and_parse_c(i, j + 1, map);
-			if (map->cub[i][j] == 'F')
-				ft_check_and_parse_c(i, j + 1, map);
+		{
+			if (map->cub[i][j] == 'C' && map->cub[i][j + 1] == ' ')
+				ft_check_and_parse_c(i, j, map);
+			if (map->cub[i][j] == 'F' && map->cub[i][j + 1] == ' ')
+				ft_check_and_parse_c(i, j, map);
 		}
 	}
 }
@@ -38,9 +38,9 @@ void	ft_check_and_parse_c(int i, int j, t_map *map)
 
 	k = j;
 	count = 0;
+	k++;
 	while (map->cub[i][k] == ' ' || map->cub[i][k] == '\t')
 		k++;
-	k++;
 	if (map->cub[i][k] < '0' && map->cub[i][k] > '9')
 		ft_elements_error('0', '0', '0');
 	while (map->cub[i][k])
@@ -77,6 +77,8 @@ void	ft_parse_f(int i, t_map *map)
 	char	*nbr;
 	char	**rgb;
 
+	while (map->cub[i][0] == ' ' || map->cub[i][0] == '\t')
+		i++;
 	nbr = ft_strdup(map->cub[i] + 1);
 	rgb = ft_split(nbr, ',');
 	if (nbr)

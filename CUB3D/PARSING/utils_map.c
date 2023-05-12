@@ -9,10 +9,7 @@ void	ft_copy_map(t_map *map)
 		return (ft_putstr_fd("Error\nMalloc error!\n", 2), ft_clean(map));
 	i = -1;
 	while (++i < map->height)
-	{
 		map->map_fill[i] = ft_strdup(map->map[i]);
-		printf("map->map_fill[%d] = %s\n", i, map->map_fill[i]);
-	}
 }
 
 void	ft_count_line_map(t_map *map, t_elements *elements)
@@ -39,7 +36,7 @@ int	ft_check_players(t_map *map)
 	i = -1;
 	while (++i < map->height)
 	{
-		j = -1;
+		j = 0;
 		while (map->map[i][j])
 		{
 			if (map->map[i][j] == 'N' || map->map[i][j] == 'S'
@@ -71,8 +68,9 @@ void	ft_find_player(t_map *map)
 			if (map->map[i][j] == 'N' || map->map[i][j] == 'S'
 				|| map->map[i][j] == 'E' || map->map[i][j] == 'W')
 			{
-				map->player_y = i;
-				map->player_x = j;
+				ft_player_position(map, i, j);
+				map->player_y = j;
+				map->player_x = i;
 			}
 		}
 	}
