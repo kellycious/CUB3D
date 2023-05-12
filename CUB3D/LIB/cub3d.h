@@ -15,6 +15,11 @@
 # include <X11/Xutil.h>
 # include <X11/keysym.h>
 
+# define NORTH			0
+# define SOUTH			1
+# define EAST			2
+# define WEST			3
+
 typedef struct s_elements
 {
 	bool	n;
@@ -64,6 +69,40 @@ typedef struct s_map
 	char	**map_fill;
 	char	**cub;
 }				t_map;
+
+typedef	struct s_mlxy
+{
+	void	*mlx;
+	void	*win;
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line;
+	int		endian;
+	t_map	map;
+}				t_mlxy;
+
+typedef struct s_coor
+{
+	float	x;
+	float	y;
+
+}				t_coor;
+
+typedef struct s_rayc
+{
+	float	angle;
+	t_coor	start;
+	t_coor	dir;
+	t_coor	length;
+	t_coor	gline;
+	t_coor	step;
+	int		istartx;
+	int		istarty;
+	int		hit_dir;
+	t_coor	result;
+	float	distance;
+}				t_rayc;
 
 int	main();
 
