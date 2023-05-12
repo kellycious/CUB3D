@@ -5,9 +5,15 @@
 
 # include "libft/libft.h"
 # include "libft/get_next_line.h"
+# include "minilibx-linux/mlx.h"
 # include <fcntl.h>
 # include <stdio.h>
+# include <math.h>
 # include <stdbool.h>
+# include <X11/Xlib.h>
+# include <X11/X.h>
+# include <X11/Xutil.h>
+# include <X11/keysym.h>
 
 typedef struct s_elements
 {
@@ -57,7 +63,6 @@ typedef struct s_map
 	char	**map;
 	char	**map_fill;
 	char	**cub;
-	t_img	texture[4];
 }				t_map;
 
 int	main();
@@ -68,9 +73,9 @@ int	main();
 
 // ARGS //
 
-int	check_arg(int ac, char **av);
-int	valid_cub(char **av);
-int	open_cub(char *file);
+int		check_arg(int ac, char **av);
+int		valid_cub(char **av);
+int		open_cub(char *file);
 void	ft_parsing(t_map *map, t_elements *elements, char *argv);
 
 /* clean_parsing.c */
@@ -137,13 +142,13 @@ int		ft_check_players(t_map *map);
 void	ft_find_player(t_map *map);
 int		ft_check_player(t_map *map, int i, int j);
 
-/* utils_map_fill.c */
+// RAYCASTING //
 
-void	ft_player_position(t_map *map, int i, int j);
-void	ft_change_to(t_map *map, int i, int j);
-int		ft_check_closed(t_map *map);
-int		ft_check_player_around(t_map *map, int i, int j);
-int		ft_is_player(t_map *map, int i, int j);
+void	ray_length(t_rayc *ray);
+void	ft_init_ray(t_rayc *ray, t_map *map, float angle);
+float	ray_hit_length(t_rayc *ray);
+int		ray_caster(t_map *map, t_rayc *ray, float max);
+void	move_player(t_map *map, float angle);
 
 
 #endif

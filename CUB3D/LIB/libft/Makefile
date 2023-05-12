@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fwong <fwong@student.42.fr>                +#+  +:+       +#+         #
+#    By: khuynh <khuynh@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/11 23:10:17 by khuynh            #+#    #+#              #
-#    Updated: 2023/05/06 00:30:55 by fwong            ###   ########.fr        #
+#    Updated: 2023/05/07 16:05:38 by khuynh           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ SRCS =  \
         ft_strdup.c     \
         ft_itoa.c       \
         ft_substr.c     \
+		ft_strpbrk.c 	\
         ft_strjoin.c    \
         ft_strtrim.c    \
         ft_split.c      \
