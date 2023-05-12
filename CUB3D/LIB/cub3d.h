@@ -20,6 +20,9 @@
 # define EAST			2
 # define WEST			3
 
+typedef struct s_map	t_map;
+typedef struct s_mlxy	t_mlxy;
+
 typedef struct s_elements
 {
 	bool	n;
@@ -34,7 +37,19 @@ typedef struct s_elements
 	bool	ceiling;
 }				t_elements;
 
-typedef struct s_map
+struct s_mlxy
+{
+	void	*mlx;
+	void	*win;
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line;
+	int		endian;
+	t_map	*map;
+};
+
+struct s_map
 {
 	bool	n;
 	bool	s;
@@ -58,19 +73,8 @@ typedef struct s_map
 	char	**map_fill;
 	char	**cub;
 	t_mlxy	textures[4];
-}				t_map;
+};
 
-typedef	struct s_mlxy
-{
-	void	*mlx;
-	void	*win;
-	void	*img;
-	char	*addr;
-	int		bpp;
-	int		line;
-	int		endian;
-	t_map	map;
-}				t_mlxy;
 
 typedef struct s_coor
 {
@@ -110,7 +114,7 @@ void	ft_parsing(t_map *map, t_elements *elements, char *argv);
 /* clean_parsing.c */
 
 void	ft_clean_colors(char **rgb, char **rgb_final);
-void	ft_clean(t_map *map);
+void	ft_clean(t_map *map, t_elements *elements);
 void	ft_free_map(char **map);
 
 /* parse_colors.c */
@@ -170,6 +174,15 @@ void	ft_count_line_map(t_map *map, t_elements *elements);
 int		ft_check_players(t_map *map);
 void	ft_find_player(t_map *map);
 int		ft_check_player(t_map *map, int i, int j);
+
+/* utils_map_fill.c */
+
+
+void	ft_player_position(t_map *map, int i, int j);
+void	ft_change_to(t_map *map, int i, int j);
+int		ft_is_player(t_map *map, int i, int j);
+int		ft_check_player_around(t_map *map, int i, int j);
+int		ft_check_closed(t_map *map);
 
 // RAYCASTING //
 

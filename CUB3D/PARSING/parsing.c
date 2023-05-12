@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 23:49:57 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/09 23:24:35 by fwong            ###   ########.fr       */
+/*   Updated: 2023/05/12 17:46:14 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_parsing(t_map *map, t_elements *elements, char *argv)
 	int i = -1;
 	while (map->cub[++i])
 		printf("map->cub[%d] = %s\n", i, map->cub[i]);
-	ft_clean(map);
+	ft_clean(map, elements);
 	// get_map(map, elements);
 	// ft_flood_fill(map);
 	// ft_check_closed(map);
