@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 14:00:40 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/09 01:04:37 by fwong            ###   ########.fr       */
+/*   Updated: 2023/05/12 18:18:02 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,21 +61,35 @@ void	ft_parse_c(int i, t_map *map)
 {
 	char	*nbr;
 	char	**rgb;
+	char	**rgb_final;
 
 	nbr = ft_strdup(map->cub[i] + 1);
 	rgb = ft_split(nbr, ',');
 	if (nbr)
 		free(nbr);
-	rgb = ft_get_rgb(0, 0, 0, rgb);
+	rgb_final = ft_get_rgb(0, 0, 0, rgb);
 	ft_assign_rgb_c(map, rgb);
 	if (rgb)
-		free(rgb);
+	{
+		int i = -1;
+		while (++i < 3)
+			free(rgb[i]);
+	}
+	free(rgb);
+	if (rgb_final)
+	{
+		int i = -1;
+		while (++i < 3)
+			free(rgb_final[i]);
+	}
+	free(rgb_final);
 }
 
 void	ft_parse_f(int i, t_map *map)
 {
 	char	*nbr;
 	char	**rgb;
+	char	**rgb_final;
 
 	while (map->cub[i][0] == ' ' || map->cub[i][0] == '\t')
 		i++;
@@ -83,10 +97,22 @@ void	ft_parse_f(int i, t_map *map)
 	rgb = ft_split(nbr, ',');
 	if (nbr)
 		free(nbr);
-	rgb = ft_get_rgb(0, 0, 0, rgb);
+	rgb_final = ft_get_rgb(0, 0, 0, rgb);
 	ft_assign_rgb_f(map, rgb);
 	if (rgb)
-		free(rgb);
+	{
+		int i = -1;
+		while (++i < 3)
+			free(rgb[i]);
+	}
+	free(rgb);
+	if (rgb_final)
+	{
+		int i = -1;
+		while (++i < 3)
+			free(rgb_final[i]);
+	}
+	free(rgb_final);
 }
 
 char	**ft_get_rgb(int i, int j, int l, char **rgb)

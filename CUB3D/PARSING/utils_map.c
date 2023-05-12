@@ -34,6 +34,7 @@ int	ft_check_players(t_map *map)
 	bool	player;
 
 	i = -1;
+	player = false;
 	while (++i < map->height)
 	{
 		j = 0;
