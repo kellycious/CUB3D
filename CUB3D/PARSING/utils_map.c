@@ -6,7 +6,7 @@ void	ft_copy_map(t_map *map)
 
 	map->map_fill = ft_calloc((map->height + 1), sizeof(char *));
 	if (!map->map_fill)
-		return (ft_putstr_fd("Error\nMalloc error!\n", 2), ft_clean(map));
+		return (ft_putstr_fd("Error\nMalloc error!\n", 2), ft_clean(map, NULL));
 	i = -1;
 	while (++i < map->height)
 		map->map_fill[i] = ft_strdup(map->map[i]);
@@ -59,7 +59,7 @@ void	ft_find_player(t_map *map)
 
 	i = -1;
 	if (!ft_check_players(map))
-		ft_clean(map);
+		ft_clean(map, NULL);
 	while (++i < map->height)
 	{
 		j = -1;

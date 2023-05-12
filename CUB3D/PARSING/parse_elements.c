@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 19:42:08 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/12 17:45:40 by fwong            ###   ########.fr       */
+/*   Updated: 2023/05/12 17:53:36 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ void	ft_check_elements(t_map *map, t_elements *elements)
 		j = 0;
 		while (map->cub[i][j] == ' ' || map->cub[i][j] == '\t')
 			j++;
-		ft_assign_elements(map->cub[i][j], map->cub[i][j + 1], map->cub[i][j + 2], elements);
+		if (map->cub[i][j] && map->cub[i][j + 1] && map->cub[i][j + 2])
+			ft_assign_elements(map->cub[i][j], map->cub[i][j + 1], map->cub[i][j + 2], elements);
 		i++;
 	}
 }

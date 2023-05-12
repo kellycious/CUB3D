@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 01:19:53 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/08 23:58:18 by fwong            ###   ########.fr       */
+/*   Updated: 2023/05/12 17:49:50 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	ft_flood_fill(t_map *map)
 					i = 0;
 				else
 					return (ft_putstr_fd("Error\nMap not closed\n", 1),
-					ft_clean(map), 0);
+					ft_clean(map, NULL), 0);
 			}
 		}
 		i++;
