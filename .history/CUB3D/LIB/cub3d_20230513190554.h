@@ -113,6 +113,7 @@ void	ft_parsing(t_map *map, t_elements *elements, char *argv);
 
 /* clean_parsing.c */
 
+void	ft_clean_colors(char **rgb, char **rgb_final);
 void	ft_clean(t_map *map, t_elements *elements);
 void	ft_free_map(char **map);
 
@@ -127,10 +128,10 @@ char	**ft_get_rgb(int i, int j, int l, char **rgb);
 /* utils_colors.c */
 
 void	ft_skip_spaces_rgb(char **rgb, int i, int j);
-int		ft_assign_rgb_c(t_map *map, char **rgb_final);
-int		ft_assign_rgb_f(t_map *map, char **rgb_final);
+void	ft_assign_rgb_c(t_map *map, char **rgb_final);
+void	ft_assign_rgb_f(t_map *map, char **rgb_final);
 void	ft_get_rgb_final(char **rgb_final, char **rgb);
-void	ft_clean_rgb(char **rgb, char **rgb_final);
+void	ft_clean_rgb(char **rgb_final, char **rgb);
 
 /* parse_elements.c */
 

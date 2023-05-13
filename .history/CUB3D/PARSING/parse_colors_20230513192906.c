@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 14:00:40 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/13 19:36:54 by fwong            ###   ########.fr       */
+/*   Updated: 2023/05/13 19:29:06 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,22 @@ void	ft_parse_c(int i, t_map *map)
 	if (nbr)
 		free(nbr);
 	rgb_final = ft_get_rgb(0, 0, 0, rgb);
+	printf("map->no = %s\n", map->no);
+	printf("map->so = %s\n", map->so);
+	printf("map->we = %s\n", map->we);
+	printf("map->ea = %s\n", map->ea);
+	printf("player_x = %d\n", map->player_x);
+	printf("player_y = %d\n", map->player_y);
+	printf("map->floor_r = %d\n", map->floor_r);
+	printf("map->floor_g = %d\n", map->floor_g);
+	printf("map->floor_b = %d\n", map->floor_b);
+	printf("map->ceiling_r = %d\n", map->ceiling_r);
+	printf("map->ceiling_g = %d\n", map->ceiling_g);
+	printf("map->ceiling_b = %d\n", map->ceiling_b);
 	if (!ft_assign_rgb_c(map, rgb))
 	{
 		ft_clean_rgb(rgb, rgb_final);
-		printf("map->no = %s\n", map->no);
+	printf("map->no = %s\n", map->no);
 		ft_elements_error('0', '0', '0');
 	}
 	ft_clean_rgb(rgb, rgb_final);
@@ -110,11 +122,11 @@ char	**ft_get_rgb(int i, int j, int l, char **rgb)
 		while (rgb[i][l] == ' ' || rgb[i][l] == '\t')
 			l++;
 		if (rgb[i][l] < '0' || rgb[i][l] > '9')
-			ft_clean_rgb(rgb, rgb_final);
+			ft_clean_colors(rgb, rgb_final);
 		while (rgb[i][l] >= '0' && rgb[i][l] <= '9')
 		{
 			if (j > 3)
-				ft_clean_rgb(rgb, rgb_final);
+				ft_clean_colors(rgb, rgb_final);
 			j++;
 			l++;
 		}

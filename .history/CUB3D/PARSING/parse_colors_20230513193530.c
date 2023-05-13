@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 14:00:40 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/13 19:36:54 by fwong            ###   ########.fr       */
+/*   Updated: 2023/05/13 19:35:30 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	ft_parse_c(int i, t_map *map)
 	if (!ft_assign_rgb_c(map, rgb))
 	{
 		ft_clean_rgb(rgb, rgb_final);
-		printf("map->no = %s\n", map->no);
+		printf("")
 		ft_elements_error('0', '0', '0');
 	}
 	ft_clean_rgb(rgb, rgb_final);

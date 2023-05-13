@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 22:20:49 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/13 19:24:41 by fwong            ###   ########.fr       */
+/*   Updated: 2023/05/13 19:05:39 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,17 @@ void	ft_skip_spaces_rgb(char **rgb, int i, int j)
 		j++;
 	}
 }
-int	ft_assign_rgb_c(t_map *map, char **rgb_final)
+void	ft_assign_rgb_c(t_map *map, char **rgb_final)
 {
 	map->ceiling_r = ft_atoi(rgb_final[0]);
 	map->ceiling_g = ft_atoi(rgb_final[1]);
 	map->ceiling_b = ft_atoi(rgb_final[2]);
 	if (map->ceiling_r < 0 || map->ceiling_r > 255)
-		return (0);
+		ft_elements_error('0', '0', '0');
 	if (map->ceiling_g < 0 || map->ceiling_g > 255)
-		return (0);
+		ft_elements_error('0', '0', '0');
 	if (map->ceiling_b < 0 || map->ceiling_b > 255)
-		return (0);
-	return (1);
+		ft_elements_error('0', '0', '0');
 }
 
 int	ft_assign_rgb_f(t_map *map, char **rgb_final)
@@ -41,11 +40,11 @@ int	ft_assign_rgb_f(t_map *map, char **rgb_final)
 	map->floor_g = ft_atoi(rgb_final[1]);
 	map->floor_b = ft_atoi(rgb_final[2]);
 	if (map->floor_r < 0 || map->floor_r > 255)
-		return (0);
+		return (0)
 	if (map->floor_g < 0 || map->floor_g > 255)
-		return (0);
+		return (0)
 	if (map->floor_b < 0 || map->floor_b > 255)
-		return (0);
+		return (0)
 	return (1);
 }
 
@@ -76,7 +75,7 @@ void	ft_clean_rgb(char **rgb_final, char **rgb)
 {
 	int	i;
 
-	i = -1;
+	i = -;
 	if (rgb)
 	{
 		while (++i < 3)

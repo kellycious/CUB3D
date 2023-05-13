@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 14:00:40 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/13 19:36:54 by fwong            ###   ########.fr       */
+/*   Updated: 2023/05/13 19:18:00 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +68,21 @@ void	ft_parse_c(int i, t_map *map)
 	if (nbr)
 		free(nbr);
 	rgb_final = ft_get_rgb(0, 0, 0, rgb);
-	if (!ft_assign_rgb_c(map, rgb))
+	ft_assign_rgb_c(map, rgb);
+	if (rgb)
 	{
-		ft_clean_rgb(rgb, rgb_final);
-		printf("map->no = %s\n", map->no);
-		ft_elements_error('0', '0', '0');
+		int i = -1;
+		while (++i < 3)
+			free(rgb[i]);
 	}
-	ft_clean_rgb(rgb, rgb_final);
+	free(rgb);
+	if (rgb_final)
+	{
+		int i = -1;
+		while (++i < 3)
+			free(rgb_final[i]);
+	}
+	free(rgb_final);
 }
 
 void	ft_parse_f(int i, t_map *map)
@@ -90,11 +98,7 @@ void	ft_parse_f(int i, t_map *map)
 	if (nbr)
 		free(nbr);
 	rgb_final = ft_get_rgb(0, 0, 0, rgb);
-	if (!ft_assign_rgb_f(map, rgb))
-	{
-		ft_clean_rgb(rgb, rgb_final);
-		ft_elements_error('0', '0', '0');
-	}
+	ft_assign_rgb_f(map, rgb);
 	ft_clean_rgb(rgb, rgb_final);
 }
 
@@ -110,11 +114,11 @@ char	**ft_get_rgb(int i, int j, int l, char **rgb)
 		while (rgb[i][l] == ' ' || rgb[i][l] == '\t')
 			l++;
 		if (rgb[i][l] < '0' || rgb[i][l] > '9')
-			ft_clean_rgb(rgb, rgb_final);
+			ft_clean_colors(rgb, rgb_final);
 		while (rgb[i][l] >= '0' && rgb[i][l] <= '9')
 		{
 			if (j > 3)
-				ft_clean_rgb(rgb, rgb_final);
+				ft_clean_colors(rgb, rgb_final);
 			j++;
 			l++;
 		}

@@ -113,6 +113,7 @@ void	ft_parsing(t_map *map, t_elements *elements, char *argv);
 
 /* clean_parsing.c */
 
+void	ft_clean_colors(char **rgb, char **rgb_final);
 void	ft_clean(t_map *map, t_elements *elements);
 void	ft_free_map(char **map);
 

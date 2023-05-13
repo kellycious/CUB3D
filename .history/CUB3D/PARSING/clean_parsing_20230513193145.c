@@ -6,11 +6,31 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 23:11:39 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/13 19:36:47 by fwong            ###   ########.fr       */
+/*   Updated: 2023/05/13 19:31:45 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../LIB/cub3d.h"
+
+void	ft_clean_colors(char **rgb, char **rgb_final)
+{
+	int	i;
+
+	i = -1;
+	if (rgb)
+	{
+		while (rgb[++i])
+			free(rgb[i]);
+		free(rgb);
+	}
+	i = -1;
+	if (rgb_final)
+	{
+		while (rgb_final[++i])
+			free(rgb_final[i]);
+		free(rgb_final);
+	}
+}
 
 void	ft_clean(t_map *map, t_elements *elements)
 {
