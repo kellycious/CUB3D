@@ -29,6 +29,7 @@ void	ray_length(t_rayc *ray)
 		ray->step.y = 1;
 		ray->length.y = ((ray->istarty + 1) - ray->start.x) * ray->gline.y;
 	}
+	ray_hit_length(ray);
 }
 
 /* ---------------
@@ -40,17 +41,18 @@ void	ray_length(t_rayc *ray)
 4.gline = angle between ray and axis
 ------------------ */
 
-void	ft_init_ray(t_rayc *ray, t_map *map, float angle)
+void	ft_init_ray(t_rayc *ray, t_map *map)
 {
 	ray->angle = angle;
 	ray->start.x = map->player_x;
 	ray->start.y = map->player_y;
-	ray->dir.x = cos(angle);
-	ray->dir.y = sin(angle);
-	ray->gline.x = sqrt(1 + pow(ray->dir.y / ray->dir.x, 2));
-	ray->gline.y = sqrt(1 + pow(ray->dir.x / ray->dir.y, 2));
+	ray->dir.x = 0;
+	ray->dir.y = 0;
+	ray->gline.x = 0;
+	ray->gline.y = 0;
 	ray->istartx = (int)ray->start.x;
 	ray->istarty = (int)ray->start.y;
+	dir_init(map, ray);
 	ray_length(ray);
 }
 
@@ -60,10 +62,9 @@ update the ray length to when it collides with an object (wall)
 2. update all lengths (start position, length to the next grid line)
 ------------------ */
 
-float	ray_hit_length(t_rayc *ray)
+void	ray_hit_length(t_rayc *ray)
 {
 	float	distance;
-
 	if (ray->length.x < ray->length.y)
 	{
 		ray->istartx += ray->step.x;
@@ -84,15 +85,26 @@ float	ray_hit_length(t_rayc *ray)
 		else
 			ray->hit_dir = SOUTH;
 	}
-	return (distance);
+	if (game->map[ray->length.x][ray->length.y] == '1')
+		ray->hit = 1;
+	draw_ray(ray, distance);
 }
 
+void	draw_ray(t_rayc *ray, float distance)
+{
+	if (ray->hit == 1)
+	{
+		ray->result.x = ray->start.x + ray->dir.x * distance;
+		ray->result.y = ray->start.y + ray->dir.y * distance;
+		ray->distance = distance;
+	}
+}
 /* ---------------
 check if it does hit a wall or not
 if distance < max, then check if the cell is a wall (1)
 if it does, update the exact hit point of the ray on the wall
 distance: 0.0f so at least one loop is executed
------------------- */
+
 
 int	ray_caster(t_map *map, t_rayc *ray, float max)
 {
@@ -114,8 +126,6 @@ int	ray_caster(t_map *map, t_rayc *ray, float max)
 	}
 	return (hit);
 }
-
-/*
 
 updating the player position and checking if it hits a wall
 0.1, distance between player and wall needs to be greater
@@ -140,5 +150,6 @@ void	move_player(t_map *map, float angle)
 		map->player_x += x;
 		map->player_y += y;
 	}
-}*/
+}
+------------------ */
 

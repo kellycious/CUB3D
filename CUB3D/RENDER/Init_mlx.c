@@ -16,12 +16,17 @@ int	render_map(t_map *game)
 	game->img = mlx_new_image(game->mlx, 800, 600);
 	game->addr = mlx_get_data_addr(game->img, &game->bpp, &game->line, 
 		&game->endian);
-	// raycasting(game);
 	game->win = mlx_new_window(game->mlx, 800, 600, "CUB3D");
 	game->imgbis = mlx_new_image(game->mlx, 800, 600);
 	game->addrbis = mlx_get_data_addr(game->imgbis, &game->bpp, &game->line, 
 		&game->endian);
-
+	
+	mlx_hook(recup->data.mlx_win, 33, 1L << 17, ft_exit, game);
+	mlx_hook(recup->data.mlx_win, 2, 1L << 0, ft_key_press, game);
+	mlx_loop_hook(recup->data.mlx_ptr, looper, game);
+	mlx_hook(recup->data.mlx_win, 3, 1L << 1, ft_key_release, game);
+	mlx_loop(game->mlx);
+	return (0);
 }
 
 void	texture_pix(t_map *game)
@@ -54,4 +59,14 @@ void	texture_img(t_map *game)
 	game->txt[EAST].img = mlx_xpm_file_to_image(game->mlx, game->eq, 
 		800, 600);
 	texture_pix(game);
+}
+
+int		raycaster(t_map *game, t_rayc *ray)
+{
+	ray->x = 0;
+	while (ray->x < game->width)
+	{
+		ft_init_ray(game, ray);
+		
+	}
 }
