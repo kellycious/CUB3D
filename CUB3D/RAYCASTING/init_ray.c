@@ -51,6 +51,7 @@ void	ft_init_ray(t_rayc *ray, t_map *map, float angle)
 	ray->gline.y = sqrt(1 + pow(ray->dir.x / ray->dir.y, 2));
 	ray->istartx = (int)ray->start.x;
 	ray->istarty = (int)ray->start.y;
+	ray_length(ray);
 }
 
 /* ---------------
@@ -119,7 +120,6 @@ int	ray_caster(t_map *map, t_rayc *ray, float max)
 updating the player position and checking if it hits a wall
 0.1, distance between player and wall needs to be greater
 
-*/
 
 void	move_player(t_map *map, float angle)
 {
@@ -140,4 +140,5 @@ void	move_player(t_map *map, float angle)
 		map->player_x += x;
 		map->player_y += y;
 	}
-}
+}*/
+

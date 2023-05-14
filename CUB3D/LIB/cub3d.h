@@ -39,8 +39,6 @@ typedef struct s_elements
 
 struct s_mlxy
 {
-	void	*mlx;
-	void	*win;
 	void	*img;
 	char	*addr;
 	int		bpp;
@@ -55,6 +53,13 @@ struct s_map
 	bool	s;
 	bool	w;
 	bool	e;
+	void	*mlx;
+	void	*win;
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line;
+	int		endian;
 	int		height;
 	int		width;
 	char	*no;
@@ -73,7 +78,8 @@ struct s_map
 	char	**map;
 	char	**map_fill;
 	char	**cub;
-	t_mlxy	textures[4];
+	t_mlxy	txt[4];
+	t_elements	*elements;
 };
 
 
