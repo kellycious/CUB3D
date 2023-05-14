@@ -16,7 +16,11 @@ int	render_map(t_map *game)
 	game->img = mlx_new_image(game->mlx, 800, 600);
 	game->addr = mlx_get_data_addr(game->img, &game->bpp, &game->line, 
 		&game->endian);
-	
+	// raycasting(game);
+	game->win = mlx_new_window(game->mlx, 800, 600, "CUB3D");
+	game->imgbis = mlx_new_image(game->mlx, 800, 600);
+	game->addrbis = mlx_get_data_addr(game->imgbis, &game->bpp, &game->line, 
+		&game->endian);
 
 }
 

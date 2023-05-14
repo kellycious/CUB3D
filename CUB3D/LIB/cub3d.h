@@ -56,7 +56,9 @@ struct s_map
 	void	*mlx;
 	void	*win;
 	void	*img;
+	void	*imgbis;
 	char	*addr;
+	char	*addrbis;
 	int		bpp;
 	int		line;
 	int		endian;
