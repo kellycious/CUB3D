@@ -63,6 +63,7 @@ struct s_map
 	char	*ea;
 	int		player_x;
 	int		player_y;
+	float	player_angle;
 	int		floor_r;
 	int		floor_g;
 	int		floor_b;

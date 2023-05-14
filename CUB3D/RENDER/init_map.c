@@ -28,13 +28,6 @@ int	init_window(t_mlxy *mlxy)
 	if (!mlxy->win)
 		return (ft_putstr_fd("Error: mlx window\n", 2), 0);
 	mlx_loop_hook(mlxy->mlx, XXXXX, mlxy);
-	mlx_hook(mlxy->win, DestroyNotify, NoEventMask, destroyer, mlxy);
-	mlx_hook(mlxy->win, KeyPress, KeyPressMask, XXXX, mlxy);
-	mlx_hook(mlxy->win, KeyRelease, KeyReleaseMask, XXXX, mlxy);
 	return (0);
 }
 
-int	destroyer(t_mlxy *mlxy)
-{
-	return (mlx_loop_end(mlxy->mlx));
-}
