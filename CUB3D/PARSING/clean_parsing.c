@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 23:11:39 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/13 19:36:47 by fwong            ###   ########.fr       */
+/*   Updated: 2023/05/14 21:09:28 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_clean(t_map *map, t_elements *elements)
 {
-	if (map->no)
+	if (map->no != NULL)
 		free(map->no);
 	if (map->so)
 		free(map->so);

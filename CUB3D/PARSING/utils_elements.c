@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 16:40:55 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/13 19:30:33 by fwong            ###   ########.fr       */
+/*   Updated: 2023/05/14 20:53:10 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,8 @@ int	is_whitespace(char c)
 	return (0);
 }
  
-void	ft_elements_error(char c, char c2, char c3)
+void	ft_elements_error(char c, char c2, char c3, t_map *map)
 {
-	t_map	*map;
-	
-	map = NULL;
 	if (c == 'N' && c2 == '0' && is_whitespace(c3))
 		ft_putstr_fd("Error\nElements can't be set more than once\n", 2);
 	else if (c == 'S' && c2 == '0' && is_whitespace(c3))

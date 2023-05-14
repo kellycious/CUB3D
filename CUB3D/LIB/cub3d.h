@@ -22,6 +22,8 @@
 
 typedef struct s_map	t_map;
 typedef struct s_mlxy	t_mlxy;
+typedef struct s_elements	t_elements;
+typedef struct s_map	t_map;
 
 typedef struct s_elements
 {
@@ -35,6 +37,7 @@ typedef struct s_elements
 	bool	ea;
 	bool	floor;
 	bool	ceiling;
+	t_map	*map;
 }				t_elements;
 
 struct s_mlxy
@@ -129,11 +132,11 @@ void	ft_parse_colors(t_map *map);
 void	ft_check_and_parse_c(int i, int j, t_map *map);
 void	ft_parse_c(int i, t_map *map);
 void	ft_parse_f(int i, t_map *map);
-char	**ft_get_rgb(int i, int j, int l, char **rgb);
+char	**ft_get_rgb(int j, int l, char **rgb, t_map *map);
 
 /* utils_colors.c */
 
-void	ft_skip_spaces_rgb(char **rgb, int i, int j);
+void	ft_skip_spaces_rgb(char **rgb, int i, int j, t_map *map);
 int		ft_assign_rgb_c(t_map *map, char **rgb_final);
 int		ft_assign_rgb_f(t_map *map, char **rgb_final);
 void	ft_get_rgb_final(char **rgb_final, char **rgb);
@@ -151,7 +154,7 @@ int		ft_count_elements(t_map *map, int count);
 /* util_elements.c */
 
 int		is_whitespace(char c);
-void	ft_elements_error(char c, char c2, char c3);
+void	ft_elements_error(char c, char c2, char c3, t_map *map);
 int		ft_skip_spaces(int i, t_map *map);
 
 /* parse_infile.c */

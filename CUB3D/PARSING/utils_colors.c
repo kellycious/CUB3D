@@ -6,18 +6,18 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 22:20:49 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/13 19:24:41 by fwong            ###   ########.fr       */
+/*   Updated: 2023/05/14 21:00:00 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../LIB/cub3d.h"
 
-void	ft_skip_spaces_rgb(char **rgb, int i, int j)
+void	ft_skip_spaces_rgb(char **rgb, int i, int j, t_map *map)
 {
 	while (rgb[i][j])
 	{
 		if (rgb[i][j] != ' ' && rgb[i][j] != '\t')
-			ft_elements_error('0', '0', '0');
+			ft_elements_error('0', '0', '0', map);
 		j++;
 	}
 }

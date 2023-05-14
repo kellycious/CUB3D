@@ -1,10 +1,11 @@
     	NO         ./textures/Chucky.xpm
+		NO 
 		SO 	 	 	 ./textures/Scoobie.xpm
 	EA 	 	 	./textures/Saw.xpm
 	WE 	 	 	 ./textures/Scream.xpm
 
 F  	  0 , 0 , 50
-C 	   0 , 0 , 256
+C 	   0 , 0 , 255
 
 
 1111111        
