@@ -15,6 +15,16 @@
 # include <X11/Xutil.h>
 # include <X11/keysym.h>
 
+# define NORTH			0
+# define SOUTH			1
+# define EAST			2
+# define WEST			3
+
+typedef struct s_map	t_map;
+typedef struct s_mlxy	t_mlxy;
+typedef struct s_elements	t_elements;
+typedef struct s_map	t_map;
+
 typedef struct s_elements
 {
 	bool	n;
@@ -27,25 +37,34 @@ typedef struct s_elements
 	bool	ea;
 	bool	floor;
 	bool	ceiling;
+	t_map	*map;
 }				t_elements;
 
-typedef struct s_img
+struct s_mlxy
 {
 	void	*img;
 	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
+	int		bpp;
+	int		line;
 	int		endian;
-	int		width;
-	int		height;
-}				t_img;
+	t_map	*map;
+};
 
-typedef struct s_map
+struct s_map
 {
 	bool	n;
 	bool	s;
 	bool	w;
 	bool	e;
+	void	*mlx;
+	void	*win;
+	void	*img;
+	void	*imgbis;
+	char	*addr;
+	char	*addrbis;
+	int		bpp;
+	int		line;
+	int		endian;
 	int		height;
 	int		width;
 	char	*no;
@@ -54,6 +73,7 @@ typedef struct s_map
 	char	*ea;
 	int		player_x;
 	int		player_y;
+	float	player_angle;
 	int		floor_r;
 	int		floor_g;
 	int		floor_b;
@@ -63,7 +83,32 @@ typedef struct s_map
 	char	**map;
 	char	**map_fill;
 	char	**cub;
-}				t_map;
+	t_mlxy	txt[4];
+	t_elements	*elements;
+};
+
+
+typedef struct s_coor
+{
+	float	x;
+	float	y;
+
+}				t_coor;
+
+typedef struct s_rayc
+{
+	float	angle;
+	t_coor	start;
+	t_coor	dir;
+	t_coor	length;
+	t_coor	gline;
+	t_coor	step;
+	int		istartx;
+	int		istarty;
+	int		hit_dir;
+	t_coor	result;
+	float	distance;
+}				t_rayc;
 
 int	main();
 
@@ -80,8 +125,7 @@ void	ft_parsing(t_map *map, t_elements *elements, char *argv);
 
 /* clean_parsing.c */
 
-void	ft_clean_colors(char **rgb, char **rgb_final);
-void	ft_clean(t_map *map);
+void	ft_clean(t_map *map, t_elements *elements);
 void	ft_free_map(char **map);
 
 /* parse_colors.c */
@@ -90,14 +134,15 @@ void	ft_parse_colors(t_map *map);
 void	ft_check_and_parse_c(int i, int j, t_map *map);
 void	ft_parse_c(int i, t_map *map);
 void	ft_parse_f(int i, t_map *map);
-char	**ft_get_rgb(int i, int j, int l, char **rgb);
+char	**ft_get_rgb(int j, int l, char **rgb, t_map *map);
 
 /* utils_colors.c */
 
-void	ft_skip_spaces_rgb(char **rgb, int i, int j);
-void	ft_assign_rgb_c(t_map *map, char **rgb_final);
-void	ft_assign_rgb_f(t_map *map, char **rgb_final);
+void	ft_skip_spaces_rgb(char **rgb, int i, int j, t_map *map);
+int		ft_assign_rgb_c(t_map *map, char **rgb_final);
+int		ft_assign_rgb_f(t_map *map, char **rgb_final);
 void	ft_get_rgb_final(char **rgb_final, char **rgb);
+void	ft_clean_rgb(char **rgb, char **rgb_final);
 
 /* parse_elements.c */
 
@@ -111,7 +156,7 @@ int		ft_count_elements(t_map *map, int count);
 /* util_elements.c */
 
 int		is_whitespace(char c);
-void	ft_elements_error(char c, char c2, char c3);
+void	ft_elements_error(char c, char c2, char c3, t_map *map);
 int		ft_skip_spaces(int i, t_map *map);
 
 /* parse_infile.c */
@@ -141,6 +186,15 @@ void	ft_count_line_map(t_map *map, t_elements *elements);
 int		ft_check_players(t_map *map);
 void	ft_find_player(t_map *map);
 int		ft_check_player(t_map *map, int i, int j);
+
+/* utils_map_fill.c */
+
+
+void	ft_player_position(t_map *map, int i, int j);
+void	ft_change_to(t_map *map, int i, int j);
+int		ft_is_player(t_map *map, int i, int j);
+int		ft_check_player_around(t_map *map, int i, int j);
+int		ft_check_closed(t_map *map);
 
 // RAYCASTING //
 

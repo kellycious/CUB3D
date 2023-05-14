@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 01:19:53 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/08 23:58:18 by fwong            ###   ########.fr       */
+/*   Updated: 2023/05/14 20:56:07 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	ft_find_map(t_map *map, t_elements *elements)
 		{
 			if (!(map->cub[i][j] == ' ' || map->cub[i][j] == '\t'
 				|| map->cub[i][j] == '1' || map->cub[i][j] == '0'))
-				return (ft_elements_error('0', '0', '0'), 0);
+				return (ft_elements_error('0', '0', '0', map), 0);
 			j++;
 		}
 		if (map->cub[i][j] == '1' || map->cub[i][j] == '0')
@@ -76,7 +76,7 @@ int	ft_flood_fill(t_map *map)
 					i = 0;
 				else
 					return (ft_putstr_fd("Error\nMap not closed\n", 1),
-					ft_clean(map), 0);
+					ft_clean(map, NULL), 0);
 			}
 		}
 		i++;
