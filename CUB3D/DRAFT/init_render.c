@@ -16,3 +16,4 @@ int	render_frame (t_mlxy *mlx)
 			color = 
 		}
 	}
+
