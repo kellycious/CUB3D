@@ -130,6 +130,8 @@ void	ft_parsing(t_map *map, t_elements *elements, char *argv);
 
 void	ft_clean(t_map *map, t_elements *elements);
 void	ft_free_map(char **map);
+void	ft_clean_rgb(char **rgb, char **rgb_final);
+void	ft_clean_rgb_and_exit(char **rgb, char **rgb_final, t_map *map);
 
 /* parse_colors.c */
 
@@ -145,7 +147,13 @@ void	ft_skip_spaces_rgb(char **rgb, int i, int j, t_map *map);
 int		ft_assign_rgb_c(t_map *map, char **rgb_final);
 int		ft_assign_rgb_f(t_map *map, char **rgb_final);
 void	ft_get_rgb_final(char **rgb_final, char **rgb);
-void	ft_clean_rgb(char **rgb, char **rgb_final);
+int	ft_above_3_digits(char **rgb, char **rgb_final, int j, t_map *map);
+
+/* utils_colors2.c */
+
+void	ft_only_numbers(char **rgb, t_map *map);
+int		ft_not_allowed_in_rgb(int i, int j, char **rgb);
+void	ft_check_numbers(char **rgb, t_map *map);
 
 /* parse_elements.c */
 
