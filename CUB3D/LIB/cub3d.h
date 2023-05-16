@@ -20,10 +20,48 @@
 # define EAST			2
 # define WEST			3
 
-typedef struct s_map	t_map;
-typedef struct s_mlxy	t_mlxy;
 typedef struct s_elements	t_elements;
 typedef struct s_map	t_map;
+
+typedef struct s_texture
+{
+	xpm_t	*text_n;
+	xpm_t	*text_s;
+	xpm_t	*text_e;
+	xpm_t	*text_w;
+	int		**n;
+	int		**s;
+	int		**e;
+	int		**w;
+}			t_texture;
+
+typedef struct s_player
+{
+	double	row;
+	double	col;
+	double	pdx;
+	double	pdy;
+	char	direction;
+}			t_player;
+
+typedef struct s_rayc
+{
+	double	player_x;
+	double	player_y;
+	double	delta_x;
+	double	delta_y;
+	int		s2d_col;
+	int		s2d_row;
+	int		col;
+	int		row;
+	double	lenx;
+	double	leny;
+	int		hit_dir;
+	double	ray_len;
+	double	disp_x;
+	double	disp_y;
+	double		x;
+}			t_rayc;
 
 typedef struct s_elements
 {
@@ -37,78 +75,43 @@ typedef struct s_elements
 	bool	ea;
 	bool	floor;
 	bool	ceiling;
-	t_map	*map;
 }				t_elements;
-
-struct s_mlxy
-{
-	void	*img;
-	char	*addr;
-	int		bpp;
-	int		line;
-	int		endian;
-	t_map	*map;
-};
 
 struct s_map
 {
-	bool	n;
-	bool	s;
-	bool	w;
-	bool	e;
-	void	*mlx;
-	void	*win;
-	void	*img;
-	void	*imgbis;
-	char	*addr;
-	char	*addrbis;
-	int		bpp;
-	int		line;
-	int		endian;
-	int		height;
-	int		width;
-	char	*no;
-	char	*so;
-	char	*we;
-	char	*ea;
-	int		player_x;
-	int		player_y;
-	float	player_angle;
-	int		floor_r;
-	int		floor_g;
-	int		floor_b;
-	int		ceiling_r;
-	int		ceiling_g;
-	int		ceiling_b;
-	char	**map;
-	char	**map_fill;
-	char	**cub;
-	t_mlxy	txt[4];
+	bool		n;
+	bool		s;
+	bool		w;
+	bool		e;
+	char		*no;
+	char		*so;
+	char		*we;
+	char		*ea;
+	int			player_x;
+	int			player_y;
+	int			floor_r;
+	int			floor_g;
+	int			floor_b;
+	int			ceiling_r;
+	int			ceiling_g;
+	int			ceiling_b;
+	char		**map;
+	char		**map_fill;
+	char		**cub;
+	int			wall_height;
+	int			wall_start;
+	int			wall_end;
+	int			tex;
+	void		*mlx;
+	void		*win;
+	void		*image;
+	mlx_image_t	*render;
+	t_texture	*texture;
 	t_elements	*elements;
+	t_player	*player;
+	t_rayc		*ray;
 };
 
-
-typedef struct s_coor
-{
-	float	x;
-	float	y;
-
-}				t_coor;
-
-typedef struct s_rayc
-{
-	float	angle;
-	t_coor	start;
-	t_coor	dir;
-	t_coor	length;
-	t_coor	gline;
-	t_coor	step;
-	int		istartx;
-	int		istarty;
-	int		hit_dir;
-	t_coor	result;
-	float	distance;
-}				t_rayc;
 
 int	main();
 
@@ -206,11 +209,6 @@ int		ft_check_closed(t_map *map);
 
 // RAYCASTING //
 
-void	ray_length(t_rayc *ray);
-void	ft_init_ray(t_rayc *ray, t_map *map, float angle);
-float	ray_hit_length(t_rayc *ray);
-int		ray_caster(t_map *map, t_rayc *ray, float max);
-void	move_player(t_map *map, float angle);
 
 
 #endif
