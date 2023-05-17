@@ -98,6 +98,8 @@ struct s_map
 	char		**map;
 	char		**map_fill;
 	char		**cub;
+	int			height;
+	int			width;
 	int			wall_height;
 	int			wall_start;
 	int			wall_end;
@@ -159,7 +161,7 @@ void	ft_check_numbers(char **rgb, t_map *map);
 
 void	ft_check_elements(t_map *map, t_elements *elements);
 void	ft_not_elements(char c, char c2, char c3);
-void	ft_assign_elements(char c, char c2, char c3, t_elements *element);
+void	ft_assign_elements(char c, char c2, char c3, t_map *map);
 void	ft_parse_textures(t_map *map);
 void	ft_get_texture(t_map *map, int i, int j);
 int		ft_count_elements(t_map *map, int count);

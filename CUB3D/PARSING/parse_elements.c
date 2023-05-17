@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 19:42:08 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/16 16:55:20 by fwong            ###   ########.fr       */
+/*   Updated: 2023/05/17 16:01:36 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,39 +26,39 @@ void	ft_check_elements(t_map *map, t_elements *elements)
 		while (map->cub[i][j] == ' ' || map->cub[i][j] == '\t')
 			j++;
 		if (map->cub[i][j] && map->cub[i][j + 1] && map->cub[i][j + 2])
-			ft_assign_elements(map->cub[i][j], map->cub[i][j + 1], map->cub[i][j + 2], elements);
+			ft_assign_elements(map->cub[i][j], map->cub[i][j + 1], map->cub[i][j + 2], map);
 		i++;
 	}
 	if (elements->no == false || elements->so == false
 		|| elements->we == false || elements->ea == false
 		|| elements->ceiling == false || elements->floor == false)
 		{
-			ft_putstr_fd("ERROR\nmissing elements\n", 2);
+			ft_putstr_fd("ERROR\nMissing elements\n", 2);
 			ft_clean(map, elements);
 		}
 }
 
-void	ft_assign_elements(char c, char c2, char c3, t_elements *element)
+void	ft_assign_elements(char c, char c2, char c3, t_map *map)
 {
-	if (c == 'N' && c2 == 'O' && is_whitespace(c3) && element->no == false)
-		element->no = true;
-	else if (c == 'S' && c2 == 'O' && is_whitespace(c3) && element->so == false)
-		element->so = true;
-	else if (c == 'W' && c2 == 'E' && is_whitespace(c3) && element->we == false)
-		element->we = true;
-	else if (c == 'E' && c2 == 'A' && is_whitespace(c3) && element->ea == false)
-		element->ea = true;
-	else if (c == 'C' && is_whitespace(c2) && element->ceiling == false)
-		element->ceiling = true;
-	else if (c == 'F' && is_whitespace(c2) && element->floor == false)
-		element->floor	= true;
-	else if ((c == 'N' && c2 == 'O' && element->no == true)
-			|| (c == 'S' && c2 == 'O' && element->so == true)
-			|| (c == 'W' && c2 == 'O' && element->we == true)
-			|| (c == 'E' && c2 == 'O' && element->ea == true)
-			|| (c == 'C' && element->ceiling == true)
-			|| (c == 'F' && element->floor == true))
-				ft_elements_error(c, c2, c3, element->map);
+	if (c == 'N' && c2 == 'O' && is_whitespace(c3) && map->elements->no == false)
+		map->elements->no = true;
+	else if (c == 'S' && c2 == 'O' && is_whitespace(c3) && map->elements->so == false)
+		map->elements->so = true;
+	else if (c == 'W' && c2 == 'E' && is_whitespace(c3) && map->elements->we == false)
+		map->elements->we = true;
+	else if (c == 'E' && c2 == 'A' && is_whitespace(c3) && map->elements->ea == false)
+		map->elements->ea = true;
+	else if (c == 'C' && is_whitespace(c2) && map->elements->ceiling == false)
+		map->elements->ceiling = true;
+	else if (c == 'F' && is_whitespace(c2) && map->elements->floor == false)
+		map->elements->floor	= true;
+	else if ((c == 'N' && c2 == 'O' && map->elements->no == true)
+			|| (c == 'S' && c2 == 'O' && map->elements->so == true)
+			|| (c == 'W' && c2 == 'O' && map->elements->we == true)
+			|| (c == 'E' && c2 == 'O' && map->elements->ea == true)
+			|| (c == 'C' && map->elements->ceiling == true)
+			|| (c == 'F' && map->elements->floor == true))
+				ft_elements_error(c, c2, c3, map);
 }
 
 void	ft_parse_textures(t_map *map)
