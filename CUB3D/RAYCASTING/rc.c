@@ -1,26 +1,9 @@
 #include "../LIB/cub3d.h"
 
-/*-----------------
-ray->x = coordinate x of the pixel being rendered
-800 = WIDTH of the window
-x = current column we're on
-------------------*/
-void	raycasting(t_map *game)
-{
-	double		x;
-	while (x < 800)
-	{
-		game->ray->x = 2 * x / 800 - 1;
-		ray_dispos(game);
-		distance_pw(game, 0);
-		wall_creation(game);
-	}
-}
 /* ---------------
 update the ray length to when it collides with an object (wall)
 1. check length to which axis is smaller
 2. update all lengths (start position, length to the next grid line)
------------------- */
 
 void	distance_pw(t_map *game, int wall)
 {
@@ -49,12 +32,10 @@ void	distance_pw(t_map *game, int wall)
 	}
 }
 
-/* ---------------
 calculate height and position of the wall to draw
 depending on hit_dir, distance to the wall = use ray length + delta
 after distance calculated => height = proportion of total height
 finally, vertical position of the wall
------------------- */
 
 void	wall_creation(t_map *game)
 {
@@ -71,9 +52,8 @@ void	wall_creation(t_map *game)
 		game->wall_end = 599 - 1;
 }
 
-/*-----------------
 retrieve texture to draw the wall depending on the direction
-------------------*/
+
 
 void	wall_texture(t_map *game, int x)
 {
@@ -97,4 +77,25 @@ void	wall_texture(t_map *game, int x)
 		texture_retrieve(game, game->text_w);
 		line_draw(game, game->text_w, get_texture(game->tex->text_w), x);
 	}
+}
+------------------*/
+
+/*-----------------
+ray->x = coordinate x of the pixel being rendered
+800 = WIDTH of the window
+x = current column we're on
+------------------*/
+
+int		raycaster(t_map *game, t_rayc *ray)
+{
+	ray->x = 0;
+	while (ray->x < game->width)
+	{
+		init_ray(game);
+		ray_length(game->ray, game);
+		col_color(game, game->ray);
+		ray->x++;
+	}
+	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
+	return (0);
 }

@@ -1,5 +1,30 @@
 #include "../LIB/cub3d.h"
 
+void	init_ray(t_map *game)
+{
+	init_player(game);
+	game->ray.cam = 2 * game->ray.x / (double)game->width - 1;
+	game->ray->dir.x = game->ray->dir.x + game->ray->disp_x * game->ray.cam;
+	game->ray->dir.y = game->ray->dir.y + game->ray->disp_y * game->ray.cam;
+	game->ray.istartx = (int)game->player->col;
+	game->ray.istarty = (int)game->player->row;
+	if (game->ray.dir.y == 0)
+		game->ray.gline.x = 0;
+	else if (game->ray.dir.x == 0)
+		game->ray.gline.x = 1;
+	else
+		game->ray.gline.x = sqrt(1 + (game->ray.dir.y * game->ray.dir.y) /
+			(game->ray.dir.x * game->ray.dir.x ));
+	if (game->ray.dir.x == 0)
+		game->ray.gline.y = 0;
+	else if (game->ray.dir.y == 0)
+		game->ray.gline.y = 1;
+	else
+		game->ray.gline.y = sqrt(1 + (game->ray.dir.x * game->ray.dir.x) /
+			(game->ray.dir.y * game->ray.dir.y ));
+}
+
+
 /* ---------------
 fill step and length var: longueur segment du rayon selon sa direction
 1. check if the vector is pos or neg => to set if we're tracing 
@@ -7,7 +32,7 @@ fill step and length var: longueur segment du rayon selon sa direction
 2. distance to next vertical grid line : start.x * current g.line
 ------------------ */
 
-void	ray_length(t_rayc *ray)
+void	ray_length(t_rayc *ray, t_map *game)
 {
 	if (ray->dir.x < 0)
 	{
@@ -29,30 +54,7 @@ void	ray_length(t_rayc *ray)
 		ray->step.y = 1;
 		ray->length.y = ((ray->istarty + 1) - ray->start.x) * ray->gline.y;
 	}
-}
-
-/* ---------------
-1.Depending on the player move (up/down/right/left) 
-   we use pi or pi/2 as the angle
-2.Start registers the position of the player at the start
-3. dir = length of the adjacent side of the ray's dir vector
-	ps: length of hypothenuse always 1 
-4.gline = angle between ray and axis
------------------- */
-
-void	ft_init_ray(t_rayc *ray, t_map *map)
-{
-	ray->angle = angle;
-	ray->start.x = map->player_x;
-	ray->start.y = map->player_y;
-	ray->dir.x = 0;
-	ray->dir.y = 0;
-	ray->gline.x = 0;
-	ray->gline.y = 0;
-	ray->istartx = (int)ray->start.x;
-	ray->istarty = (int)ray->start.y;
-	dir_init(map, ray);
-	ray_length(ray);
+	ray_hit_length(ray, game);
 }
 
 /* ---------------
@@ -61,42 +63,49 @@ update the ray length to when it collides with an object (wall)
 2. update all lengths (start position, length to the next grid line)
 ------------------ */
 
-void	ray_hit_length(t_rayc *ray)
+void	ray_hit_length(t_rayc *ray, t_map *game)
 {
-	float	distance;
-	if (ray->length.x < ray->length.y)
+	while (ray->hit)
 	{
-		ray->istartx += ray->step.x;
-		distance = ray->length.x;
-		ray->length.x += ray->unit.x;
-		if (ray->step.x == -1)
-			ray->hit_dir = WEST;
+		if (ray->length.x < ray->length.y)
+		{
+			ray->length.x += ray->unit.x;
+			ray->istartx += ray->step.x;
+			if (ray->step.x == -1)
+				ray->hit_dir = WEST;
+			else
+				ray->hit_dir = EAST;
+		}
 		else
-			ray->hit_dir = EAST;
+		{
+			ray->length.y += ray->gline.y;
+			ray->istarty += ray->step.y;
+			if (ray->step.y == -1)
+				ray->hit_dir = NORTH;
+			else
+				ray->hit_dir = SOUTH;
+		}
+		if (game->map[ray->length.x][ray->length.y] == '1')
+			ray->hit = 1;
 	}
-	else
-	{
-		ray->istarty += ray->step.y;
-		distance = ray->length.y;
-		ray->length.y += ray->gline.y;
-		if (ray->step.y == -1)
-			ray->hit_dir = NORTH;
-		else
-			ray->hit_dir = SOUTH;
-	}
-	if (game->map[ray->length.x][ray->length.y] == '1')
-		ray->hit = 1;
-	draw_ray(ray, distance);
+	draw_ray(ray);
 }
 
-void	draw_ray(t_rayc *ray, float distance)
+void	draw_ray(t_rayc *ray)
 {
-	if (ray->hit == 1)
-	{
-		ray->result.x = ray->start.x + ray->dir.x * distance;
-		ray->result.y = ray->start.y + ray->dir.y * distance;
-		ray->distance = distance;
-	}
+	if (ray->hit_dir == NORTH)
+		ray->pwall = (double)ray->istartx - ray->start.x + 
+			(1 - ray->step.x) / 2 / ray->dir.x;
+	else
+		ray->pwall = (double)ray->istarty - ray->start.y + 
+			(1 - ray->step.y) / 2 / ray->dir.y;
+	ray->line_height = (int)(800 / ray->pwall);
+	ray->start = -ray->line_height / 2 + 600 / 2;
+	if (ray->start < 0)
+		ray->start = 0;
+	ray->end = ray->line_height / 2 + 600 / 2;
+	if (ray->end >= 600 || ray->end < 0)
+		ray->end = 599;
 }
 /* ---------------
 check if it does hit a wall or not

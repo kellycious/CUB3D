@@ -23,17 +23,27 @@
 typedef struct s_elements	t_elements;
 typedef struct s_map	t_map;
 
-typedef struct s_texture
+typedef struct t_texture
 {
-	xpm_t	*text_n;
-	xpm_t	*text_s;
-	xpm_t	*text_e;
-	xpm_t	*text_w;
-	int		**n;
-	int		**s;
-	int		**e;
-	int		**w;
-}			t_texture;
+	int		dir;
+	double	wallx;
+	double	step;
+	double	texy;
+	double	texx;
+	double	pos;
+
+}	s_texture;
+
+typedef struct s_mlx
+{
+	void	*img;
+	int		*addr;
+	int		bpp;
+	int		line;
+	int		endian;
+	int		width;
+	int		height;
+}			t_mlx;
 
 typedef struct s_player
 {
@@ -44,23 +54,32 @@ typedef struct s_player
 	char	direction;
 }			t_player;
 
+typedef struct s_coor
+{
+	double	x;
+	double	y;
+}			t_coor;
+
 typedef struct s_rayc
 {
-	double	player_x;
-	double	player_y;
-	double	delta_x;
-	double	delta_y;
-	int		s2d_col;
-	int		s2d_row;
-	int		col;
-	int		row;
-	double	lenx;
-	double	leny;
+	t_coor	dir;
+	t_coor	step;
+	t_coor	length;
+	t_coor	start;
+	t_coor  gline;
+	t_coor	unit;;
+	double	pwall;
+	int		line_height;
+	int		start;
+	int		end;
+	int		hit;
 	int		hit_dir;
-	double	ray_len;
-	double	disp_x;
-	double	disp_y;
-	double		x;
+	float	disp_x;
+	float	disp_y;
+	int		istartx;
+	int		istarty;
+	int		x;
+
 }			t_rayc;
 
 typedef struct s_elements
@@ -100,15 +119,19 @@ struct s_map
 	char		**cub;
 	int			height;
 	int			width;
-	int			wall_height;
-	int			wall_start;
-	int			wall_end;
-	int			tex;
+	double		pdx;
+	double		pdy;
 	void		*mlx;
 	void		*win;
-	void		*image;
-	mlx_image_t	*render;
-	t_texture	*texture;
+	void		*img;
+	int			*addr;
+	int			*addrbis;
+	void		*imgbis;
+	int			bpp;
+	int			line;
+	int			endian;
+	t_texture	*tex;
+	t_mlx		*txt[4];
 	t_elements	*elements;
 	t_player	*player;
 	t_rayc		*ray;

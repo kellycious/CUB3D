@@ -1,41 +1,79 @@
 #include "../LIB/cub3d.h"
 
-void	texture_init(t_map *game)
+void	texture_pix(t_map *game)
 {
-	game->texture->text_n = mlx_load_xpm42(game->no);
-	if (!game->texture->text_n)
-		return (ft_cleaner(game, "texture NORTH failed\n"));
-	game->texture->text_s = mlx_load_xpm42(game->so);
-	if (!game->texture->text_s)
-		return (ft_cleaner(game, "texture SOUTH failed\n"));
-	game->texture->text_w = mlx_load_xpm42(game->we);
-	if (!game->texture->text_w)
-		return (ft_cleaner(game, "texture WEST failed\n"));
-	game->texture->text_e = mlx_load_xpm42(game->ea);
-	if (!game->texture->text_e)
-		return (ft_cleaner(game, "texture EAST failed\n"));
-	game->texture->n = get_texture(game->texture->text_n);
-	game->texture->s = get_texture(game->texture->text_s);
-	game->texture->w = get_texture(game->texture->text_w);
-	game->texture->e = get_texture(game->texture->text_e);
+	if (!(game->txt[NORTH].addr = (int *)mlx_get_data_addr(game->txt[NORTH].img, 
+		&game->txt[NORTH].bpp, &game->txt[NORTH].line, 
+		&game->txt[NORTH].endian)))
+		return (ft_cleaner(game, "Error: xpm img NORTH\n"));
+	if(!(game->txt[SOUTH].addr = (int *)mlx_get_data_addr(game->txt[SOUTH].img,
+		&game->txt[SOUTH].bpp, &game->txt[SOUTH].line, 
+		&game->txt[SOUTH].endian)))
+		return (ft_cleaner(game, "Error: xpm img SOUTH\n"));
+	if(!(game->txt[WEST].addr = (int *)mlx_get_data_addr(game->txt[WEST].img,
+		&game->txt[WEST].bpp, &game->txt[WEST].line, 
+		&game->txt[WEST].endian)))
+		return (ft_cleaner(game, "Error: xpm img WEST\n"));
+	if (!(game->txt[EAST].addr = (int *)mlx_get_data_addr(game->txt[EAST].img,
+		&game->txt[EAST].bpp, &game->txt[EAST].line, 
+		&game->txt[EAST].endian)))
+		return (ft_cleaner(game, "Error: xpm img EAST\n"));
+}
+void	texture_img(t_map *game)
+{
+	game->txt[NORTH].img = mlx_xpm_file_to_image(game->mlx,game->no, 
+		800, 600);
+	game->txt[SOUTH].img = mlx_xpm_file_to_image(game->mlx, game->so, 
+		800, 600);
+	game->txt[WEST].img = mlx_xpm_file_to_image(game->mlx, game->we, 
+		800, 600);
+	game->txt[EAST].img = mlx_xpm_file_to_image(game->mlx, game->eq, 
+		800, 600);
+	texture_pix(game);
 }
 
-void	texture_retrieve(t_map *game, xpm_t *texture)
+void	draw_texture(t_map *game, int x, int y)
 {
-	double	wall;
+	y = game->ray.start - 1;
+	init_texture(game);
+	game->tex.step = 1.0 * game->txt[NORTH].height / game->ray.lineheight;
+	game->tex.tex = (int)game->tex.wallx *double(game->txt[game->tex.dir].width);
+	if ((game->ray.hit_dir == NORTH && game->ray.dir.x > 0)
+		|| (game->ray.hit_dir == SOUTH && game->ray.dir.y < 0))
+		game->tex.tex = game->txt[game->tex.dir].width - game->tex.tex - 1;
+	game->tex.pos = (game->ray.start - game->height / 2
+		+ game->ray.lineheight / 2) * game->tex.step;
+	while (++y < game->ray.end)
+	{
+		game->tex.texy = (int)game->tex.pos & (game->txt[game->tex.dir].height - 1);
+		game->tex.pos += game->tex.step;
+		if (y < game->height && x < game->width)
+			game->addr[y * game->line / 4 + x] = game->txt[game->tex.dir].addr
+				[game->texture.texy * game->taxture[game->tex.dir].line / 4 
+				+ game->texture.texx];
+	}
+}
 
-	if (game->ray->hit_dir == NORTH || game->ray->hit_dir == SOUTH)
-		wall = game->player->row + game->ray->ray_len * game->ray->pdy;
+/*------------
+floor = convert float to int
+-------------*/
+void	init_texture(t_map *game)
+{
+	if (game->ray.hit_dir == NORTH && game->ray->dir.x < 0)
+		game->tex.dir = NORTH;
+	if (game->ray.hit_dir == NORTH && game->ray->dir.x >= 0)
+		game->tex.dir = SOUTH;
+	if (game->ray.hit_dir == SOUTH && game->ray->dir.y < 0)
+		game->tex.dir = WEST;
+	if (game->ray.hit_dir == SOUTH && game->ray->dir.y >= 0)
+		game->tex.dir = EAST;
+	if (game->ray.hit_dir == NORTH)
+		game->tex.wallx = game->ray->pos.x + game->ray.pwall
+			* game->ray->dir.y;
 	else
-		wall = game->player->col + game->ray->ray_len * game->ray->pdx;
-	wall = wall - (int)wall;
-	game->tex = (int)(wall * (double)texture->texture.width);
-	if ((game->ray->hit_dir == NORTH || game->ray->hit_dir == SOUTH)
-		&& game->ray->pdx > 0)
-		game->tex = texture->texture.width- game->tex - 1;
-	if ((game->ray->hit_dir == EAST || game->ray->hit_dir == WEST)
-		&& game->ray->pdy < 0)
-		game->tex = texture->texture.width - game->tex - 1;
+		game->tex.wallx = game->ray->pos.y + game->ray.pwall
+			* game->ray.dir.x;
+	game->tex.wallx -= floor(game->tex.wallx);
 }
 
 /*-------------------
@@ -44,7 +82,6 @@ step to map the structure onto the wall
 starting position of the texture
 position from top to bottom of each pixel
 put pixel on the screen
---------------------*/
 
 void	line_draw(t_map *game, xmp_t *texture, int **buffer, int x)
 {
@@ -70,36 +107,4 @@ void	line_draw(t_map *game, xmp_t *texture, int **buffer, int x)
 	}
 }
 
-int	rgb_int(int r, int g, int b, int a)
-{
-	return (r << 24 | g << 16 | b << 8 | a);
-}
-/*-------------------
-adding +4 to the width and height to avoid segfault
-return value of each pixel
-RGBA values stored
 --------------------*/
-
-int	**get_texture(xpm_t *texture)
-{
-	int	**buffer;
-	int	i;
-	int	j;
-
-	buffer = ft_calloc(sizeof(int *), texture->texture.height + 1);
-	i = 3;
-	while (++i < (int)texture->texture.height + 4)
-	{
-		j = 3;
-		buffer[i - 4] = ft_calloc(sizeof(int), texture->texture.width);
-		while (++j < (int)texture->texture.width + 4)
-			buffer[i - 4][j - 4]
-				= rgb_int(texture->texture.pixels[(texture->texture.width * 4
-						* (i - 4)) + (4 * (j - 4)) + 0],
-					texture->texture.pixels[(texture->texture.width * 4
-						* (i - 4)) + (4 * (j - 4)) + 1],
-					texture->texture.pixels[(texture->texture.width * 4
-						* (i - 4)) + (4 * (j - 4)) + 2]);
-	}
-	return (buffer);
-}
