@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 19:42:08 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/17 16:01:36 by fwong            ###   ########.fr       */
+/*   Updated: 2023/05/19 18:16:36 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ void	ft_assign_elements(char c, char c2, char c3, t_map *map)
 			|| (c == 'C' && map->elements->ceiling == true)
 			|| (c == 'F' && map->elements->floor == true))
 				ft_elements_error(c, c2, c3, map);
+	// else if (!is_whitespace(c))
+	// 	ft_elements_error(c, c2, c3, map);
 }
 
 void	ft_parse_textures(t_map *map)

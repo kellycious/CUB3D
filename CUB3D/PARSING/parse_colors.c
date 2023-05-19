@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 14:00:40 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/16 16:59:56 by fwong            ###   ########.fr       */
+/*   Updated: 2023/05/19 18:06:46 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ void	ft_parse_colors(t_map *map)
 		j = -1;
 		while (map->cub[i][++j])
 		{
-			if (map->cub[i][j] == 'C' && map->cub[i][j + 1] == ' ')
+			if (map->cub[i][j] == 'C' && is_whitespace(map->cub[i][j + 1]))
 				ft_check_and_parse_c(i, j, map);
-			if (map->cub[i][j] == 'F' && map->cub[i][j + 1] == ' ')
+			if (map->cub[i][j] == 'F' && is_whitespace(map->cub[i][j + 1]))
 				ft_check_and_parse_c(i, j, map);
 		}
 	}

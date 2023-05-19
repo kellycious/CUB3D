@@ -12,7 +12,7 @@ int ft_count_line_cub(char *argv, t_map *map)
 		return (0);
 	mappy = get_next_line(fd);
 	if (mappy == NULL)
-		return (close(fd), free(mappy), exit(0), 0);
+		return (close(fd), free(mappy), ft_clean(map, map->elements), 0);
 	if (!mappy)
 		return (close(fd), exit(0), 0);
 	while (mappy)
@@ -65,8 +65,8 @@ int ft_check_cub_ext(char *argv)
 	while (argv[i])
 		i++;
 	if (argv[i - 1] == 'b' && argv[i - 2] == 'u' && argv[i - 3] == 'c' && argv[i - 4] == '.')
-		return (1);
-	return (ft_putstr_fd("Error\nFile should be .cub extension!\n", 2), 0);
+		return (0);
+	return (ft_putstr_fd("Error\nFile should be .cub extension!\n", 2), 1);
 }
 
 void ft_init_struct_map(t_map *map)

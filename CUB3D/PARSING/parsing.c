@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 23:49:57 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/17 16:08:23 by fwong            ###   ########.fr       */
+/*   Updated: 2023/05/19 18:55:41 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_parsing(t_map *map, t_elements *elements, char *argv)
 	ft_init_struct_elements(elements);
 	map->elements = elements;
 	if (get_cub(map, argv) == 0)
-		exit(0);
+		ft_clean(map, elements);
 	ft_check_elements(map, elements);
 	get_map(map, elements);
 	ft_flood_fill(map);
@@ -38,5 +38,6 @@ void	ft_parsing(t_map *map, t_elements *elements, char *argv)
 	printf("map->ceiling_r = %d\n", map->ceiling_r);
 	printf("map->ceiling_g = %d\n", map->ceiling_g);
 	printf("map->ceiling_b = %d\n", map->ceiling_b);
+
 	ft_clean(map, elements);
 }

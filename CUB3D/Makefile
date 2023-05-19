@@ -4,7 +4,6 @@ NAME = cub3D
 
 CFILES = main.c	\
 		 PARSING/clean_parsing.c \
-		 PARSING/p_arguments.c \
 		 PARSING/parse_colors.c \
 		 PARSING/parse_elements.c \
 		 PARSING/parse_infile.c \
