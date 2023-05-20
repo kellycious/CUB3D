@@ -22,7 +22,8 @@ CFILES = main.c	\
 		 RENDER/init_mlx.c \
 		 RENDER/keys.c \
 		 RENDER/player_init.c \
-		 RENDER/texture.c 
+		 RENDER/texture.c \
+		 RENDER/play_move.c
 
 
 OBJS :=  	${addprefix ./OBJ/,${CFILES:%.c=%.o}}

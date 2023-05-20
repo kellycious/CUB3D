@@ -80,6 +80,18 @@ void	wall_texture(t_map *game, int x)
 }
 ------------------*/
 
+void	ft_swap(t_map *game)
+{
+	void *tmp;
+
+	tmp = game->img;
+	game->img = game->img2;
+	game->img2 = tmp;
+	tmp = game->addr;
+	game->addr = game->addr2;
+	game->addr2 = tmp;
+}
+
 /*-----------------
 ray->x = coordinate x of the pixel being rendered
 800 = WIDTH of the window
@@ -97,5 +109,10 @@ int		raycaster(t_map *game, t_rayc *ray)
 		ray->x++;
 	}
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
+	forward(game);
+	backward(game);
+	left(game);
+	right(game);
+	ft_swap(game);
 	return (0);
 }

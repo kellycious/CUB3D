@@ -10,5 +10,6 @@ int	main()
 	elements = ft_calloc(sizeof(t_elements), 1);
 	ft_parsing(map, elements, argv);
 	render_map(map);
+	exit_game(map);
 	return (0);
 }

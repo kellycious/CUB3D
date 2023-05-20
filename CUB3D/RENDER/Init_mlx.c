@@ -24,7 +24,7 @@ int	render_map(t_map *game)
 	mlx_hook(game->win, 33, 1L << 17, exit_game, game);
 	mlx_hook(game->win, 2, 1L << 0, key_press, game);
 	mlx_loop_hook(game->mlx, raycasting, game);
-	mlx_hook(game->win, 3, 1L << 1, key_releaser, game);
+	mlx_hook(game->win, 3, 1L << 1, key_release, game);
 	mlx_loop(game->mlx);
 	return (0);
 }

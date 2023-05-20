@@ -43,6 +43,10 @@ typedef struct s_mlx
 	int		endian;
 	int		width;
 	int		height;
+	int		forward;
+	int		backward;
+	int		left;
+	int		right;
 }			t_mlx;
 
 typedef struct s_player
@@ -234,13 +238,19 @@ int		ft_check_closed(t_map *map);
 
 // RAYCASTING //
 
-int	render_map(t_map *game);
+int		render_map(t_map *game);
 void	texture_img(t_map *game);
 int		raycaster(t_map *game, t_rayc *ray);
 void	init_ray(t_map *game);
 void	player_init(t_map *game, char direction);
 void	ray_length(t_rayc *ray, t_map *game);
-int	col_color(t_map *game, t_rayc *ray);
-
+int		col_color(t_map *game, t_rayc *ray);
+int		key_press(int keycode, t_map *game);
+int		key_release(int keycode, t_map *game);
+void	exit_game(t_map *game);
+void	forward(t_map *game);
+void	backward(t_map *game);
+void	left(t_map *game);
+void	right(t_map *game);
 
 #endif
