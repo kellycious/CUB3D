@@ -85,11 +85,11 @@ void	ft_swap(t_map *game)
 	void *tmp;
 
 	tmp = game->img;
-	game->img = game->img2;
-	game->img2 = tmp;
+	game->img = game->imgbis;
+	game->imgbis = tmp;
 	tmp = game->addr;
-	game->addr = game->addr2;
-	game->addr2 = tmp;
+	game->addr = game->addrbis;
+	game->addrbis = tmp;
 }
 
 /*-----------------

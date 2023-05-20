@@ -14,6 +14,7 @@ char	p_position(t_map *cub)
 		return ('W');
 	else if (cub->e == 1)
 		return ('E');
+	return (0);
 }
 
 /*---------

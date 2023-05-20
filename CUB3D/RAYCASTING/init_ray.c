@@ -2,26 +2,26 @@
 
 void	init_ray(t_map *game)
 {
-	player_init(game);
-	game->ray.cam = 2 * game->ray.x / (double)game->width - 1;
-	game->ray->dir.x = game->ray->dir.x + game->ray->disp_x * game->ray.cam;
-	game->ray->dir.y = game->ray->dir.y + game->ray->disp_y * game->ray.cam;
-	game->ray.istartx = (int)game->player->col;
-	game->ray.istarty = (int)game->player->row;
-	if (game->ray.dir.y == 0)
-		game->ray.gline.x = 0;
-	else if (game->ray.dir.x == 0)
-		game->ray.gline.x = 1;
+	player_init(game, p_position(game));
+	game->ray->cam = 2 * game->ray->x / (double)game->width - 1;
+	game->ray->dir.x = game->ray->dir.x + game->ray->disp_x * game->ray->cam;
+	game->ray->dir.y = game->ray->dir.y + game->ray->disp_y * game->ray->cam;
+	game->ray->istartx = (int)game->player->col;
+	game->ray->istarty = (int)game->player->row;
+	if (game->ray->dir.y == 0)
+		game->ray->gline.x = 0;
+	else if (game->ray->dir.x == 0)
+		game->ray->gline.x = 1;
 	else
-		game->ray.gline.x = sqrt(1 + (game->ray.dir.y * game->ray.dir.y) /
-			(game->ray.dir.x * game->ray.dir.x ));
-	if (game->ray.dir.x == 0)
-		game->ray.gline.y = 0;
-	else if (game->ray.dir.y == 0)
-		game->ray.gline.y = 1;
+		game->ray->gline.x = sqrt(1 + (game->ray->dir.y * game->ray->dir.y) /
+			(game->ray->dir.x * game->ray->dir.x ));
+	if (game->ray->dir.x == 0)
+		game->ray->gline.y = 0;
+	else if (game->ray->dir.y == 0)
+		game->ray->gline.y = 1;
 	else
-		game->ray.gline.y = sqrt(1 + (game->ray.dir.x * game->ray.dir.x) /
-			(game->ray.dir.y * game->ray.dir.y ));
+		game->ray->gline.y = sqrt(1 + (game->ray->dir.x * game->ray->dir.x) /
+			(game->ray->dir.y * game->ray->dir.y ));
 }
 
 
@@ -85,7 +85,7 @@ void	ray_hit_length(t_rayc *ray, t_map *game)
 			else
 				ray->hit_dir = SOUTH;
 		}
-		if (game->map[ray->length.x][ray->length.y] == '1')
+		if (game->map[(int)ray->length.x][(int)ray->length.y] == '1')
 			ray->hit = 1;
 	}
 	draw_ray(ray);
@@ -100,9 +100,9 @@ void	draw_ray(t_rayc *ray)
 		ray->pwall = (double)ray->istarty - ray->start.y + 
 			(1 - ray->step.y) / 2 / ray->dir.y;
 	ray->line_height = (int)(800 / ray->pwall);
-	ray->start = -ray->line_height / 2 + 600 / 2;
-	if (ray->start < 0)
-		ray->start = 0;
+	ray->starty = -ray->line_height / 2 + 600 / 2;
+	if (ray->starty < 0)
+		ray->starty = 0;
 	ray->end = ray->line_height / 2 + 600 / 2;
 	if (ray->end >= 600 || ray->end < 0)
 		ray->end = 599;

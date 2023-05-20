@@ -13,7 +13,7 @@ int	game_init(t_map *game)
 	backgrounder(game);
 	player_init(game, p_position(game));
 	game->map[game->player_x][game->player_y] = '0';
-	raycasting(game);
+	raycaster(game);
 	mlx_loop(game->mlx);
 	mlx_delete_image(game->mlx, game->image);
 	mlx_terminate(game->mlx);

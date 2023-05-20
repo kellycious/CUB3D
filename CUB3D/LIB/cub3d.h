@@ -20,10 +20,10 @@
 # define EAST			2
 # define WEST			3
 
-typedef struct s_elements	t_elements;
+typedef struct	s_elements	t_elements;
 typedef struct s_map	t_map;
 
-typedef struct t_texture
+typedef struct s_texture
 {
 	int		dir;
 	double	wallx;
@@ -32,7 +32,7 @@ typedef struct t_texture
 	double	texx;
 	double	pos;
 
-}	s_texture;
+}	t_texture;
 
 typedef struct s_mlx
 {
@@ -43,14 +43,14 @@ typedef struct s_mlx
 	int		endian;
 	int		width;
 	int		height;
-	int		forward;
-	int		backward;
-	int		left;
-	int		right;
 }			t_mlx;
 
 typedef struct s_player
 {
+	int		forward;
+	int		backward;
+	int		left;
+	int		right;
 	double	row;
 	double	col;
 	double	pdx;
@@ -69,12 +69,13 @@ typedef struct s_rayc
 	t_coor	dir;
 	t_coor	step;
 	t_coor	length;
-	t_coor	start;
 	t_coor  gline;
-	t_coor	unit;;
+	t_coor	unit;
+	double	cam;
 	double	pwall;
 	int		line_height;
-	int		start;
+	t_coor	start;
+	int		starty;
 	int		end;
 	int		hit;
 	int		hit_dir;
@@ -243,14 +244,20 @@ void	texture_img(t_map *game);
 int		raycaster(t_map *game, t_rayc *ray);
 void	init_ray(t_map *game);
 void	player_init(t_map *game, char direction);
+void	draw_ray(t_rayc *ray);
 void	ray_length(t_rayc *ray, t_map *game);
+void	ray_hit_length(t_rayc *ray, t_map *game);
 int		col_color(t_map *game, t_rayc *ray);
 int		key_press(int keycode, t_map *game);
 int		key_release(int keycode, t_map *game);
-void	exit_game(t_map *game);
+int		exit_game(t_map *game);
 void	forward(t_map *game);
 void	backward(t_map *game);
 void	left(t_map *game);
 void	right(t_map *game);
+char	p_position(t_map *cub);
+void	ft_cleaner(t_map *game, char *error);
+void	draw_texture(t_map *game, int x, int y);
+void	init_texture(t_map *game);
 
 #endif

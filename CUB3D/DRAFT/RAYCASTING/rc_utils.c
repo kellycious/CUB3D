@@ -16,7 +16,7 @@ void	dir_init(t_map *game, t_rayc *ray)
 {
 	char position;
 
-	position = p_position(ray->map);
+	position = p_position(game);
 	if (position == 'N')
 	{
 		ray->dir.x = -1;
