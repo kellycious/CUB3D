@@ -2,7 +2,7 @@
 
 void	init_ray(t_map *game)
 {
-	init_player(game);
+	player_init(game);
 	game->ray.cam = 2 * game->ray.x / (double)game->width - 1;
 	game->ray->dir.x = game->ray->dir.x + game->ray->disp_x * game->ray.cam;
 	game->ray->dir.y = game->ray->dir.y + game->ray->disp_y * game->ray.cam;

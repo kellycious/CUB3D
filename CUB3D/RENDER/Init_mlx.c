@@ -1,6 +1,6 @@
 #include "../LIB/cub3d.h"
 
-int	init_mlx(t_map *map)
+static int	init_mlx(t_map *map)
 {
 	map->mlx = mlx_init();
 	if (!map->mlx)

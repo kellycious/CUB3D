@@ -234,6 +234,13 @@ int		ft_check_closed(t_map *map);
 
 // RAYCASTING //
 
+int	render_map(t_map *game);
+void	texture_img(t_map *game);
+int		raycaster(t_map *game, t_rayc *ray);
+void	init_ray(t_map *game);
+void	player_init(t_map *game, char direction);
+void	ray_length(t_rayc *ray, t_map *game);
+int	col_color(t_map *game, t_rayc *ray);
 
 
 #endif
