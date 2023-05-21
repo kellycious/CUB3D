@@ -28,5 +28,5 @@ void	ft_cleaner(t_map *game, char *error)
 
 int	exit_game(t_map *game)
 {
-	return(ft_cleaner(game, NULL), 0);
+	return (ft_cleaner(game, NULL), 0);
 }

@@ -40,9 +40,9 @@ static void	player_init2(t_map *game, char direction)
 	if (direction == 'W')
 	{
 		game->pdx = -1;
-		game->pdy  = 0;
+		game->pdy = 0;
 		game->ray->disp_x = -0.66;
-		game->ray->disp_y= 0;
+		game->ray->disp_y = 0;
 	}
 }
 
@@ -67,8 +67,7 @@ void	player_init(t_map *game, char direction)
 		game->pdx = 0;
 		game->pdy = 1;
 		game->ray->disp_x = -0.66;
-		game->ray->disp_y= 0;
+		game->ray->disp_y = 0;
 	}
 	player_init2(game, direction);
 }
-
