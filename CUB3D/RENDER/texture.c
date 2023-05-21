@@ -7,7 +7,7 @@ static void	init_txt(t_map *game)
 	i = 0;
 	while (i < 4)
 	{
-		game->txt[i]->img = NULL;
+		ft_bzero(game->txt[i], sizeof(t_mlx));
 		game->txt[i]->addr = NULL;
 		game->txt[i]->width = 0;
 		game->txt[i]->height = 0;
