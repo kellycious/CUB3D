@@ -13,7 +13,7 @@ int	col_color(t_map *game, t_rayc *ray)
 	if (j <= ray->end)
 		draw_texture(game, game->ray->x, j);
 	j = i;
-	while (++j < game->height)
+	while (++j < 600)
 		game->addr[j * game->line / 4 + game->ray->x] = 0x000000FF;
 	return (0);
 }

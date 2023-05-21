@@ -53,25 +53,25 @@ void	draw_texture(t_map *game, int x, int y)
 	init_texture(game);
 	game->tex->step = 1.0 * game->txt[NORTH]->height
 		/ game->ray->line_height;
-	game->tex->texx = (int)game->tex->wallx
-		* (double)(game->txt[game->tex->dir]->width);
+	game->tex->texx = (int)(game->tex->wallx
+		* (double)game->txt[game->tex->dir]->width);
 	if ((game->ray->hit_dir == NORTH && game->ray->dir.x > 0)
 		|| (game->ray->hit_dir == SOUTH && game->ray->dir.y < 0))
-	{
 		game->tex->texx = game->txt[game->tex->dir]->width
 			- game->tex->texx - 1;
-		game->tex->pos = (game->ray->starty - game->height / 2
+	game->tex->pos = (game->ray->starty - game->height / 2
 			+ game->ray->line_height / 2) * game->tex->step;
-	}
-	while (++y < game->ray->end)
+	while (++y <= game->ray->end)
 	{
 		game->tex->texy = (int)game->tex->pos
 			& (game->txt[game->tex->dir]->height - 1);
 		game->tex->pos += game->tex->step;
-		if (y < game->height && x < game->width)
+		if (y < 600 && x < 800)
+		{	
 			game->addr[(y * game->line) / 4 + x]
 				= game->txt[game->tex->dir]->addr[(game->tex->texy
 					* game->txt[game->tex->dir]->line) / 4 + game->tex->texx];
+		}
 	}
 }
 
