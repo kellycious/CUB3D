@@ -13,17 +13,16 @@ void	init_ray(t_map *game)
 	else if (game->ray->dir.x == 0)
 		game->ray->gline.x = 1;
 	else
-		game->ray->gline.x = sqrt(1 + (game->ray->dir.y * game->ray->dir.y) /
-			(game->ray->dir.x * game->ray->dir.x ));
+		game->ray->gline.x = sqrt(1 + (game->ray->dir.y * game->ray->dir.y)
+				/ (game->ray->dir.x * game->ray->dir.x));
 	if (game->ray->dir.x == 0)
 		game->ray->gline.y = 0;
 	else if (game->ray->dir.y == 0)
 		game->ray->gline.y = 1;
 	else
-		game->ray->gline.y = sqrt(1 + (game->ray->dir.x * game->ray->dir.x) /
-			(game->ray->dir.y * game->ray->dir.y ));
+		game->ray->gline.y = sqrt(1 + (game->ray->dir.x * game->ray->dir.x)
+				/ (game->ray->dir.y * game->ray->dir.y));
 }
-
 
 /* ---------------
 fill step and length var: longueur segment du rayon selon sa direction
@@ -94,11 +93,11 @@ void	ray_hit_length(t_rayc *ray, t_map *game)
 void	draw_ray(t_rayc *ray)
 {
 	if (ray->hit_dir == NORTH)
-		ray->pwall = (double)ray->istartx - ray->start.x + 
-			(1 - ray->step.x) / 2 / ray->dir.x;
+		ray->pwall = (double)ray->istartx - ray->start.x
+			+ (1 - ray->step.x) / 2 / ray->dir.x;
 	else
-		ray->pwall = (double)ray->istarty - ray->start.y + 
-			(1 - ray->step.y) / 2 / ray->dir.y;
+		ray->pwall = (double)ray->istarty - ray->start.y
+			+ (1 - ray->step.y) / 2 / ray->dir.y;
 	ray->line_height = (int)(800 / ray->pwall);
 	ray->starty = -ray->line_height / 2 + 600 / 2;
 	if (ray->starty < 0)
@@ -107,12 +106,12 @@ void	draw_ray(t_rayc *ray)
 	if (ray->end >= 600 || ray->end < 0)
 		ray->end = 599;
 }
+
 /* ---------------
 check if it does hit a wall or not
 if distance < max, then check if the cell is a wall (1)
 if it does, update the exact hit point of the ray on the wall
 distance: 0.0f so at least one loop is executed
-
 
 int	ray_caster(t_map *map, t_rayc *ray, float max)
 {
@@ -160,4 +159,3 @@ void	move_player(t_map *map, float angle)
 	}
 }
 ------------------ */
-

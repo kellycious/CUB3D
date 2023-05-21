@@ -82,7 +82,7 @@ void	wall_texture(t_map *game, int x)
 
 void	ft_swap(t_map *game)
 {
-	void *tmp;
+	void	*tmp;
 
 	tmp = game->img;
 	game->img = game->imgbis;
@@ -98,7 +98,7 @@ ray->x = coordinate x of the pixel being rendered
 x = current column we're on
 ------------------*/
 
-int		raycaster(t_map *game, t_rayc *ray)
+int	raycaster(t_map *game, t_rayc *ray)
 {
 	ray->x = 0;
 	while (ray->x < game->width)
