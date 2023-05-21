@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_colors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
+/*   By: khuynh <khuynh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 22:20:49 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/16 16:30:08 by fwong            ###   ########.fr       */
+/*   Updated: 2023/05/21 18:39:52 by khuynh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	ft_skip_spaces_rgb(char **rgb, int i, int j, t_map *map)
 {
-	printf("rgb[%d][%d] = %c\n", i, j, rgb[i][j - 1]);
 	while (rgb[i][j])
 	{
 		if (rgb[i][j] != ' ' && rgb[i][j] != '\t')

@@ -39,7 +39,6 @@ int ft_remove_nl(t_map *map)
 		{
 			if (map->cub[i][j] == '\n' || map->cub[i][j] == '\r')
 			{
-
 				map->cub[i][j] = '\0';
 				map->cub[i][j + 1] = '\0';
 				map->cub[i][j + 2] = '\0';
@@ -66,7 +65,7 @@ int ft_check_cub_ext(char *argv)
 		i++;
 	if (argv[i - 1] == 'b' && argv[i - 2] == 'u' && argv[i - 3] == 'c' && argv[i - 4] == '.')
 		return (0);
-	return (ft_putstr_fd("Error\nFile should be .cub extension!\n", 2), 1);
+	return (ft_putstr_fd("Error: File should have .cub extension!\n", 2), 1);
 }
 
 void ft_init_struct_map(t_map *map)

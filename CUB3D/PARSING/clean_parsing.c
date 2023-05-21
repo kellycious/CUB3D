@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean_parsing.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
+/*   By: khuynh <khuynh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 23:11:39 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/16 16:59:15 by fwong            ###   ########.fr       */
+/*   Updated: 2023/05/21 18:40:43 by khuynh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,6 @@ void	ft_clean_rgb(char **rgb, char **rgb_final)
 	int	i;
 
 	i = -1;
-	while (rgb[++i])
-		printf("rgb[%d] = %s\n", i, rgb[i]);
-	i = -1;
 	if (rgb)
 	{
 		while (rgb[++i])
@@ -73,9 +70,6 @@ void	ft_clean_rgb_and_exit(char **rgb, char **rgb_final, t_map *map)
 {
 	int	i;
 
-	i = -1;
-	while (rgb[++i])
-		printf("rgb[%d] = %s\n", i, rgb[i]);
 	i = -1;
 	if (rgb)
 	{

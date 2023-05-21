@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
+/*   By: khuynh <khuynh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 01:19:53 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/19 18:45:49 by fwong            ###   ########.fr       */
+/*   Updated: 2023/05/21 18:41:08 by khuynh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,14 @@ void	get_map(t_map *map, t_elements *elements)
 	ft_copy_map(map);
 }
 
-static void ft_printokok(t_map *map)
+/*static void ft_printokok(t_map *map)
 {
 	int i = -1;
 
 	while (map->map_fill[++i])
 		printf("cub[%d] = %s\n",i,  map->map_fill[i]);
 	printf("\n");
-}
+}*/
 
 int	ft_flood_fill(t_map *map)
 {
@@ -77,7 +77,6 @@ int	ft_flood_fill(t_map *map)
 	while (map->map_fill[i])
 	{
 		j = -1;
-		ft_printokok(map);
 		while (map->map_fill[i][++j])
 		{
 			if (ft_check_player(map, i, j) == 1)

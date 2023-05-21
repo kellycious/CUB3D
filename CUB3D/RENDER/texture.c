@@ -22,13 +22,13 @@ void	texture_pix(t_map *game)
 void	texture_img(t_map *game)
 {
 	game->txt[NORTH]->img = mlx_xpm_file_to_image(game->mlx,game->no, 
-		(int)800, (int)600);
+		(int *)800, (int *)600);
 	game->txt[SOUTH]->img = mlx_xpm_file_to_image(game->mlx, game->so, 
-		(int)800, (int)600);
+		(int *)800, (int *)600);
 	game->txt[WEST]->img = mlx_xpm_file_to_image(game->mlx, game->we, 
-		(int)800, (int)600);
+		(int *)800, (int *)600);
 	game->txt[EAST]->img = mlx_xpm_file_to_image(game->mlx, game->ea, 
-		(int)800, (int)600);
+		(int *)800, (int *)600);
 	texture_pix(game);
 }
 
@@ -48,9 +48,9 @@ void	draw_texture(t_map *game, int x, int y)
 		game->tex->texy = (int)game->tex->pos & (game->txt[game->tex->dir]->height - 1);
 		game->tex->pos += game->tex->step;
 		if (y < game->height && x < game->width)
-			game->addr[y * game->line / 4 + x] = game->txt[game->tex->dir]->addr
-				[(int)game->tex->texy * game->txt[game->tex->dir]->line / 4 
-				+ game->tex->texx];
+			game->addr[(y * game->line) / 4 + x] = 
+				game->txt[game->tex->dir]->addr[(game->tex->texy *
+				game->txt[game->tex->dir]->line) / 4 + game->tex->texx];
 	}
 }
 

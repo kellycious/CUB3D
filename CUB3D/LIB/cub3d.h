@@ -28,8 +28,8 @@ typedef struct s_texture
 	int		dir;
 	double	wallx;
 	double	step;
-	double	texy;
-	double	texx;
+	int		texy;
+	int		texx;
 	double	pos;
 
 }	t_texture;
@@ -151,10 +151,9 @@ int	main();
 
 // ARGS //
 
-int		check_arg(int ac, char **av);
 int		valid_cub(char **av);
 int		open_cub(char *file);
-void	ft_parsing(t_map *map, t_elements *elements, char *argv);
+void	ft_parsing(t_map *map, t_elements *elements, int ac, char *argv);
 
 /* clean_parsing.c */
 
@@ -202,7 +201,7 @@ int		ft_skip_spaces(int i, t_map *map);
 
 /* parse_infile.c */
 
-int		get_cub(t_map *map, char *argv);
+int		get_cub(t_map *map, int ac, char *argv);
 
 /* utils_cub.c */
 
@@ -240,6 +239,7 @@ int		ft_check_closed(t_map *map);
 // RAYCASTING //
 
 int		render_map(t_map *game);
+void	ft_cleaner(t_map *game, char *error);
 void	texture_img(t_map *game);
 int		raycaster(t_map *game, t_rayc *ray);
 void	init_ray(t_map *game);
@@ -256,7 +256,6 @@ void	backward(t_map *game);
 void	left(t_map *game);
 void	right(t_map *game);
 char	p_position(t_map *cub);
-void	ft_cleaner(t_map *game, char *error);
 void	draw_texture(t_map *game, int x, int y);
 void	init_texture(t_map *game);
 

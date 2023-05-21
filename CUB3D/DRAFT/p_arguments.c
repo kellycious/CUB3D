@@ -3,7 +3,7 @@
 int	check_arg(int ac, char **av)
 {
 	if (ac == 2)
-		return (valid_cub(av));
+		return (valid_);
 	return (ft_putstr_fd("ERROR: invalid nb of arg\n", 2), 0);
 }
 

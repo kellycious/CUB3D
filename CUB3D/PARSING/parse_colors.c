@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_colors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
+/*   By: khuynh <khuynh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 14:00:40 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/19 18:06:46 by fwong            ###   ########.fr       */
+/*   Updated: 2023/05/21 18:40:25 by khuynh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,7 @@ void	ft_check_and_parse_c(int i, int j, t_map *map)
 	while (map->cub[i][k] == ' ' || map->cub[i][k] == '\t')
 		k++;
 	if (map->cub[i][k] < '0' && map->cub[i][k] > '9')
-	{
-		printf("ok\n");
 		ft_elements_error('0', '0', '0', map);
-	}
 	while (map->cub[i][k])
 	{
 		if (map->cub[i][k] == ',')
