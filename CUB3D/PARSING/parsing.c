@@ -6,7 +6,7 @@
 /*   By: khuynh <khuynh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 23:49:57 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/21 18:51:11 by khuynh           ###   ########.fr       */
+/*   Updated: 2023/05/21 22:08:37 by khuynh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,4 @@ void	ft_parsing(t_map *map, t_elements *elements, int ac, char *argv)
 	printf("map->ceiling_r = %d\n", map->ceiling_r);
 	printf("map->ceiling_g = %d\n", map->ceiling_g);
 	printf("map->ceiling_b = %d\n", map->ceiling_b);*/
-
-	ft_clean(map, elements);
 }

@@ -1,7 +1,7 @@
-    	NO         ./textures/Chucky.xpm
-		SO  	 	 	 ./textures/Scoobie.xpm
-	EA 	 	 	./textures/Saw.xpm
-	WE  	 	 ./textures/Scream.xpm
+    	NO         ../XPM/colorstone.xpm
+		SO  	 	../XPM/greystone.xpm
+	EA 	 	 	../XPM/purplestone.xpm
+	WE  	 	 ../XPM/wood.xpm
 
 F  	  122  , 0 , 50
 C    0 , 0 , 255

@@ -1,35 +1,49 @@
 #include "../LIB/cub3d.h"
 
+static void	init_txt(t_map *game)
+{
+	int i;
+
+	i = 0;
+	while (i < 4)
+	{
+		game->txt[i]->img = NULL;
+		game->txt[i]->addr = NULL;
+		game->txt[i]->width = 0;
+		game->txt[i]->height = 0;
+		game->txt[i]->bpp = 0;
+		game->txt[i]->line = 0;
+		game->txt[i]->endian = 0;
+		i++;
+	}
+}
 void	texture_pix(t_map *game)
 {
-	if (!(game->txt[NORTH]->addr = (int *)mlx_get_data_addr(game->txt[NORTH]->img,
+	game->txt[NORTH]->addr = (int *)mlx_get_data_addr(game->txt[NORTH]->img,
 				&game->txt[NORTH]->bpp, &game->txt[NORTH]->line,
-				&game->txt[NORTH]->endian)))
-		return (ft_cleaner(game, "Error: xpm img NORTH\n"));
-	if (!(game->txt[SOUTH]->addr = (int *)mlx_get_data_addr(game->txt[SOUTH]->img,
+				&game->txt[NORTH]->endian);
+	game->txt[SOUTH]->addr = (int *)mlx_get_data_addr(game->txt[SOUTH]->img,
 				&game->txt[SOUTH]->bpp, &game->txt[SOUTH]->line,
-				&game->txt[SOUTH]->endian)))
-		return (ft_cleaner(game, "Error: xpm img SOUTH\n"));
-	if (!(game->txt[WEST]->addr = (int *)mlx_get_data_addr(game->txt[WEST]->img,
+				&game->txt[SOUTH]->endian);
+	game->txt[WEST]->addr = (int *)mlx_get_data_addr(game->txt[WEST]->img,
 				&game->txt[WEST]->bpp, &game->txt[WEST]->line,
-				&game->txt[WEST]->endian)))
-		return (ft_cleaner(game, "Error: xpm img WEST\n"));
-	if (!(game->txt[EAST]->addr = (int *)mlx_get_data_addr(game->txt[EAST]->img,
+				&game->txt[WEST]->endian);
+	game->txt[EAST]->addr = (int *)mlx_get_data_addr(game->txt[EAST]->img,
 				&game->txt[EAST]->bpp, &game->txt[EAST]->line,
-				&game->txt[EAST]->endian)))
-		return (ft_cleaner(game, "Error: xpm img EAST\n"));
+				&game->txt[EAST]->endian);
 }
 
 void	texture_img(t_map *game)
 {
+	init_txt(game);
 	game->txt[NORTH]->img = mlx_xpm_file_to_image(game->mlx, game->no,
-			(int *)800, (int *)600);
+			&game->txt[NORTH]->width, &game->txt[NORTH]->height);
 	game->txt[SOUTH]->img = mlx_xpm_file_to_image(game->mlx, game->so,
-			(int *)800, (int *)600);
+			&game->txt[SOUTH]->width, &game->txt[SOUTH]->height);
 	game->txt[WEST]->img = mlx_xpm_file_to_image(game->mlx, game->we,
-			(int *)800, (int *)600);
+			&game->txt[WEST]->width, &game->txt[WEST]->height);
 	game->txt[EAST]->img = mlx_xpm_file_to_image(game->mlx, game->ea,
-			(int *)800, (int *)600);
+			&game->txt[EAST]->width, &game->txt[EAST]->height);
 	texture_pix(game);
 }
 
@@ -43,10 +57,12 @@ void	draw_texture(t_map *game, int x, int y)
 		* (double)(game->txt[game->tex->dir]->width);
 	if ((game->ray->hit_dir == NORTH && game->ray->dir.x > 0)
 		|| (game->ray->hit_dir == SOUTH && game->ray->dir.y < 0))
+	{
 		game->tex->texx = game->txt[game->tex->dir]->width
 			- game->tex->texx - 1;
 		game->tex->pos = (game->ray->starty - game->height / 2
 			+ game->ray->line_height / 2) * game->tex->step;
+	}
 	while (++y < game->ray->end)
 	{
 		game->tex->texy = (int)game->tex->pos
