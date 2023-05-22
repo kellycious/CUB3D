@@ -72,19 +72,13 @@ void	ray_hit_length(t_rayc *ray, t_map *game)
 		{
 			ray->length.x += ray->gline.x;
 			ray->istartx += ray->step.x;
-			if (ray->step.x == -1)
-				ray->hit_dir = WEST;
-			else
-				ray->hit_dir = EAST;
+			ray->hit_dir = 0;
 		}
 		else
 		{
 			ray->length.y += ray->gline.y;
 			ray->istarty += ray->step.y;
-			if (ray->step.y == -1)
-				ray->hit_dir = NORTH;
-			else
-				ray->hit_dir = SOUTH;
+			ray->hit_dir = 1;
 		}
 		if (game->map[game->ray->istartx][game->ray->istarty] == '1')
 			ray->hit = 1;
@@ -95,13 +89,13 @@ void	ray_hit_length(t_rayc *ray, t_map *game)
 void	draw_ray(t_map *game)
 {
 	if (game->ray->hit_dir == NORTH)
-		game->ray->pwall = (double)game->ray->istartx - game->player->row
+		game->ray->pwall = (double)game->ray->istartx - game->player->col
 			+ (1 - game->ray->step.x) / 2 / game->ray->dirx;
 	else
-		game->ray->pwall = (double)game->ray->istarty - game->player->col
+		game->ray->pwall = (double)game->ray->istarty - game->player->row
 			+ (1 - game->ray->step.y) / 2 / game->ray->diry;
 	game->ray->line_height = (int)800 / game->ray->pwall;
-	game->ray->starty = (-game->ray->line_height) / 2 + 600 / 2;
+	game->ray->starty = -game->ray->line_height / 2 + 600 / 2;
 	if (game->ray->starty < 0)
 		game->ray->starty = 0;
 	game->ray->end = game->ray->line_height / 2 + 600 / 2;

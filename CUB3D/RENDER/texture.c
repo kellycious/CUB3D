@@ -55,8 +55,8 @@ void	draw_texture(t_map *game, int x, int y)
 		/ game->ray->line_height;
 	game->tex->texx = (int)(game->tex->wallx
 		* (double)game->txt[game->tex->dir]->width);
-	if ((game->ray->hit_dir == NORTH && game->ray->dirx > 0)
-		|| (game->ray->hit_dir == SOUTH && game->ray->diry < 0))
+	if ((game->ray->hit_dir == 0 && game->ray->dirx > 0)
+		|| (game->ray->hit_dir == 1 && game->ray->diry < 0))
 		game->tex->texx = game->txt[game->tex->dir]->width
 			- game->tex->texx - 1;
 	game->tex->pos = (game->ray->starty - 600 / 2
@@ -80,15 +80,15 @@ floor = convert float to int
 -------------*/
 void	init_texture(t_map *game)
 {
-	if (game->ray->hit_dir == NORTH && game->ray->dirx < 0)
+	if (game->ray->hit_dir == 0 && game->ray->dirx < 0)
 		game->tex->dir = NORTH;
-	if (game->ray->hit_dir == NORTH && game->ray->dirx >= 0)
+	if (game->ray->hit_dir == 0 && game->ray->dirx >= 0)
 		game->tex->dir = SOUTH;
-	if (game->ray->hit_dir == SOUTH && game->ray->diry < 0)
+	if (game->ray->hit_dir == 1 && game->ray->diry < 0)
 		game->tex->dir = WEST;
-	if (game->ray->hit_dir == SOUTH && game->ray->diry >= 0)
+	if (game->ray->hit_dir == 1 && game->ray->diry >= 0)
 		game->tex->dir = EAST;
-	if (game->ray->hit_dir == NORTH)
+	if (game->ray->hit_dir == 0)
 		game->tex->wallx = game->player->row + game->ray->pwall
 			* game->ray->diry;
 	else
