@@ -59,14 +59,14 @@ void	draw_texture(t_map *game, int x, int y)
 		|| (game->ray->hit_dir == 1 && game->ray->diry < 0))
 		game->tex->texx = game->txt[game->tex->dir]->width
 			- game->tex->texx - 1;
-	game->tex->pos = (game->ray->starty - 600 / 2
+	game->tex->pos = (game->ray->starty - game->heighty / 2
 			+ game->ray->line_height / 2) * game->tex->step;
 	while (++y <= game->ray->end)
 	{
 		game->tex->texy = (int)game->tex->pos
 			& (game->txt[game->tex->dir]->height - 1);
 		game->tex->pos += game->tex->step;
-		if (y < 600 && x < 800)
+		if (y < game->heighty && x < game->widthy)
 		{	
 			game->addr[(y * game->line) / 4 + x]
 				= game->txt[game->tex->dir]->addr[(game->tex->texy
