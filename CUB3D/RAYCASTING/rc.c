@@ -101,7 +101,7 @@ x = current column we're on
 int	raycaster(t_map *game, t_rayc *ray)
 {
 	ray->x = 0;
-	while (ray->x < game->width)
+	while (ray->x < 800)
 	{
 		init_ray(game);
 		ray_length(game->ray, game);

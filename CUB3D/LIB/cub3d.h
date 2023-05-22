@@ -123,7 +123,9 @@ struct s_map
 	char		**map;
 	char		**map_fill;
 	char		**cub;
+	int			heighty;
 	int			height;
+	int			widthy;
 	int			width;
 	double		pdx;
 	double		pdy;

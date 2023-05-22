@@ -59,7 +59,7 @@ void	draw_texture(t_map *game, int x, int y)
 		|| (game->ray->hit_dir == SOUTH && game->ray->diry < 0))
 		game->tex->texx = game->txt[game->tex->dir]->width
 			- game->tex->texx - 1;
-	game->tex->pos = (game->ray->starty - game->height / 2
+	game->tex->pos = (game->ray->starty - 600 / 2
 			+ game->ray->line_height / 2) * game->tex->step;
 	while (++y <= game->ray->end)
 	{

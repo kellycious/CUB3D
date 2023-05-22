@@ -70,8 +70,8 @@ void	ft_find_player(t_map *map)
 				|| map->map[i][j] == 'E' || map->map[i][j] == 'W')
 			{
 				ft_player_position(map, i, j);
-				map->player_y = j;
-				map->player_x = i;
+				map->player_y = i;
+				map->player_x = j;
 			}
 		}
 	}
