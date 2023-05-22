@@ -66,7 +66,8 @@ typedef struct s_coor
 
 typedef struct s_rayc
 {
-	t_coor	dir;
+	double	dirx;
+	double	diry;
 	t_coor	step;
 	t_coor	length;
 	t_coor  gline;
@@ -244,7 +245,7 @@ void	texture_img(t_map *game);
 int		raycaster(t_map *game, t_rayc *ray);
 void	init_ray(t_map *game);
 void	player_init(t_map *game, char direction);
-void	draw_ray(t_rayc *ray);
+void	draw_ray(t_map *game);
 void	ray_length(t_rayc *ray, t_map *game);
 void	ray_hit_length(t_rayc *ray, t_map *game);
 int		col_color(t_map *game, t_rayc *ray);

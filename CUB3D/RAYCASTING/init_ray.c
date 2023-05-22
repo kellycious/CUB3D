@@ -3,25 +3,26 @@
 void	init_ray(t_map *game)
 {
 	player_init(game, p_position(game));
+	game->ray->hit = 0;
 	game->ray->cam = 2 * game->ray->x / (double)game->width - 1;
-	game->ray->dir.x = game->ray->dir.x + game->ray->disp_x * game->ray->cam;
-	game->ray->dir.y = game->ray->dir.y + game->ray->disp_y * game->ray->cam;
+	game->ray->dirx = game->pdx + game->ray->disp_x * game->ray->cam;
+	game->ray->diry = game->pdy + game->ray->disp_y * game->ray->cam;
 	game->ray->istartx = (int)game->player->col;
 	game->ray->istarty = (int)game->player->row;
-	if (game->ray->dir.y == 0)
+	if (game->ray->diry == 0)
 		game->ray->gline.x = 0;
-	else if (game->ray->dir.x == 0)
+	else if (game->ray->dirx == 0)
 		game->ray->gline.x = 1;
 	else
-		game->ray->gline.x = sqrt(1 + (game->ray->dir.y * game->ray->dir.y)
-				/ (game->ray->dir.x * game->ray->dir.x));
-	if (game->ray->dir.x == 0)
+		game->ray->gline.x = sqrt(1 + (game->ray->diry * game->ray->diry)
+				/ (game->ray->dirx * game->ray->dirx));
+	if (game->ray->dirx == 0)
 		game->ray->gline.y = 0;
-	else if (game->ray->dir.y == 0)
+	else if (game->ray->diry == 0)
 		game->ray->gline.y = 1;
 	else
-		game->ray->gline.y = sqrt(1 + (game->ray->dir.x * game->ray->dir.x)
-				/ (game->ray->dir.y * game->ray->dir.y));
+		game->ray->gline.y = sqrt(1 + (game->ray->dirx * game->ray->dirx)
+				/ (game->ray->diry * game->ray->diry));
 }
 
 /* ---------------
@@ -33,25 +34,25 @@ fill step and length var: longueur segment du rayon selon sa direction
 
 void	ray_length(t_rayc *ray, t_map *game)
 {
-	if (ray->dir.x < 0)
+	if (ray->dirx < 0)
 	{
 		ray->step.x = -1;
-		ray->length.x = (ray->start.x - ray->istartx) * ray->gline.x;
+		ray->length.x = (game->player->row - ray->istartx) * ray->gline.x;
 	}
 	else
 	{
 		ray->step.x = 1;
-		ray->length.x = ((ray->istartx + 1) - ray->start.x) * ray->gline.x;
+		ray->length.x = ((ray->istartx + 1) - game->player->row) * ray->gline.x;
 	}
-	if (ray->dir.y < 0)
+	if (ray->diry < 0)
 	{
 		ray->step.y = -1;
-		ray->length.y = (ray->start.y - ray->istarty) * ray->gline.y;
+		ray->length.y = (game->player->col - ray->istarty) * ray->gline.y;
 	}
 	else
 	{
 		ray->step.y = 1;
-		ray->length.y = ((ray->istarty + 1) - ray->start.x) * ray->gline.y;
+		ray->length.y = ((ray->istarty + 1) - game->player->col) * ray->gline.y;
 	}
 	ray_hit_length(ray, game);
 }
@@ -64,11 +65,12 @@ update the ray length to when it collides with an object (wall)
 
 void	ray_hit_length(t_rayc *ray, t_map *game)
 {
-	while (ray->hit)
-	{
+	ray->hit = 0;
+	while (ray->hit == 0)
+	{		
 		if (ray->length.x < ray->length.y)
 		{
-			ray->length.x += ray->unit.x;
+			ray->length.x += ray->gline.x;
 			ray->istartx += ray->step.x;
 			if (ray->step.x == -1)
 				ray->hit_dir = WEST;
@@ -84,27 +86,27 @@ void	ray_hit_length(t_rayc *ray, t_map *game)
 			else
 				ray->hit_dir = SOUTH;
 		}
-		if (game->map[(int)ray->length.x][(int)ray->length.y] == '1')
+		if (game->map[0][0] == '1')
 			ray->hit = 1;
 	}
-	draw_ray(ray);
+	draw_ray(game);
 }
 
-void	draw_ray(t_rayc *ray)
+void	draw_ray(t_map *game)
 {
-	if (ray->hit_dir == NORTH)
-		ray->pwall = (double)ray->istartx - ray->start.x
-			+ (1 - ray->step.x) / 2 / ray->dir.x;
+	if (game->ray->hit_dir == NORTH)
+		game->ray->pwall = (double)game->ray->istartx - game->player->row
+			+ (1 - game->ray->step.x) / 2 / game->ray->dirx;
 	else
-		ray->pwall = (double)ray->istarty - ray->start.y
-			+ (1 - ray->step.y) / 2 / ray->dir.y;
-	ray->line_height = (int)(800 / ray->pwall);
-	ray->starty = -ray->line_height / 2 + 600 / 2;
-	if (ray->starty < 0)
-		ray->starty = 0;
-	ray->end = ray->line_height / 2 + 600 / 2;
-	if (ray->end >= 600 || ray->end < 0)
-		ray->end = 599;
+		game->ray->pwall = (double)game->ray->istarty - game->player->col
+			+ (1 - game->ray->step.y) / 2 / game->ray->diry;
+	game->ray->line_height = (int)(game->width / game->ray->pwall);
+	game->ray->starty = (-game->ray->line_height) / 2 + game->height / 2;
+	if (game->ray->starty < 0)
+		game->ray->starty = 0;
+	game->ray->end = game->ray->line_height / 2 + game->height / 2;
+	if (game->ray->end >= game->height || game->ray->end < 0)
+		game->ray->end = game->height - 1;
 }
 
 /* ---------------

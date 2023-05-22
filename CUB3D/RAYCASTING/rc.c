@@ -109,10 +109,10 @@ int	raycaster(t_map *game, t_rayc *ray)
 		ray->x++;
 	}
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
-	forward(game);
-	backward(game);
-	left(game);
-	right(game);
+//	forward(game);
+//	backward(game);
+//	left(game);
+//	right(game);
 	ft_swap(game);
 	return (0);
 }

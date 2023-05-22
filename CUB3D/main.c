@@ -24,14 +24,13 @@ int	main(int ac, char **av)
 	ray = ft_calloc(sizeof(t_rayc), 1);
 	map->ray = ray;
 	i = -1;
-	while (++i < 6)
+	while (++i < 5)
 		coor = ft_calloc(sizeof(t_coor), 1);
-	map->ray->dir = coor[0];
-	map->ray->step = coor[1];
-	map->ray->length = coor[2];
-	map->ray->gline = coor[3];
-	map->ray->unit = coor[4];
-	map->ray->start = coor[5];
+	map->ray->step = coor[0];
+	map->ray->length = coor[1];
+	map->ray->gline = coor[2];
+	map->ray->unit = coor[3];
+	map->ray->start = coor[4];
 	player = ft_calloc(sizeof(t_player), 1);
 	map->player = player;
 	texture = ft_calloc(sizeof(t_texture), 1);
