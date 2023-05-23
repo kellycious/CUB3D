@@ -51,6 +51,8 @@ typedef struct s_player
 	int		backward;
 	int		left;
 	int		right;
+	int		rleft;
+	int		rright;
 	char	direction;
 }			t_player;
 
@@ -245,6 +247,8 @@ void	forward(t_map *game);
 void	backward(t_map *game);
 void	left(t_map *game);
 void	right(t_map *game);
+void	r_left(t_map *game);
+void	r_right(t_map *game);
 char	p_position(t_map *cub);
 void	init_texture(t_map *game);
 void	wallcheck(t_map *game);
@@ -253,6 +257,7 @@ void	swapy(t_map *game);
 void	draw_texture(t_map *game);
 void	gtext_wall(t_map *game, int x, int y);
 void	texture_img(t_map *game);
+void	move_player(t_map *game);
 
 
 #endif

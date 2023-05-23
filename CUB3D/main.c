@@ -22,14 +22,10 @@ int	main(int ac, char **av)
 	}
 	ray = ft_calloc(sizeof(t_rayc), 1);
 	map->ray = *ray;
-	player = ft_calloc(sizeof(t_player), 1);
-	map->player = player;
-	map->player->forward = 0;
-	map->player->backward = 0;
-	map->player->left = 0;
-	map->player->right = 0;
 	texture = ft_calloc(sizeof(t_texture), 1);
 	map->tex = *texture;
+	player = ft_calloc(sizeof(t_player), 1);
+	map->player = player;
 	ft_parsing(map, elements, ac, "MAPS/test.cub");
 	render_map(map);
 	exit_game(map);

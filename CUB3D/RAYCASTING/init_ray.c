@@ -151,10 +151,7 @@ int	raycaster(t_map *game)
 		game->ray.x++;
 	}
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
-	forward(game);
-	backward(game);
-	left(game);
-	right(game);
+	move_player(game);
 	swapy(game);
 	return (0);
 }

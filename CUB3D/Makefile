@@ -16,14 +16,14 @@ CFILES = main.c	\
 		 PARSING/utils_map_fill.c \
 		 PARSING/utils_map.c \
 		 RAYCASTING/init_ray.c \
-		 RAYCASTING/rayc.c \
 		 RAYCASTING/rutil.c \
 		 RENDER/cleaner.c \
 		 RENDER/init_mlx.c \
 		 RENDER/keys.c \
 		 RENDER/player_init.c \
 		 RENDER/texture.c \
-		 RENDER/play_move.c
+		 RENDER/play_move.c \
+		 RENDER/cam_move.c 
 
 
 OBJS :=  	${addprefix ./OBJ/,${CFILES:%.c=%.o}}

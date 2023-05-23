@@ -2,13 +2,17 @@
 
 int	key_press(int keycode, t_map *game)
 {
-	if (keycode == 119)
+	if (keycode == 'w' || keycode == XK_Up)
 		game->player->forward = 1;
-	if (keycode == 115)
+	if (keycode == 's' || keycode == XK_Down)
 		game->player->backward = 1;
-	if (keycode == 97)
+	if (keycode == 'a' || keycode == XK_Left)
 		game->player->left = 1;
-	if (keycode == 100)
+	if (keycode == 'd' || keycode == XK_Right)
+		game->player->right = 1;
+	if (keycode == 65361)
+		game->player->rleft = 1;
+	if (keycode == 65363)
 		game->player->right = 1;
 	if (keycode == 65307)
 		exit_game(game);
@@ -17,13 +21,17 @@ int	key_press(int keycode, t_map *game)
 
 int	key_release(int keycode, t_map *game)
 {
-	if (keycode == 119)
+	if (keycode == 'w' || keycode == XK_Up)
 		game->player->forward = 0;
-	if (keycode == 115)
+	if (keycode == 's' || keycode == XK_Down)
 		game->player->backward = 0;
-	if (keycode == 97)
+	if (keycode == 'a' || keycode == XK_Left)
 		game->player->left = 0;
-	if (keycode == 100)
+	if (keycode == 'd' || keycode == XK_Right)
+		game->player->right = 0;
+	if (keycode == 65361)
+		game->player->rleft = 0;
+	if (keycode == 65363)
 		game->player->right = 0;
 	return (1);
 }
