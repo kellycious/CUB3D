@@ -87,10 +87,10 @@ void	wallhit(t_map *game)
 		game->ray.pwalld = ((double)game->ray.my - game->ray.py
 				+ (1 - (double)game->ray.stepy) / 2) / game->ray.rdy;
 	game->ray.lineheight = (int)(game->heighty / game->ray.pwalld);
-	game->ray.drawstart = -game->ray.lineheight / 2 + 600 / 2;
+	game->ray.drawstart = -game->ray.lineheight / 2 + game->heighty / 2;
 	if (game->ray.drawstart < 0)
 		game->ray.drawstart = 0;
-	game->ray.drawend = game->ray.lineheight / 2 + 800 / 2;
+	game->ray.drawend = game->ray.lineheight / 2 + game->widthy / 2;
 	if (game->ray.drawend >= game->heighty || game->ray.drawend < 0)
 		game->ray.drawend = game->heighty - 1;
 	return (draw_texture(game));
