@@ -77,7 +77,7 @@ void ft_init_struct_map(t_map *map)
 	map->height = 0;
 	map->heighty = 800;
 	map->width = 0;
-	map->widthy = 800;
+	map->widthy = 1200;
 	map->no = NULL;
 	map->so = NULL;
 	map->we = NULL;
