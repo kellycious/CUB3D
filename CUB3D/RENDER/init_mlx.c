@@ -11,7 +11,7 @@ static int	init_mlx(t_map *map)
 int	render_map(t_map *game)
 {
 	init_mlx(game);
-	mlx_get_screen_size(game->mlx, &game->widthy, &game->heighty);
+//	mlx_get_screen_size(game->mlx, &game->widthy, &game->heighty);
 	game->img = mlx_new_image(game->mlx, game->widthy, game->heighty);
 	game->addr = (int *)mlx_get_data_addr(game->img, &game->bpp, &game->line,
 			&game->endian);
