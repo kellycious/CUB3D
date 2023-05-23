@@ -1,157 +1,160 @@
 #include "../LIB/cub3d.h"
 
-void	init_ray(t_map *game)
+static void	init_ray(t_map *game)
 {
 	player_init(game, p_position(game));
-	game->ray->hit = 0;
-	game->ray->cam = 2 * game->ray->x / (double)game->widthy - 1;
-	game->ray->dirx = game->pdx + game->ray->disp_x * game->ray->cam;
-	game->ray->diry = game->pdy + game->ray->disp_y * game->ray->cam;
-	game->ray->istartx = (int)game->player->col;
-	game->ray->istarty = (int)game->player->row;
-	if (game->ray->diry == 0)
-		game->ray->gline.x = 0;
-	else if (game->ray->dirx == 0)
-		game->ray->gline.x = 1;
+	game->ray.hit = 0;
+	game->ray.pwalld = 0;
+	game->ray.cam = 2 * game->ray.x / (double)game->widthy - 1;
+	game->ray.rdx = game->ray.dirx + game->ray.planx * game->ray.cam;
+	game->ray.rdy = game->ray.diry + game->ray.plany * game->ray.cam;
+	game->ray.mx = (int)game->ray.px;
+	game->ray.my = (int)game->ray.py;
+	if (game->ray.rdy == 0)
+		game->ray.ddx = 0;
+	else if (game->ray.rdx == 0)
+		game->ray.ddx = 1;
 	else
-		game->ray->gline.x = sqrt(1 + (game->ray->diry * game->ray->diry)
-				/ (game->ray->dirx * game->ray->dirx));
-	if (game->ray->dirx == 0)
-		game->ray->gline.y = 0;
-	else if (game->ray->diry == 0)
-		game->ray->gline.y = 1;
+		game->ray.ddx = sqrt(1 + (game->ray.rdy
+					* game->ray.rdy) / (game->ray.rdx
+					* game->ray.rdx));
+	if (game->ray.rdx == 0)
+		game->ray.ddy = 0;
+	else if (game->ray.rdy == 0)
+		game->ray.ddy = 1;
 	else
-		game->ray->gline.y = sqrt(1 + (game->ray->dirx * game->ray->dirx)
-				/ (game->ray->diry * game->ray->diry));
+		game->ray.ddy = sqrt(1 + (game->ray.rdx
+					* game->ray.rdx) / (game->ray.rdy
+					* game->ray.rdy));
+	return(init_ray2(game));
 }
 
-/* ---------------
-fill step and length var: longueur segment du rayon selon sa direction
-1. check if the vector is pos or neg => to set if we're tracing 
-   backwards or forward (step)
-2. distance to next vertical grid line : start.x * current g.line
------------------- */
-
-void	ray_length(t_rayc *ray, t_map *game)
+void	init_ray2(t_map *game)
 {
-	if (ray->dirx < 0)
+	if (game->ray.rdx < 0)
 	{
-		ray->step.x = -1;
-		ray->length.x = (game->player->row - ray->istartx) * ray->gline.x;
+		game->ray.stepx = -1;
+		game->ray.sdx = (game->ray.px - game->ray.mx) * game->ray.ddx;
 	}
 	else
 	{
-		ray->step.x = 1;
-		ray->length.x = ((ray->istartx + 1) - game->player->row) * ray->gline.x;
+		game->ray.stepx = 1;
+		game->ray.sdx
+			= (game->ray.mx + 1.0 - game->ray.px) * game->ray.ddx;
 	}
-	if (ray->diry < 0)
+	if (game->ray.rdy < 0)
 	{
-		ray->step.y = -1;
-		ray->length.y = (game->player->col - ray->istarty) * ray->gline.y;
+		game->ray.stepy = -1;
+		game->ray.sdy = (game->ray.py - game->ray.my) * game->ray.ddy;
 	}
 	else
 	{
-		ray->step.y = 1;
-		ray->length.y = ((ray->istarty + 1) - game->player->col) * ray->gline.y;
+		game->ray.stepy = 1;
+		game->ray.sdy
+			= (game->ray.my + 1.0 - game->ray.py) * game->ray.ddy;
 	}
-	ray_hit_length(ray, game);
 }
 
-/* ---------------
-update the ray length to when it collides with an object (wall)
-1. check length to which axis is smaller
-2. update all lengths (start position, length to the next grid line)
------------------- */
-
-void	ray_hit_length(t_rayc *ray, t_map *game)
+void	wallcheck(t_map *game)
 {
-	ray->hit = 0;
-	while (ray->hit == 0)
-	{		
-		if (ray->length.x < ray->length.y)
+	game->ray.hit = 0;
+	while (game->ray.hit == 0)
+	{
+		if (game->ray.sdx < game->ray.sdy)
 		{
-			ray->length.x += ray->gline.x;
-			ray->istartx += ray->step.x;
-			ray->hit_dir = 0;
+			game->ray.sdx += game->ray.ddx;
+			game->ray.mx += game->ray.stepx;
+			game->ray.side = 0;
 		}
 		else
 		{
-			ray->length.y += ray->gline.y;
-			ray->istarty += ray->step.y;
-			ray->hit_dir = 1;
+			game->ray.sdy += game->ray.ddy;
+			game->ray.my += game->ray.stepy;
+			game->ray.side = 1;
 		}
-		if (game->map[game->ray->istartx][game->ray->istarty] == '1')
-			ray->hit = 1;
+		if (game->map[game->ray.mx][game->ray.my] == '1')
+			game->ray.hit = 1;
 	}
-	draw_ray(game);
+	return (wallhit(game));
 }
 
-void	draw_ray(t_map *game)
+void	wallhit(t_map *game)
 {
-	if (game->ray->hit_dir == 0)
-		game->ray->pwall = (double)game->ray->istartx - game->player->row
-			+ (1 - game->ray->step.x) / 2 / game->ray->dirx;
+	if (game->ray.side == 0)
+		game->ray.pwalld = ((double)game->ray.mx - game->ray.px
+				+ (1 - (double)game->ray.stepx) / 2) / game->ray.rdx;
 	else
-		game->ray->pwall = (double)game->ray->istarty - game->player->col
-			+ (1 - game->ray->step.y) / 2 / game->ray->diry;
-	game->ray->line_height = game->widthy / game->ray->pwall;
-	game->ray->starty = -game->ray->line_height / 2 + game->heighty / 2;
-	if (game->ray->starty < 0)
-		game->ray->starty = 0;
-	game->ray->end = game->ray->line_height / 2 + game->heighty / 2;
-	if (game->ray->end >= game->heighty || game->ray->end < 0)
-		game->ray->end = game->heighty - 1;
+		game->ray.pwalld = ((double)game->ray.my - game->ray.py
+				+ (1 - (double)game->ray.stepy) / 2) / game->ray.rdy;
+	game->ray.lineheight = (int)(game->heighty / game->ray.pwalld);
+	game->ray.drawstart = -game->ray.lineheight / 2 + 600 / 2;
+	if (game->ray.drawstart < 0)
+		game->ray.drawstart = 0;
+	game->ray.drawend = game->ray.lineheight / 2 + 800 / 2;
+	if (game->ray.drawend >= game->heighty || game->ray.drawend < 0)
+		game->ray.drawend = game->heighty - 1;
+	return (draw_texture(game));
 }
 
-/* ---------------
-check if it does hit a wall or not
-if distance < max, then check if the cell is a wall (1)
-if it does, update the exact hit point of the ray on the wall
-distance: 0.0f so at least one loop is executed
-
-int	ray_caster(t_map *map, t_rayc *ray, float max)
+void	init_texture(t_map *game)
 {
-	int		hit;
-	float	distance;
-
-	distance = 0.0f;
-	hit = 0;
-	while (!hit && distance < max)
-	{
-		distance = ray_hit_length(ray);
-		hit = (map->cub[ray->istartx][ray->istarty] == '1');
-	}
-	if (hit)
-	{
-		ray->result.x = ray->start.x + ray->dir.x * distance;
-		ray->result.y = ray->start.y + ray->dir.y * distance;
-		ray->distance = distance;
-	}
-	return (hit);
+	if (game->ray.side == 0 && game->ray.rdx < 0)
+		game->tex.dir = NORTH;
+	if (game->ray.side == 0 && game->ray.rdx >= 0)
+		game->tex.dir = SOUTH;
+	if (game->ray.side == 1 && game->ray.rdy < 0)
+		game->tex.dir = EAST;
+	if (game->ray.side == 1 && game->ray.rdy >= 0)
+		game->tex.dir = WEST;
+	if (game->ray.side == 0)
+		game->tex.wallx = game->ray.py + game->ray.pwalld \
+						* game->ray.rdy;
+	else
+		game->tex.wallx = game->ray.px + game->ray.pwalld \
+						* game->ray.rdx;
+	game->tex.wallx -= floor(game->tex.wallx);
 }
 
-updating the player position and checking if it hits a wall
-0.1, distance between player and wall needs to be greater
-
-
-void	move_player(t_map *map, float angle)
+void	gtext_wall(t_map *game, int x, int y)
 {
-	float const	x = 0.1f * cos(map->player_angle + angle);
-	float const	y = 0.1f * sin(map->player_angle + angle);
-	int			i;
-	char		*cardinal;
-	t_rayc		*ray;
-
-	cardinal = "NSWE";
-	i = 0;
-	while (cardinal[i] != p_position(map))
-		i++;
-	map->player_angle = i * M_PI_2;
-	ft_init_ray(&ray, &map, map->player_angle + angle);
-	if (!ray_caster(map, &ray, 0.1) || ray->distance > 0.1)
+	y = game->ray.drawstart - 1;
+	init_texture(game);
+	game->tex.step = 1.0 * game->txt[0].height / game->ray.lineheight;
+	game->tex.texx = (int)(game->tex.wallx * (double)game->txt
+		[game->tex.dir].width);
+	if ((game->ray.side == 0 && game->ray.rdx > 0)
+		|| (game->ray.side == 1 && game->ray.rdy < 0))
+		game->tex.texx = game->txt[game->tex.dir].width
+			- game->tex.texx - 1;
+	game->tex.pos = (game->ray.drawstart - game->heighty / 2
+			+ game->ray.lineheight / 2) * game->tex.step;
+	while (++y <= game->ray.drawend)
 	{
-		map->player_x += x;
-		map->player_y += y;
+		game->tex.texy = (int)game->tex.pos
+			& (game->txt[game->tex.dir].height - 1);
+		game->tex.pos += game->tex.step;
+		if (x < game->widthy && y < game->heighty)
+			game->addr[y * game->line / 4 + x]
+				= game->txt[game->tex.dir].addr[game->tex.texy
+				* game->txt[game->tex.dir].line
+				/ 4 + game->tex.texx];
 	}
 }
------------------- */
+
+int	raycaster(t_map *game)
+{
+	game->ray.x = 0;
+	while (game->ray.x < game->widthy)
+	{
+		init_ray(game);
+		wallcheck(game);
+		game->ray.x++;
+	}
+	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
+	forward(game);
+	backward(game);
+	left(game);
+	right(game);
+	swapy(game);
+	return (0);
+}

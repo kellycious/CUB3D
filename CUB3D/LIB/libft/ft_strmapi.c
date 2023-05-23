@@ -6,7 +6,7 @@
 /*   By: khuynh <khuynh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 18:55:53 by khuynh            #+#    #+#             */
-/*   Updated: 2022/04/13 20:59:04 by khuynh           ###   ########.fr       */
+/*   Updated: 2023/05/23 22:39:02 by khuynh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ from successive applications of ’f’. */
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	char	*mapy;
+	char	*my;
 	int		i;
 
 	i = 0;
@@ -31,17 +31,17 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 		return (0);
 	while (s[i])
 		i++;
-	mapy = malloc(sizeof(char) * i + 1);
-	if (!mapy)
+	my = malloc(sizeof(char) * i + 1);
+	if (!my)
 		return (0);
 	i = 0;
 	while (s[i])
 	{
-		mapy[i] = (*f)(i, s[i]);
+		my[i] = (*f)(i, s[i]);
 		i++;
 	}
-	mapy[i] = '\0';
-	return (mapy);
+	my[i] = '\0';
+	return (my);
 }
 
 /*

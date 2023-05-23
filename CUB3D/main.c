@@ -8,7 +8,6 @@ int	main(int ac, char **av)
 	t_rayc *ray;
 	t_player *player;
 	t_texture *texture;
-	t_coor *coor;
 	int i = 0;
 	(void)av;
 
@@ -18,23 +17,19 @@ int	main(int ac, char **av)
 	while (i < 4)
 	{
 		mlxy = ft_calloc(sizeof(t_mlx), 1);
-		map->txt[i] = mlxy;
+		map->txt[i] = *mlxy;
 		i++;
 	}
 	ray = ft_calloc(sizeof(t_rayc), 1);
-	map->ray = ray;
-	i = -1;
-	while (++i < 5)
-		coor = ft_calloc(sizeof(t_coor), 1);
-	map->ray->step = coor[0];
-	map->ray->length = coor[1];
-	map->ray->gline = coor[2];
-	map->ray->unit = coor[3];
-	map->ray->start = coor[4];
+	map->ray = *ray;
 	player = ft_calloc(sizeof(t_player), 1);
 	map->player = player;
+	map->player->forward = 0;
+	map->player->backward = 0;
+	map->player->left = 0;
+	map->player->right = 0;
 	texture = ft_calloc(sizeof(t_texture), 1);
-	map->tex = texture;
+	map->tex = *texture;
 	ft_parsing(map, elements, ac, "MAPS/test.cub");
 	render_map(map);
 	exit_game(map);

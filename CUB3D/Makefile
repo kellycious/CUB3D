@@ -16,9 +16,9 @@ CFILES = main.c	\
 		 PARSING/utils_map_fill.c \
 		 PARSING/utils_map.c \
 		 RAYCASTING/init_ray.c \
-		 RAYCASTING/rc.c \
+		 RAYCASTING/rayc.c \
+		 RAYCASTING/rutil.c \
 		 RENDER/cleaner.c \
-		 RENDER/color.c \
 		 RENDER/init_mlx.c \
 		 RENDER/keys.c \
 		 RENDER/player_init.c \

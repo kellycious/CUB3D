@@ -13,7 +13,7 @@ void	distance_pw(t_map *game, int wall)
 		{
 			game->ray->lenx += game->ray->delta_x;
 			game->ray->col += game->ray->s2d_col;
-			if (game->ray->pdx < 0)
+			if (game->ray->ray.dirx < 0)
 				game->ray->hit_dir = NORTH;
 			else
 				game->ray->hit_dir = SOUTH;
@@ -22,7 +22,7 @@ void	distance_pw(t_map *game, int wall)
 		{
 			game->ray->leny += game->ray->delta_y;
 			game->ray->row += game->ray->s2d_row;
-			if (game->ray->pdy < 0)
+			if (game->ray->ray.diry < 0)
 				game->ray->hit_dir = EAST;
 			else
 				game->ray->hit_dir = WEST;
@@ -108,11 +108,11 @@ int	raycaster(t_map *game, t_rayc *ray)
 		col_color(game, game->ray);
 		ray->x++;
 	}
-	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
 	forward(game);
 	backward(game);
 	left(game);
 	right(game);
+	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
 	ft_swap(game);
 	return (0);
 }

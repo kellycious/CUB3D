@@ -51,41 +51,35 @@ typedef struct s_player
 	int		backward;
 	int		left;
 	int		right;
-	double	row;
-	double	col;
-	double	pdx;
-	double	pdy;
 	char	direction;
 }			t_player;
 
-typedef struct s_coor
-{
-	double	x;
-	double	y;
-}			t_coor;
-
 typedef struct s_rayc
 {
-	double	dirx;
-	double	diry;
-	t_coor	step;
-	t_coor	length;
-	t_coor  gline;
-	t_coor	unit;
-	double	cam;
-	double	pwall;
-	int		line_height;
-	t_coor	start;
-	int		starty;
-	int		end;
-	int		hit;
-	int		hit_dir;
-	float	disp_x;
-	float	disp_y;
-	int		istartx;
-	int		istarty;
-	int		x;
-
+	int			hit;
+	int			x;
+	double		pwalld;
+	double		cam;
+	double		rdx;
+	double		dirx;
+	double		diry;
+	double		rdy;
+	int			mx;
+	int			my;
+	double		ddx;
+	double		ddy;
+	double		planx;
+	double		plany;
+	int			stepx;
+	int			stepy;
+	double		px;
+	double		py;
+	double		sdx;
+	double		sdy;
+	int			side;
+	int			lineheight;
+	int			drawstart;
+	int			drawend;
 }			t_rayc;
 
 typedef struct s_elements
@@ -127,8 +121,6 @@ struct s_map
 	int			height;
 	int			widthy;
 	int			width;
-	double		pdx;
-	double		pdy;
 	void		*mlx;
 	void		*win;
 	void		*img;
@@ -138,11 +130,11 @@ struct s_map
 	int			bpp;
 	int			line;
 	int			endian;
-	t_texture	*tex;
-	t_mlx		*txt[4];
+	t_texture	tex;
+	t_mlx		txt[4];
 	t_elements	*elements;
 	t_player	*player;
-	t_rayc		*ray;
+	t_rayc		ray;
 };
 
 
@@ -243,14 +235,9 @@ int		ft_check_closed(t_map *map);
 
 int		render_map(t_map *game);
 void	ft_cleaner(t_map *game, char *error);
-void	texture_img(t_map *game);
-int		raycaster(t_map *game, t_rayc *ray);
-void	init_ray(t_map *game);
+int		raycaster(t_map *game);
+void	init_ray2(t_map *game);
 void	player_init(t_map *game, char direction);
-void	draw_ray(t_map *game);
-void	ray_length(t_rayc *ray, t_map *game);
-void	ray_hit_length(t_rayc *ray, t_map *game);
-int		col_color(t_map *game, t_rayc *ray);
 int		key_press(int keycode, t_map *game);
 int		key_release(int keycode, t_map *game);
 int		exit_game(t_map *game);
@@ -259,7 +246,13 @@ void	backward(t_map *game);
 void	left(t_map *game);
 void	right(t_map *game);
 char	p_position(t_map *cub);
-void	draw_texture(t_map *game, int x, int y);
 void	init_texture(t_map *game);
+void	wallcheck(t_map *game);
+void	wallhit(t_map *game);
+void	swapy(t_map *game);
+void	draw_texture(t_map *game);
+void	gtext_wall(t_map *game, int x, int y);
+void	texture_img(t_map *game);
+
 
 #endif
