@@ -12,7 +12,7 @@ int	render_map(t_map *game)
 {
 	player_init(game, p_position(game));
 	init_mlx(game);
-	game->win = mlx_new_window(game->mlx, game->widthy, game->heighty, "CUB3D");
+	game->win = mlx_new_window(game->mlx, game->widthy, game->heighty, "PEPE CLOWN");
 	texture_img(game);
 	game->img = mlx_new_image(game->mlx, game->widthy, game->heighty);
 	game->addr = (int *)mlx_get_data_addr(game->img, &game->bpp, &game->line,

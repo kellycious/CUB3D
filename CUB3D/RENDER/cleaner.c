@@ -21,7 +21,7 @@ void	ft_cleaner(t_map *game, char *error)
 		mlx_destroy_display(game->mlx);
 		free(game->mlx);
 	}
-	ft_clean(game, NULL);
+	ft_clean(game, game->elements);
 	ft_putstr_fd(error, 2);
 	exit(0);
 }

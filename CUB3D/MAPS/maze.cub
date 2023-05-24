@@ -1,8 +1,8 @@
 
-NO                    ./textures/akatsuki.xpm
-SO                  ./textures/gaara.xpm
-EA   ./textures/uchiwa.xpm
-WE ./textures/uzumaki.xpm
+NO          XPM/pepe.xpm
+SO                 XPM/pepe.xpm
+EA   XPM/pepe.xpm
+WE XPM/pepe.xpm
 
 F 220  ,100  , 0
 C 225 ,  30  , 0

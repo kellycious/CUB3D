@@ -1,5 +1,16 @@
 #include "../LIB/cub3d.h"
 
+/* -------------------------------------------------
+hit = check if ray has hit a wall
+pwalld = distance from player to wall
+cam = x-coordinate on camera plane
+rdx = ray direction x
+mx = position du joueur + 0.5 pour la centrer
+ddx = distance between x and y
+sdx = distance between x and x
+stepx = step to be taken according to ray direction
+---------------------------------------------------*/
+
 static void	init_ray(t_map *game)
 {
 	game->ray.hit = 0;
@@ -54,10 +65,13 @@ void	init_ray2(t_map *game)
 	}
 	return (wallcheck(game));
 }
+/* -------------------------------------------------
+Check if next intersection is vertical or 
+horizontal grid => check if it is a wall
+--------------------------------------------------*/
 
 void	wallcheck(t_map *game)
 {
-	game->ray.hit = 0;
 	while (game->ray.hit == 0)
 	{
 		if (game->ray.sdx < game->ray.sdy)
@@ -75,10 +89,15 @@ void	wallcheck(t_map *game)
 		if (game->map[game->ray.mx][game->ray.my] == '1')
 			game->ray.hit = 1;
 	}
-	return (wallhit(game));
+	return (wall_coor(game));
 }
 
-void	wallhit(t_map *game)
+/* -------------------------------------------------
+calculating the details to render part of the wall
+pwalld + line height + draw start + draw end 
+--------------------------------------------------*/
+
+void	wall_coor(t_map *game)
 {
 	if (game->ray.side == 0)
 		game->ray.pwalld = ((double)game->ray.mx - game->ray.px
@@ -96,50 +115,16 @@ void	wallhit(t_map *game)
 	return (draw_texture(game));
 }
 
-void	init_texture(t_map *game)
-{
-	if (game->ray.side == 0 && game->ray.rdx < 0)
-		game->tex.dir = NORTH;
-	if (game->ray.side == 0 && game->ray.rdx >= 0)
-		game->tex.dir = SOUTH;
-	if (game->ray.side == 1 && game->ray.rdy < 0)
-		game->tex.dir = EAST;
-	if (game->ray.side == 1 && game->ray.rdy >= 0)
-		game->tex.dir = WEST;
-	if (game->ray.side == 0)
-		game->tex.wallx = game->ray.py + game->ray.pwalld \
-						* game->ray.rdy;
-	else
-		game->tex.wallx = game->ray.px + game->ray.pwalld \
-						* game->ray.rdx;
-	game->tex.wallx -= floor(game->tex.wallx);
-}
+/* -------------------------------------------------
+General looping function, covering the whole screen
+from bottom to top using the whole raycasting walls
+put the img to the window, move the player around
+and swap the two buffers to avoid flickering
 
-void	gtext_wall(t_map *game, int x, int y)
-{
-	y = game->ray.drawstart - 1;
-	init_texture(game);
-	game->tex.step = 1.0 * game->txt[0].height / game->ray.lineheight;
-	game->tex.texx = (int)(game->tex.wallx * (double)game->txt
-		[game->tex.dir].width);
-	if ((game->ray.side == 0 && game->ray.rdx > 0)
-		|| (game->ray.side == 1 && game->ray.rdy < 0))
-		game->tex.texx = game->txt[game->tex.dir].width
-			- game->tex.texx - 1;
-	game->tex.pos = (game->ray.drawstart - game->heighty / 2
-			+ game->ray.lineheight / 2) * game->tex.step;
-	while (++y <= game->ray.drawend)
-	{
-		game->tex.texy = (int)game->tex.pos
-			& (game->txt[game->tex.dir].height - 1);
-		game->tex.pos += game->tex.step;
-		if (x < game->widthy && y < game->heighty)
-			game->addr[y * game->line / 4 + x]
-				= game->txt[game->tex.dir].addr[game->tex.texy
-				* game->txt[game->tex.dir].line
-				/ 4 + game->tex.texx];
-	}
-}
+if we are moving the player, once it is done
+replace the player position by a 0 in the map
+so it can move again the next time
+--------------------------------------------------*/
 
 int	raycaster(t_map *game)
 {
@@ -148,9 +133,7 @@ int	raycaster(t_map *game)
 		init_ray(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
 	if (move_player(game) == 1)
-	{
 		game->map[game->player_x][game->player_y] = '0';
-	}
 	swapy(game);
 	return (0);
 }

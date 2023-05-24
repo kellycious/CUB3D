@@ -252,7 +252,7 @@ void	r_right(t_map *game);
 char	p_position(t_map *cub);
 void	init_texture(t_map *game);
 void	wallcheck(t_map *game);
-void	wallhit(t_map *game);
+void	wall_coor(t_map *game);
 void	swapy(t_map *game);
 void	draw_texture(t_map *game);
 void	gtext_wall(t_map *game, int x, int y);

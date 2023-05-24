@@ -1,5 +1,11 @@
 #include "../LIB/cub3d.h"
 
+/* -------------------------------------------------
+recalculating the ray direction and camera plane
+angle are calculated from cos and sin of the angle
+via the rotation matrix
+--------------------------------------------------*/
+
 void	r_left(t_map *game)
 {
 	double	odirx;

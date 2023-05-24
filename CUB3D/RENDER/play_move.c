@@ -1,5 +1,10 @@
 #include "../LIB/cub3d.h"
 
+/* -------------------------------------------------
+check if the map[x][y] is a 0 so the player can move
+add ray direction to player position * speed
+-------------------------------------------------*/
+
 void	forward(t_map *game)
 {
 	if (game->map[(int)(game->ray.px + game->ray.dirx)]
