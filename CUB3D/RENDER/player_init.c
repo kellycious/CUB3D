@@ -24,8 +24,18 @@ adding 0.5 so it is in the middle of the square
 
 static void	pcr_init(t_map *game)
 {
+	game->player->forward = 0;
+	game->player->backward = 0;
+	game->player->left = 0;
+	game->player->right = 0;
+	game->player->rleft = 0;
+	game->player->rright = 0;
 	game->ray.py = (double)game->player_y + 0.5;
 	game->ray.px = (double)game->player_x + 0.5;
+	game->ray.dirx = 0;
+	game->ray.diry = 0;
+	game->ray.planx = 0;
+	game->ray.plany = 0;
 }
 
 /*---------

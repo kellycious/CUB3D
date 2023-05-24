@@ -10,13 +10,13 @@ static int	init_mlx(t_map *map)
 
 int	render_map(t_map *game)
 {
+	player_init(game, p_position(game));
 	init_mlx(game);
-//	mlx_get_screen_size(game->mlx, &game->widthy, &game->heighty);
+	game->win = mlx_new_window(game->mlx, game->widthy, game->heighty, "CUB3D");
 	texture_img(game);
 	game->img = mlx_new_image(game->mlx, game->widthy, game->heighty);
 	game->addr = (int *)mlx_get_data_addr(game->img, &game->bpp, &game->line,
 			&game->endian);
-	game->win = mlx_new_window(game->mlx, game->widthy, game->heighty, "CUB3D");
 	game->imgbis = mlx_new_image(game->mlx, game->widthy, game->heighty);
 	game->addrbis = (int *)mlx_get_data_addr(game->imgbis, &game->bpp,
 			&game->line, &game->endian);

@@ -2,7 +2,6 @@
 
 static void	init_ray(t_map *game)
 {
-	player_init(game, p_position(game));
 	game->ray.hit = 0;
 	game->ray.pwalld = 0;
 	game->ray.cam = 2 * game->ray.x / (double)game->widthy - 1;
