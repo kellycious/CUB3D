@@ -1,1 +1,0 @@
-OBJ/RAYCASTING/rayc.o: RAYCASTING/rayc.c
