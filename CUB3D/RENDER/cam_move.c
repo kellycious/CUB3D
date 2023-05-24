@@ -7,14 +7,14 @@ void	r_left(t_map *game)
 
 	old_dirx = game->ray.dirx;
 	old_planex = game->ray.planx;
-	game->ray.dirx = game->ray.dirx * cos(0.5)
-		- game->ray.diry * sin(0.5);
-	game->ray.diry = old_dirx * sin(0.5)
-		+ game->ray.diry * cos(0.5);
-	game->ray.planx = game->ray.planx * cos(0.5)
-		- game->ray.plany * sin(0.5);
-	game->ray.plany = old_planex * sin(0.5)
-		+ game->ray.plany * cos(0.5);
+	game->ray.dirx = game->ray.dirx * cos(0.05)
+		- game->ray.diry * sin(0.05);
+	game->ray.diry = old_dirx * sin(0.05)
+		+ game->ray.diry * cos(0.05);
+	game->ray.planx = game->ray.planx * cos(0.05)
+		- game->ray.plany * sin(0.05);
+	game->ray.plany = old_planex * sin(0.05)
+		+ game->ray.plany * cos(0.05);
 }
 
 void	r_right(t_map *game)
@@ -24,14 +24,14 @@ void	r_right(t_map *game)
 
 	old_dirx = game->ray.dirx;
 	old_planex = game->ray.planx;
-	game->ray.dirx = game->ray.dirx * cos(-0.5)
-		- game->ray.diry * sin(-0.5);
-	game->ray.diry = old_dirx * sin(-0.5)
-		+ game->ray.diry * cos(- 0.5);
-	game->ray.planx = game->ray.planx * cos(-0.5)
-		- game->ray.plany * sin(-0.5);
-	game->ray.plany = old_planex * sin(-0.5)
-		+ game->ray.plany * cos(-0.5);
+	game->ray.dirx = game->ray.dirx * cos(-0.05)
+		- game->ray.diry * sin(-0.05);
+	game->ray.diry = old_dirx * sin(-0.05)
+		+ game->ray.diry * cos(-0.05);
+	game->ray.planx = game->ray.planx * cos(-0.05)
+		- game->ray.plany * sin(-0.05);
+	game->ray.plany = old_planex * sin(-0.05)
+		+ game->ray.plany * cos(-0.05);
 }
 
 int	move_player(t_map *game)
