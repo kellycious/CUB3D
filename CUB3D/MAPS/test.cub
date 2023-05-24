@@ -1,10 +1,10 @@
-    	NO         xpm/colorstone.xpm
+    	NO         xpm/greystone.xpm
 		SO  	 	xpm/greystone.xpm
-	EA 	 	 	xpm/purplestone.xpm
-	WE  	 	 xpm/wood.xpm
+	EA 	 	 	xpm/greystone.xpm
+	WE  	 	 xpm/greystone.xpm
 
-F  	  122  , 0 , 50
-C    0 , 0 , 255
+F  	  0  , 0 , 0
+C    200 , 220 , 255
 
 
 1111111

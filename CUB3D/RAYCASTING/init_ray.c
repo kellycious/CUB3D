@@ -52,6 +52,7 @@ void	init_ray2(t_map *game)
 		game->ray.sdy
 			= (game->ray.my + 1.0 - game->ray.py) * game->ray.ddy;
 	}
+	return (wallcheck(game));
 }
 
 void	wallcheck(t_map *game)
@@ -142,13 +143,9 @@ void	gtext_wall(t_map *game, int x, int y)
 
 int	raycaster(t_map *game)
 {
-	game->ray.x = 0;
-	while (game->ray.x < game->widthy)
-	{
+	game->ray.x = -1;
+	while (++game->ray.x < game->widthy)
 		init_ray(game);
-		wallcheck(game);
-		game->ray.x++;
-	}
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
 	if (move_player(game) == 1)
 	{

@@ -48,9 +48,9 @@ void	texture_img(t_map *game)
 	texture_pix(game);
 }
 
-static int	rgbtohex(int r, int g, int b, int a)
+static int	rgbtohex(int r, int g, int b)
 {
-	return (r << 24 | g << 16 | b << 8 | a);
+	return (r << 16 | g << 8 | b);
 }
 void	draw_texture(t_map *game)
 {
@@ -62,11 +62,11 @@ void	draw_texture(t_map *game)
 	i = game->ray.drawend;
 	while (++j < game->ray.drawstart)
 		game->addr[j * game->line / 4
-			+ game->ray.x] = rgbtohex(game->ceiling_r, game->ceiling_g, game->ceiling_b, 0xff);
+			+ game->ray.x] = rgbtohex(game->ceiling_r, game->ceiling_g, game->ceiling_b);
 	if (j <= game->ray.drawend)
 		gtext_wall(game, game->ray.x, j);
 	j = i;
 	while (++j < 800)
 		game->addr[j * game->line / 4
-			+ game->ray.x] = rgbtohex(game->floor_r, game->floor_g, game->floor_b, 0xff);
+			+ game->ray.x] = rgbtohex(game->floor_r, game->floor_g, game->floor_b);
 }

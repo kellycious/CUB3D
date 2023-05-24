@@ -1,18 +1,14 @@
 #include "LIB/cub3d.h"
 
-int	main(int ac, char **av)
+static void	init_struct(t_map *map)
 {
-	t_map *map;
-	t_elements *elements;
 	t_mlx *mlxy;
 	t_rayc *ray;
 	t_player *player;
 	t_texture *texture;
-	int i = 0;
+	int i;
 
-	map = ft_calloc(sizeof(t_map), 1);
-	elements = ft_calloc(sizeof(t_elements), 1);
-	ft_parsing(map, elements, ac, av[1]);
+	i = 0;
 	while (i < 4)
 	{
 		mlxy = ft_calloc(sizeof(t_mlx), 1);
@@ -25,6 +21,17 @@ int	main(int ac, char **av)
 	map->tex = *texture;
 	player = ft_calloc(sizeof(t_player), 1);
 	map->player = player;
+}
+
+int	main(int ac, char **av)
+{
+	t_map *map;
+	t_elements *elements;
+
+	map = ft_calloc(sizeof(t_map), 1);
+	elements = ft_calloc(sizeof(t_elements), 1);
+	ft_parsing(map, elements, ac, av[1]);
+	init_struct(map);
 	render_map(map);
 	exit_game(map);
 	return (0);

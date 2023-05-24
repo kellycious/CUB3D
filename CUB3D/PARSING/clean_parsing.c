@@ -6,7 +6,7 @@
 /*   By: khuynh <khuynh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 23:11:39 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/21 18:40:43 by khuynh           ###   ########.fr       */
+/*   Updated: 2023/05/24 23:32:00 by khuynh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_clean(t_map *map, t_elements *elements)
 {
-	if (map->no != NULL)
+	if (map->no)
 		free(map->no);
 	if (map->so)
 		free(map->so);
@@ -28,8 +28,9 @@ void	ft_clean(t_map *map, t_elements *elements)
 		ft_free_map(map->map_fill);
 	if (map->cub)
 		ft_free_map(map->cub);
-	free(map);
 	free(elements);
+	free(map->player);
+	free(map);
 	exit(0);
 }
 

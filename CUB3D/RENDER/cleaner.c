@@ -2,7 +2,6 @@
 
 void	ft_cleaner(t_map *game, char *error)
 {
-	ft_clean(game, NULL);
 	if (game->img)
 		mlx_destroy_image(game->mlx, game->img);
 	if (game->imgbis)
@@ -22,6 +21,7 @@ void	ft_cleaner(t_map *game, char *error)
 		mlx_destroy_display(game->mlx);
 		free(game->mlx);
 	}
+	ft_clean(game, NULL);
 	ft_putstr_fd(error, 2);
 	exit(0);
 }

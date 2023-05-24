@@ -2,35 +2,35 @@
 
 void	r_left(t_map *game)
 {
-	double	old_dirx;
-	double	old_planex;
+	double	odirx;
+	double	oplanx;
 
-	old_dirx = game->ray.dirx;
-	old_planex = game->ray.planx;
+	odirx = game->ray.dirx;
+	oplanx = game->ray.planx;
 	game->ray.dirx = game->ray.dirx * cos(0.05)
 		- game->ray.diry * sin(0.05);
-	game->ray.diry = old_dirx * sin(0.05)
+	game->ray.diry = odirx * sin(0.05)
 		+ game->ray.diry * cos(0.05);
 	game->ray.planx = game->ray.planx * cos(0.05)
 		- game->ray.plany * sin(0.05);
-	game->ray.plany = old_planex * sin(0.05)
+	game->ray.plany = oplanx * sin(0.05)
 		+ game->ray.plany * cos(0.05);
 }
 
 void	r_right(t_map *game)
 {
-	double	old_dirx;
-	double	old_planex;
+	double	odirx;
+	double	oplanx;
 
-	old_dirx = game->ray.dirx;
-	old_planex = game->ray.planx;
+	odirx = game->ray.dirx;
+	oplanx = game->ray.planx;
 	game->ray.dirx = game->ray.dirx * cos(-0.05)
 		- game->ray.diry * sin(-0.05);
-	game->ray.diry = old_dirx * sin(-0.05)
+	game->ray.diry = odirx * sin(-0.05)
 		+ game->ray.diry * cos(-0.05);
 	game->ray.planx = game->ray.planx * cos(-0.05)
 		- game->ray.plany * sin(-0.05);
-	game->ray.plany = old_planex * sin(-0.05)
+	game->ray.plany = oplanx * sin(-0.05)
 		+ game->ray.plany * cos(-0.05);
 }
 
