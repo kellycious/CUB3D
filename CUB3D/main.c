@@ -1,12 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: khuynh <khuynh@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/25 00:49:43 by khuynh            #+#    #+#             */
+/*   Updated: 2023/05/25 00:50:28 by khuynh           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "LIB/cub3d.h"
 
 static void	init_struct(t_map *map)
 {
-	t_mlx *mlxy;
-	t_rayc *ray;
-	t_player *player;
-	t_texture *texture;
-	int i;
+	t_mlx		*mlxy;
+	t_rayc		*ray;
+	t_player	*player;
+	t_texture	*texture;
+	int			i;
 
 	i = 0;
 	while (i < 4)
@@ -25,8 +37,8 @@ static void	init_struct(t_map *map)
 
 int	main(int ac, char **av)
 {
-	t_map *map;
-	t_elements *elements;
+	t_map		*map;
+	t_elements	*elements;
 
 	map = ft_calloc(sizeof(t_map), 1);
 	elements = ft_calloc(sizeof(t_elements), 1);

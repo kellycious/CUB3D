@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_mlx.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: khuynh <khuynh@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/25 00:46:55 by khuynh            #+#    #+#             */
+/*   Updated: 2023/05/25 00:49:12 by khuynh           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../LIB/cub3d.h"
 
 static int	init_mlx(t_map *map)
@@ -12,7 +24,8 @@ int	render_map(t_map *game)
 {
 	player_init(game, p_position(game));
 	init_mlx(game);
-	game->win = mlx_new_window(game->mlx, game->widthy, game->heighty, "PEPE CLOWN");
+	game->win = mlx_new_window(game->mlx, game->widthy,
+			game->heighty, "PEPE CLOWN");
 	texture_img(game);
 	game->img = mlx_new_image(game->mlx, game->widthy, game->heighty);
 	game->addr = (int *)mlx_get_data_addr(game->img, &game->bpp, &game->line,

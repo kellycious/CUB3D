@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_ray.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: khuynh <khuynh@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/25 00:45:29 by khuynh            #+#    #+#             */
+/*   Updated: 2023/05/25 00:46:07 by khuynh           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../LIB/cub3d.h"
 
 /* -------------------------------------------------
@@ -36,7 +48,7 @@ static void	init_ray(t_map *game)
 		game->ray.ddy = sqrt(1 + (game->ray.rdx
 					* game->ray.rdx) / (game->ray.rdy
 					* game->ray.rdy));
-	return(init_ray2(game));
+	return (init_ray2(game));
 }
 
 void	init_ray2(t_map *game)

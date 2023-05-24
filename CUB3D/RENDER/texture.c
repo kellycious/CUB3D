@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   texture.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: khuynh <khuynh@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/25 00:47:08 by khuynh            #+#    #+#             */
+/*   Updated: 2023/05/25 00:48:52 by khuynh           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../LIB/cub3d.h"
 
 static void	init_txt(t_map *game)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < 4)
@@ -18,20 +30,21 @@ static void	init_txt(t_map *game)
 		i++;
 	}
 }
+
 void	texture_pix(t_map *game)
 {
 	game->txt[NORTH].addr = (int *)mlx_get_data_addr(game->txt[NORTH].img,
-				&game->txt[NORTH].bpp, &game->txt[NORTH].line,
-				&game->txt[NORTH].endian);
+			&game->txt[NORTH].bpp, &game->txt[NORTH].line,
+			&game->txt[NORTH].endian);
 	game->txt[SOUTH].addr = (int *)mlx_get_data_addr(game->txt[SOUTH].img,
-				&game->txt[SOUTH].bpp, &game->txt[SOUTH].line,
-				&game->txt[SOUTH].endian);
+			&game->txt[SOUTH].bpp, &game->txt[SOUTH].line,
+			&game->txt[SOUTH].endian);
 	game->txt[WEST].addr = (int *)mlx_get_data_addr(game->txt[WEST].img,
-				&game->txt[WEST].bpp, &game->txt[WEST].line,
-				&game->txt[WEST].endian);
+			&game->txt[WEST].bpp, &game->txt[WEST].line,
+			&game->txt[WEST].endian);
 	game->txt[EAST].addr = (int *)mlx_get_data_addr(game->txt[EAST].img,
-				&game->txt[EAST].bpp, &game->txt[EAST].line,
-				&game->txt[EAST].endian);
+			&game->txt[EAST].bpp, &game->txt[EAST].line,
+			&game->txt[EAST].endian);
 }
 
 void	texture_img(t_map *game)
@@ -52,6 +65,7 @@ static int	rgbtohex(int r, int g, int b)
 {
 	return (r << 16 | g << 8 | b);
 }
+
 void	draw_texture(t_map *game)
 {
 	int	j;
@@ -62,11 +76,13 @@ void	draw_texture(t_map *game)
 	i = game->ray.drawend;
 	while (++j < game->ray.drawstart)
 		game->addr[j * game->line / 4
-			+ game->ray.x] = rgbtohex(game->ceiling_r, game->ceiling_g, game->ceiling_b);
+			+ game->ray.x] = rgbtohex(game->ceiling_r,
+				game->ceiling_g, game->ceiling_b);
 	if (j <= game->ray.drawend)
 		gtext_wall(game, game->ray.x, j);
 	j = i;
 	while (++j < 800)
 		game->addr[j * game->line / 4
-			+ game->ray.x] = rgbtohex(game->floor_r, game->floor_g, game->floor_b);
+			+ game->ray.x] = rgbtohex(game->floor_r,
+				game->floor_g, game->floor_b);
 }
