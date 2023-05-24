@@ -257,7 +257,7 @@ void	swapy(t_map *game);
 void	draw_texture(t_map *game);
 void	gtext_wall(t_map *game, int x, int y);
 void	texture_img(t_map *game);
-void	move_player(t_map *game);
+int		move_player(t_map *game);
 
 
 #endif

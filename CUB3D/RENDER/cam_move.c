@@ -34,18 +34,19 @@ void	r_right(t_map *game)
 		+ game->ray.plany * cos(-0.15);
 }
 
-void	move_player(t_map *game)
+int	move_player(t_map *game)
 {
 	if (game->player->forward == 1)
-		forward(game);
+		return (forward(game), 1);
 	if (game->player->backward == 1)
-		backward(game);
+		return (backward(game), 1);
 	if (game->player->left == 1)
-		left(game);
+		return (right(game), 1);
 	if (game->player->right == 1)
-		right(game);
+		return (left(game), 1);
 	if (game->player->rleft == 1)
-		r_left(game);
+		return (r_left(game), 1);
 	if (game->player->rright == 1)
-		r_right(game);
+		return (r_right(game), 1);
+	return (0);
 }

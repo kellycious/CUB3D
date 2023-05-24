@@ -150,7 +150,10 @@ int	raycaster(t_map *game)
 		game->ray.x++;
 	}
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
-	move_player(game);
+	if (move_player(game) == 1)
+	{
+		game->map[game->player_x][game->player_y] = '0';
+	}
 	swapy(game);
 	return (0);
 }
