@@ -6,7 +6,7 @@
 /*   By: khuynh <khuynh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 00:46:43 by khuynh            #+#    #+#             */
-/*   Updated: 2023/05/25 00:49:23 by khuynh           ###   ########.fr       */
+/*   Updated: 2023/05/25 23:49:09 by khuynh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ int	move_player(t_map *game)
 		return (forward(game), 1);
 	if (game->player->backward == 1)
 		return (backward(game), 1);
-	if (game->player->left == 1)
-		return (right(game), 1);
 	if (game->player->right == 1)
+		return (right(game), 1);
+	if (game->player->left == 1)
 		return (left(game), 1);
 	if (game->player->rleft == 1)
 		return (r_left(game), 1);
