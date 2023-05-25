@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_colors2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
+/*   By: khuynh <khuynh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 00:50:14 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/16 16:26:02 by fwong            ###   ########.fr       */
+/*   Updated: 2023/05/26 01:07:47 by khuynh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int	ft_not_allowed_in_rgb(int i, int j, char **rgb)
 
 void	ft_check_numbers(char **rgb, t_map *map)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (i < 3)

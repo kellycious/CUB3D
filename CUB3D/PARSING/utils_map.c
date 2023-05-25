@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils_map.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: khuynh <khuynh@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/26 01:11:09 by khuynh            #+#    #+#             */
+/*   Updated: 2023/05/26 01:11:26 by khuynh           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../LIB/cub3d.h"
 
 void	ft_copy_map(t_map *map)
@@ -82,9 +94,9 @@ int	ft_check_player(t_map *map, int i, int j)
 	if ((map->map_fill[i][j] == 'N' || map->map_fill[i][j] == 'S'
 		|| map->map_fill[i][j] == 'E' || map->map_fill[i][j] == 'W')
 		&& (map->map_fill[i][j + 1] == '0'
-		||	map->map_fill[i][j - 1] == '0'
-		||	map->map_fill[i + 1][j] == '0'
-		||	map->map_fill[i - 1][j] == '0'))
+		|| map->map_fill[i][j - 1] == '0'
+		|| map->map_fill[i + 1][j] == '0'
+		|| map->map_fill[i - 1][j] == '0'))
 		return (1);
 	return (0);
 }

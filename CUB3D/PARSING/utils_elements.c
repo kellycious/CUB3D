@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_elements.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
+/*   By: khuynh <khuynh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 16:40:55 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/14 20:53:10 by fwong            ###   ########.fr       */
+/*   Updated: 2023/05/26 01:09:47 by khuynh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	is_whitespace(char c)
 		return (1);
 	return (0);
 }
- 
+
 void	ft_elements_error(char c, char c2, char c3, t_map *map)
 {
 	if (c == 'N' && c2 == '0' && is_whitespace(c3))

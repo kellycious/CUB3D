@@ -6,7 +6,7 @@
 /*   By: khuynh <khuynh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 01:19:53 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/21 18:41:08 by khuynh           ###   ########.fr       */
+/*   Updated: 2023/05/26 01:06:26 by khuynh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ int	ft_find_map(t_map *map, t_elements *elements)
 {
 	int	i;
 	int	j;
-	(void)elements;
 
+	(void)elements;
 	i = ft_count_elements(map, 0) + 1;
 	while (map->cub[i][0] == '\0')
 		i++;
@@ -54,7 +54,6 @@ void	get_map(t_map *map, t_elements *elements)
 		j++;
 	}
 	i = 0;
-
 	ft_find_player(map);
 	ft_copy_map(map);
 }
@@ -85,7 +84,7 @@ int	ft_flood_fill(t_map *map)
 					i = 0;
 				else
 					return (ft_putstr_fd("Error\nMap not closed\n", 1),
-					ft_clean(map, NULL), 0);
+						ft_clean(map, NULL), 0);
 			}
 		}
 		i++;
@@ -127,7 +126,7 @@ int	ft_closed(t_map *map, int i, int j)
 	// 	return (0);
 	if ((map->map_fill[i][j] == 'N'
 		&& (map->player_x != i || map->player_y != j))
-		|| (map->map_fill[i][j] == 'E' 
+		|| (map->map_fill[i][j] == 'E'
 		&& (map->player_x != i || map->player_y != j))
 		|| (map->map_fill[i][j] == 'W'
 		&& (map->player_x != i || map->player_y != j))

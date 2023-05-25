@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_map_fill.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
+/*   By: khuynh <khuynh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 14:44:53 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/15 21:54:51 by fwong            ###   ########.fr       */
+/*   Updated: 2023/05/26 01:10:56 by khuynh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ int	ft_check_player_around(t_map *map, int i, int j)
 	if ((map->map_fill[i][j] == 'N' || map->map_fill[i][j] == 'S'
 		|| map->map_fill[i][j] == 'E' || map->map_fill[i][j] == 'W')
 		&& ((map->map_fill[i][j + 1] != '1' && !ft_is_player(map, i, j + 1))
-		||	(map->map_fill[i][j - 1] != '1' && !ft_is_player(map, i, j - 1))
-		||	(map->map_fill[i + 1][j] != '1' && !ft_is_player(map, i + 1, j))
-		||	(map->map_fill[i - 1][j] != '1' && !ft_is_player(map, i - 1, j))))
+		|| (map->map_fill[i][j - 1] != '1' && !ft_is_player(map, i, j - 1))
+		|| (map->map_fill[i + 1][j] != '1' && !ft_is_player(map, i + 1, j))
+		|| (map->map_fill[i - 1][j] != '1' && !ft_is_player(map, i - 1, j))))
 		return (1);
 	return (0);
 }
@@ -67,7 +67,8 @@ int	ft_check_closed(t_map *map)
 		j = -1;
 		while (map->map_fill[i][++j])
 			if (ft_check_player_around(map, i, j) == 1)
-				return (ft_putstr_fd("Error\nMap not closed\n", 2), ft_clean(map, map->elements), 0);
+				return (ft_putstr_fd("Error\nMap not closed\n", 2),
+					ft_clean(map, map->elements), 0);
 		i++;
 	}
 	return (0);

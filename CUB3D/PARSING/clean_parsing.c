@@ -6,7 +6,7 @@
 /*   By: khuynh <khuynh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 23:11:39 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/26 00:40:27 by khuynh           ###   ########.fr       */
+/*   Updated: 2023/05/26 00:58:15 by khuynh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	ft_free_map(char **map)
 		free(map);
 	}
 }
+
 void	ft_clean_rgb(char **rgb, char **rgb_final)
 {
 	int	i;

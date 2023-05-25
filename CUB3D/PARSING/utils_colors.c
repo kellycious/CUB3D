@@ -6,7 +6,7 @@
 /*   By: khuynh <khuynh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 22:20:49 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/21 18:39:52 by khuynh           ###   ########.fr       */
+/*   Updated: 2023/05/26 01:07:22 by khuynh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	ft_skip_spaces_rgb(char **rgb, int i, int j, t_map *map)
 		j++;
 	}
 }
+
 int	ft_assign_rgb_c(t_map *map, char **rgb_final)
 {
 	map->ceiling_r = ft_atoi(rgb_final[0]);
@@ -54,13 +55,12 @@ void	ft_get_rgb_final(char **rgb_final, char **rgb)
 	int	i;
 	int	j;
 	int	k;
-	
+
 	i = 0;
 	while (rgb[i])
 	{
 		j = 0;
 		k = 0;
-
 		while (rgb[i][j] == ' ' || rgb[i][j] == '\t')
 			j++;
 		while (rgb[i][j] >= '0' && rgb[i][j] <= '9')

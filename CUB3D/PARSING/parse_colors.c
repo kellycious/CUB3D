@@ -6,7 +6,7 @@
 /*   By: khuynh <khuynh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 14:00:40 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/21 18:40:25 by khuynh           ###   ########.fr       */
+/*   Updated: 2023/05/26 00:59:17 by khuynh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_parse_colors(t_map *map)
 	int	i;
 	int	j;
 
-	i = -1; 	
+	i = -1;
 	while (map->cub[++i])
 	{
 		j = -1;
@@ -51,7 +51,6 @@ void	ft_check_and_parse_c(int i, int j, t_map *map)
 	}
 	if (count != 2)
 		ft_elements_error('0', '0', '0', map);
-		
 	if (map->cub[i][j] == 'C')
 		ft_parse_c(i, map);
 	if (map->cub[i][j] == 'F')
@@ -123,5 +122,3 @@ char	**ft_get_rgb(int j, int l, char **rgb, t_map *map)
 	ft_get_rgb_final(rgb_final, rgb);
 	return (rgb_final);
 }
-
-

@@ -6,7 +6,7 @@
 /*   By: khuynh <khuynh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 23:49:57 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/26 00:48:25 by khuynh           ###   ########.fr       */
+/*   Updated: 2023/05/26 01:06:42 by khuynh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	ft_parsing(t_map *map, t_elements *elements, int ac, char *argv)
 	ft_check_closed(map);
 	ft_parse_textures(map);
 	ft_parse_colors(map);
-
 /*	printf("map->no = %s\n", map->no);
 	printf("map->so = %s\n", map->so);
 	printf("map->we = %s\n", map->we);
