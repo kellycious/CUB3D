@@ -1,7 +1,7 @@
-    	NO         XPM/pepe.xpm
-		SO  	 	XPM/pepe.xpm
-	EA 	 	 	XPM/pepe.xpm
-	WE  	 	 XPM/pepe.xpm
+    	NO         XPM/1.xpm
+		SO  	 	XPM/2.xpm
+	EA 	 	 	XPM/3.xpm
+	WE  	 	 XPM/4.xpm
 
 F  	  0  , 0 , 0
 C    200 , 220 , 255
@@ -9,6 +9,6 @@ C    200 , 220 , 255
 
 1111111
 1000011
-110N011
+11000W1
 1100001
 1111111

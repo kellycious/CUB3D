@@ -6,7 +6,7 @@
 /*   By: khuynh <khuynh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 23:11:39 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/25 00:23:14 by khuynh           ###   ########.fr       */
+/*   Updated: 2023/05/26 00:40:27 by khuynh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	ft_clean(t_map *map, t_elements *elements)
 		ft_free_map(map->cub);
 	free(elements);
 	free(map->player);
-	exit(0);
 }
 
 void	ft_free_map(char **map)

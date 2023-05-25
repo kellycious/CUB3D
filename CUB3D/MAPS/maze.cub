@@ -1,8 +1,8 @@
 
-NO          XPM/pepe.xpm
-SO                 XPM/pepe.xpm
-EA   XPM/pepe.xpm
-WE XPM/pepe.xpm
+    	NO         XPM/1.xpm
+	 SO  	 	XPM/2.xpm
+EA 	 	 	XPM/3.xpm
+	WE  	 	 XPM/4.xpm
 
 F 220  ,100  , 0
 C 225 ,  30  , 0
