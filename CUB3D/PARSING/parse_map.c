@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 01:19:53 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/26 21:58:27 by fwong            ###   ########.fr       */
+/*   Updated: 2023/05/26 22:11:48 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,7 @@ void	get_map(t_map *map, t_elements *elements)
 	{
 		map->map[j] = ft_strdup(map->cub[i]);
 		if (map->width < ft_strlen(map->map[j]))
-		{
-			printf("width = %zu\n", map->width);
 			map->width = ft_strlen(map->map[j]);
-		}
 		i++;
 		j++;
 	}

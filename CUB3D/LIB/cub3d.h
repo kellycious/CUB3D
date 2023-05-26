@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 00:50:55 by khuynh            #+#    #+#             */
-/*   Updated: 2023/05/26 20:52:57 by fwong            ###   ########.fr       */
+/*   Updated: 2023/05/26 22:17:10 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ struct s_map
 	int			heighty;
 	int			widthy;
 	int			height;
-	size_t			width;
+	size_t		width;
 	void		*mlx;
 	void		*win;
 	void		*img;
@@ -271,5 +271,6 @@ void			draw_texture(t_map *game);
 void			gtext_wall(t_map *game, int x, int y);
 void			texture_img(t_map *game);
 int				move_player(t_map *game);
+void			filler_map(t_map *game);
 
 #endif
