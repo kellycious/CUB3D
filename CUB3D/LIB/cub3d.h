@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 00:50:55 by khuynh            #+#    #+#             */
-/*   Updated: 2023/05/26 19:15:18 by fwong            ###   ########.fr       */
+/*   Updated: 2023/05/26 20:52:57 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ struct s_map
 	int			heighty;
 	int			widthy;
 	int			height;
-	int			*width;
+	size_t			width;
 	void		*mlx;
 	void		*win;
 	void		*img;

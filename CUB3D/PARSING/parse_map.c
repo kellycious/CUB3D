@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 01:19:53 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/26 20:05:46 by fwong            ###   ########.fr       */
+/*   Updated: 2023/05/26 21:50:52 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,14 @@ void	get_map(t_map *map, t_elements *elements)
 	i = ft_find_map(map, elements);
 	j = 0;
 	map->map = ft_calloc(map->height + 1, sizeof(char *));
-	map->width = ft_calloc(map->height, sizeof(int));
 	while (map->cub[i])
 	{
 		map->map[j] = ft_strdup(map->cub[i]);
-		map->width[j] = ft_strlen(map->map[j]);
+		if (map->width < ft_strlen(map->map[j]))
+		{
+			printf("width = %zu\n", map->width);
+			map->width = ft_strlen(map->map[j]);
+		}
 		i++;
 		j++;
 	}
@@ -99,20 +102,20 @@ int	ft_change_to_player(t_map *map, int i, int j)
 		ft_change_to(map, i, j - 1);
 	else if (ft_closed(map, i, j - 1) == 0)
 		return (0);
-	if (map->map_fill[i + 1][j] == '0' && map->width[i + 1] >= map->width[i])
+	if (map->map_fill[i + 1][j] == '0')
 		ft_change_to(map, i + 1, j);
-	else if (ft_closed(map, i + 1, j) == 0 && map->width[i + 1] >= map->width[i])
+	else if (ft_closed(map, i + 1, j) == 0)
 		return (0);
-	if (map->map_fill[i - 1][j] == '0' && map->width[i - 1] >= map->width[i])
+ 	if (map->map_fill[i - 1][j] == '0' )
 		ft_change_to(map, i - 1, j);
-	else if (ft_closed(map, i - 1, j) == 0 && map->width[i - 1] >= map->width[i])
+	else if (ft_closed(map, i - 1, j) == 0)
 		return (0);
 	return (1);
 }
 
 int	ft_closed(t_map *map, int i, int j)
 {
-	printf("i = %d, j = %d, char = '%c'\n", i, j, map->map_fill[i][j]);
+	printf("i = %d, j = %d, char = %c\n", i, j, map->map_fill[i][j]);
 	if ((map->map_fill[i][j] == 'N'
 		&& (map->player_x != i || map->player_y != j))
 		|| (map->map_fill[i][j] == 'E'
