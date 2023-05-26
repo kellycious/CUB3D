@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 00:50:14 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/26 17:21:28 by fwong            ###   ########.fr       */
+/*   Updated: 2023/05/26 22:01:00 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ int	ft_not_allowed_in_rgb(int i, int j, char **rgb)
 	return (0);
 }
 
-static void ft_count_numbers(char **rgb)
+static void	ft_count_numbers(char **rgb)
 {
-	int i;
+	int	i;
 	int	j;
 	int	count;
-	
+
 	i = -1;
 	count = 0;
 	while (rgb[++i])
@@ -42,7 +42,7 @@ static void ft_count_numbers(char **rgb)
 			if (rgb[i][j] >= '0' && rgb[i][j] <= '9')
 			{
 				count++;
-				break;
+				break ;
 			}
 		}
 	}
@@ -59,7 +59,7 @@ void	ft_check_numbers(char **rgb, t_map *map)
 	int	i;
 	int	j;
 	int	count;
-	
+
 	i = 0;
 	count = 0;
 	ft_count_numbers(rgb);

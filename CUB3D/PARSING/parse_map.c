@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 01:19:53 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/26 21:50:52 by fwong            ###   ########.fr       */
+/*   Updated: 2023/05/26 21:58:27 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int	ft_change_to_player(t_map *map, int i, int j)
 		ft_change_to(map, i + 1, j);
 	else if (ft_closed(map, i + 1, j) == 0)
 		return (0);
- 	if (map->map_fill[i - 1][j] == '0' )
+	if (map->map_fill[i - 1][j] == '0')
 		ft_change_to(map, i - 1, j);
 	else if (ft_closed(map, i - 1, j) == 0)
 		return (0);

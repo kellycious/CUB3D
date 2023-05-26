@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 23:49:57 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/26 21:51:09 by fwong            ###   ########.fr       */
+/*   Updated: 2023/05/26 22:01:17 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	ft_parsing(t_map *map, t_elements *elements, int ac, char *argv)
 {
-	bool player;
-	
+	bool	player;
+
 	player = false;
 	ft_init_struct_map(map);
 	ft_init_struct_elements(elements);

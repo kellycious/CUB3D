@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 22:20:49 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/26 16:53:54 by fwong            ###   ########.fr       */
+/*   Updated: 2023/05/26 21:59:46 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,10 @@ int	ft_assign_rgb_f(t_map *map, char **rgb_final)
 
 void	ft_get_rgb_final(char **rgb_final, char **rgb)
 {
-	int	i;
-	int	j;
-	int	k;
-	bool number;
+	int		i;
+	int		j;
+	int		k;
+	bool	number;
 
 	i = 0;
 	number = false;

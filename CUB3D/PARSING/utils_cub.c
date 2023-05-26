@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 01:08:01 by khuynh            #+#    #+#             */
-/*   Updated: 2023/05/26 20:01:59 by fwong            ###   ########.fr       */
+/*   Updated: 2023/05/26 22:02:51 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ int	ft_count_line_cub(char *argv, t_map *map)
 		return (0);
 	mappy = get_next_line(fd);
 	if (mappy == NULL)
-		return (close(fd), free(mappy), ft_clean(map, map->elements), exit(0), 0);
+		return (close(fd), free(mappy), ft_clean(map, map->elements),
+			exit(0), 0);
 	if (!mappy)
 		return (close(fd), exit(0), 0);
 	while (mappy)
