@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khuynh <khuynh@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 00:50:55 by khuynh            #+#    #+#             */
-/*   Updated: 2023/05/25 00:58:22 by khuynh           ###   ########.fr       */
+/*   Updated: 2023/05/26 19:15:18 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,9 +132,9 @@ struct s_map
 	char		**map_fill;
 	char		**cub;
 	int			heighty;
-	int			height;
 	int			widthy;
-	int			width;
+	int			height;
+	int			*width;
 	void		*mlx;
 	void		*win;
 	void		*img;
@@ -196,7 +196,7 @@ void			ft_check_numbers(char **rgb, t_map *map);
 
 /* parse_elements.c */
 
-void			ft_check_elements(t_map *map, t_elements *elements);
+void			ft_check_elements(t_map *map);
 void			ft_not_elements(char c, char c2, char c3);
 void			ft_assign_elements(char c, char c2, char c3, t_map *map);
 void			ft_parse_textures(t_map *map);
@@ -208,6 +208,7 @@ int				ft_count_elements(t_map *map, int count);
 int				is_whitespace(char c);
 void			ft_elements_error(char c, char c2, char c3, t_map *map);
 int				ft_skip_spaces(int i, t_map *map);
+int				ft_check_other_char(t_map *map);
 
 /* parse_infile.c */
 
@@ -225,7 +226,7 @@ void			ft_init_struct_elements(t_elements *elements);
 
 int				ft_find_map(t_map *map, t_elements *elements);
 void			get_map(t_map *map, t_elements *elements);
-int				ft_flood_fill(t_map *map);
+int				ft_flood_fill(t_map *map, bool player);
 int				ft_change_to_player(t_map *map, int i, int j);
 int				ft_closed(t_map *map, int i, int j);
 

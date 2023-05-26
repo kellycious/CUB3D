@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean_parsing.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khuynh <khuynh@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 23:11:39 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/26 00:58:15 by khuynh           ###   ########.fr       */
+/*   Updated: 2023/05/26 17:47:16 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_clean(t_map *map, t_elements *elements)
 	if (map->cub)
 		ft_free_map(map->cub);
 	free(elements);
-	free(map->player);
+	free(map);
 }
 
 void	ft_free_map(char **map)
@@ -86,4 +86,5 @@ void	ft_clean_rgb_and_exit(char **rgb, char **rgb_final, t_map *map)
 		free(rgb_final);
 	}
 	ft_clean(map, map->elements);
+	exit(0);
 }

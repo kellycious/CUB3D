@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khuynh <khuynh@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 01:11:09 by khuynh            #+#    #+#             */
-/*   Updated: 2023/05/26 01:11:26 by khuynh           ###   ########.fr       */
+/*   Updated: 2023/05/26 18:04:45 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_copy_map(t_map *map)
 
 	map->map_fill = ft_calloc((map->height + 1), sizeof(char *));
 	if (!map->map_fill)
-		return (ft_putstr_fd("Error\nMalloc error!\n", 2), ft_clean(map, NULL));
+		return (ft_putstr_fd("Error\nMalloc error!\n", 2), ft_clean(map, NULL), exit(0));
 	i = -1;
 	while (++i < map->height)
 		map->map_fill[i] = ft_strdup(map->map[i]);
@@ -72,7 +72,7 @@ void	ft_find_player(t_map *map)
 
 	i = -1;
 	if (ft_check_players(map) == 0)
-		ft_clean(map, NULL);
+		return (ft_clean(map, map->elements), exit(0));
 	while (++i < map->height)
 	{
 		j = -1;

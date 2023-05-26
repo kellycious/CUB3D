@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_elements.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khuynh <khuynh@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 16:40:55 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/26 01:09:47 by khuynh           ###   ########.fr       */
+/*   Updated: 2023/05/26 17:50:17 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,3 +48,28 @@ int	ft_skip_spaces(int i, t_map *map)
 		j++;
 	return (j);
 }
+
+int	ft_check_other_char(t_map *map)
+{
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	while (map->map[i])
+	{
+		j = 0;
+		while (map->map[i][j])
+		{
+			if (map->map[i][j] != '1' && map->map[i][j] != '0'
+				&& map->map[i][j] != 'W' && map->map[i][j] != 'E'
+				&& map->map[i][j] != 'N' && map->map[i][j] != 'S')
+				return (ft_putstr_fd("Error\ninvalid char in map\n",
+					2), ft_clean(map, map->elements), exit(0), 0);
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
+

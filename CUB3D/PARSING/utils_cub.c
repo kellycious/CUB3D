@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_cub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khuynh <khuynh@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 01:08:01 by khuynh            #+#    #+#             */
-/*   Updated: 2023/05/26 01:09:24 by khuynh           ###   ########.fr       */
+/*   Updated: 2023/05/26 20:01:59 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_count_line_cub(char *argv, t_map *map)
 		return (0);
 	mappy = get_next_line(fd);
 	if (mappy == NULL)
-		return (close(fd), free(mappy), ft_clean(map, map->elements), 0);
+		return (close(fd), free(mappy), ft_clean(map, map->elements), exit(0), 0);
 	if (!mappy)
 		return (close(fd), exit(0), 0);
 	while (mappy)
@@ -78,7 +78,7 @@ int	ft_check_cub_ext(char *argv)
 	if (argv[i - 1] == 'b' && argv[i - 2] == 'u' && argv[i - 3] == 'c'
 		&& argv[i - 4] == '.')
 		return (0);
-	return (ft_putstr_fd("Error: File should have .cub extension!\n", 2), 1);
+	return (ft_putstr_fd("Error\nFile should have .cub extension!\n", 2), 1);
 }
 
 void	ft_init_struct_map(t_map *map)
@@ -89,8 +89,8 @@ void	ft_init_struct_map(t_map *map)
 	map->e = 0;
 	map->height = 0;
 	map->heighty = 800;
-	map->width = 0;
 	map->widthy = 1200;
+	map->width = 0;
 	map->no = NULL;
 	map->so = NULL;
 	map->we = NULL;

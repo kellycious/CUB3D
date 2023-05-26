@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_infile.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khuynh <khuynh@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 17:43:11 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/26 01:05:36 by khuynh           ###   ########.fr       */
+/*   Updated: 2023/05/26 16:14:25 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	check_arg(int ac)
 {
 	if (ac == 2)
 		return (1);
-	return (ft_putstr_fd("ERROR: invalid nb of arg\n", 2), exit(0), 0);
+	return (ft_putstr_fd("Error\ninvalid nb of arg\n", 2), exit(0), 0);
 }
 
 int	get_cub(t_map *map, int ac, char *argv)

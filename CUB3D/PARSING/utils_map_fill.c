@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_map_fill.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khuynh <khuynh@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 14:44:53 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/26 01:10:56 by khuynh           ###   ########.fr       */
+/*   Updated: 2023/05/26 16:04:07 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	ft_check_closed(t_map *map)
 		while (map->map_fill[i][++j])
 			if (ft_check_player_around(map, i, j) == 1)
 				return (ft_putstr_fd("Error\nMap not closed\n", 2),
-					ft_clean(map, map->elements), 0);
+					ft_clean(map, map->elements), exit(0), 0);
 		i++;
 	}
 	return (0);

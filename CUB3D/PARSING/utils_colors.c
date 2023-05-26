@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_colors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khuynh <khuynh@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 22:20:49 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/26 01:07:22 by khuynh           ###   ########.fr       */
+/*   Updated: 2023/05/26 16:53:54 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,10 @@ void	ft_get_rgb_final(char **rgb_final, char **rgb)
 	int	i;
 	int	j;
 	int	k;
+	bool number;
 
 	i = 0;
+	number = false;
 	while (rgb[i])
 	{
 		j = 0;
@@ -65,12 +67,15 @@ void	ft_get_rgb_final(char **rgb_final, char **rgb)
 			j++;
 		while (rgb[i][j] >= '0' && rgb[i][j] <= '9')
 		{
+			number = true;
 			rgb_final[i][k] = rgb[i][j];
 			j++;
 			k++;
 		}
 		i++;
 	}
+	if (number == false)
+		exit(0);
 }
 
 int	ft_above_3_digits(char **rgb, char **rgb_final, int j, t_map *map)
@@ -79,7 +84,6 @@ int	ft_above_3_digits(char **rgb, char **rgb_final, int j, t_map *map)
 	{
 		ft_putstr_fd("Error\nToo many digits for colors\n", 2);
 		ft_clean_rgb_and_exit(rgb, rgb_final, map);
-		ft_clean(map, map->elements);
 	}
 	j++;
 	return (j);

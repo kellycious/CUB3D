@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khuynh <khuynh@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 00:47:08 by khuynh            #+#    #+#             */
-/*   Updated: 2023/05/26 00:40:44 by khuynh           ###   ########.fr       */
+/*   Updated: 2023/05/26 16:15:48 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,22 +37,22 @@ void	texture_pix(t_map *game)
 			&game->txt[NORTH].bpp, &game->txt[NORTH].line,
 			&game->txt[NORTH].endian);
 	if (!game->txt[NORTH].addr)
-		return (ft_cleaner(game, "Error: mlx get data addr\n"));
+		return (ft_cleaner(game, "Error\nmlx get data addr\n"));
 	game->txt[SOUTH].addr = (int *)mlx_get_data_addr(game->txt[SOUTH].img,
 			&game->txt[SOUTH].bpp, &game->txt[SOUTH].line,
 			&game->txt[SOUTH].endian);
 	if (!game->txt[SOUTH].addr)
-		return (ft_cleaner(game, "Error: mlx get data addr\n"));
+		return (ft_cleaner(game, "Error\nmlx get data addr\n"));
 	game->txt[WEST].addr = (int *)mlx_get_data_addr(game->txt[WEST].img,
 			&game->txt[WEST].bpp, &game->txt[WEST].line,
 			&game->txt[WEST].endian);
 	if (!game->txt[WEST].addr)
-		return (ft_cleaner(game, "Error: mlx get data addr\n"));
+		return (ft_cleaner(game, "Error\nmlx get data addr\n"));
 	game->txt[EAST].addr = (int *)mlx_get_data_addr(game->txt[EAST].img,
 			&game->txt[EAST].bpp, &game->txt[EAST].line,
 			&game->txt[EAST].endian);
 	if (!game->txt[EAST].addr)
-		return (ft_cleaner(game, "Error: mlx get data addr\n"));
+		return (ft_cleaner(game, "Error\nmlx get data addr\n"));
 }
 
 void	texture_img(t_map *game)
@@ -61,19 +61,19 @@ void	texture_img(t_map *game)
 	game->txt[NORTH].img = mlx_xpm_file_to_image(game->mlx, game->no,
 			&game->txt[NORTH].width, &game->txt[NORTH].height);
 	if (!game->txt[NORTH].img)
-		return (ft_cleaner(game, "Error: mlx xpm file to image\n"));
+		return (ft_cleaner(game, "Error\nmlx xpm file to image\n"));
 	game->txt[SOUTH].img = mlx_xpm_file_to_image(game->mlx, game->so,
 			&game->txt[SOUTH].width, &game->txt[SOUTH].height);
 	if (!game->txt[SOUTH].img)
-		return (ft_cleaner(game, "Error: mlx xpm file to image\n"));
+		return (ft_cleaner(game, "Error\nmlx xpm file to image\n"));
 	game->txt[WEST].img = mlx_xpm_file_to_image(game->mlx, game->we,
 			&game->txt[WEST].width, &game->txt[WEST].height);
 	if (!game->txt[WEST].img)
-		return (ft_cleaner(game, "Error: mlx xpm file to image\n"));
+		return (ft_cleaner(game, "Error\nmlx xpm file to image\n"));
 	game->txt[EAST].img = mlx_xpm_file_to_image(game->mlx, game->ea,
 			&game->txt[EAST].width, &game->txt[EAST].height);
 	if (!game->txt[EAST].img)
-		return (ft_cleaner(game, "Error: mlx xpm file to image\n"));
+		return (ft_cleaner(game, "Error\nmlx xpm file to image\n"));
 	texture_pix(game);
 }
 

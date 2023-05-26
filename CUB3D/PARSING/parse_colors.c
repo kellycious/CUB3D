@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_colors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khuynh <khuynh@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 14:00:40 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/26 00:59:17 by khuynh           ###   ########.fr       */
+/*   Updated: 2023/05/26 16:56:50 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ char	**ft_get_rgb(int j, int l, char **rgb, t_map *map)
 	i = -1;
 	ft_check_numbers(rgb, map);
 	rgb_final = ft_calloc(4, sizeof(char *));
-	while (++i < 3)
+	while (rgb[++i])
 	{
 		l = 0;
 		j = 1;

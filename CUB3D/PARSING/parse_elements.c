@@ -3,22 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   parse_elements.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khuynh <khuynh@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 19:42:08 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/26 01:04:55 by khuynh           ###   ########.fr       */
+/*   Updated: 2023/05/26 19:56:39 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../LIB/cub3d.h"
 
 // 1st step: check if elements are well formated
-void	ft_check_elements(t_map *map, t_elements *elements)
+void	ft_check_elements(t_map *map)
 {
 	int	i;
 	int	j;
 
-	(void)elements;
 	i = 0;
 	while (i < map->height)
 	{
@@ -30,12 +29,13 @@ void	ft_check_elements(t_map *map, t_elements *elements)
 				map->cub[i][j + 2], map);
 		i++;
 	}
-	if (elements->no == false || elements->so == false
-		|| elements->we == false || elements->ea == false
-		|| elements->ceiling == false || elements->floor == false)
+	if (map->elements->no == false || map->elements->so == false
+		|| map->elements->we == false || map->elements->ea == false
+		|| map->elements->ceiling == false || map->elements->floor == false)
 	{
-		ft_putstr_fd("ERROR\nMissing elements\n", 2);
-		ft_clean(map, elements);
+		ft_putstr_fd("Error\nMissing elements\n", 2);
+		ft_clean(map, map->elements);
+		exit(0);
 	}
 }
 
@@ -64,8 +64,6 @@ void	ft_assign_elements(char c, char c2, char c3, t_map *map)
 		|| (c == 'C' && map->elements->ceiling == true)
 		|| (c == 'F' && map->elements->floor == true))
 		ft_elements_error(c, c2, c3, map);
-	// else if (!is_whitespace(c))
-	// 	ft_elements_error(c, c2, c3, map);
 }
 
 void	ft_parse_textures(t_map *map)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleaner.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khuynh <khuynh@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 00:46:48 by khuynh            #+#    #+#             */
-/*   Updated: 2023/05/25 00:46:49 by khuynh           ###   ########.fr       */
+/*   Updated: 2023/05/26 17:47:56 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	ft_cleaner(t_map *game, char *error)
 		mlx_destroy_display(game->mlx);
 		free(game->mlx);
 	}
+	free(game->player);
 	ft_clean(game, game->elements);
 	ft_putstr_fd(error, 2);
 	exit(0);

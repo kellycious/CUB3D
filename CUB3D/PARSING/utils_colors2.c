@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_colors2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khuynh <khuynh@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 00:50:14 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/26 01:07:47 by khuynh           ###   ########.fr       */
+/*   Updated: 2023/05/26 17:21:28 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,44 @@ int	ft_not_allowed_in_rgb(int i, int j, char **rgb)
 	return (0);
 }
 
+static void ft_count_numbers(char **rgb)
+{
+	int i;
+	int	j;
+	int	count;
+	
+	i = -1;
+	count = 0;
+	while (rgb[++i])
+	{
+		j = -1;
+		while (rgb[i][++j] != '\0')
+		{
+			if (rgb[i][j] >= '0' && rgb[i][j] <= '9')
+			{
+				count++;
+				break;
+			}
+		}
+	}
+	if (count != 3)
+	{
+		ft_putstr_fd("Error\nThere must be 3 numbers in RGB\n", 2);
+		ft_clean_rgb(rgb, NULL);
+		return (exit(0));
+	}
+}
+
 void	ft_check_numbers(char **rgb, t_map *map)
 {
 	int	i;
 	int	j;
-
+	int	count;
+	
 	i = 0;
-	while (i < 3)
+	count = 0;
+	ft_count_numbers(rgb);
+	while (rgb[i])
 	{
 		j = 0;
 		while (rgb[i][j] != '\0')
