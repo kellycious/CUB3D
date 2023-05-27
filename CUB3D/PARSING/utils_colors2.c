@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_colors2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
+/*   By: khuynh <khuynh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 00:50:14 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/26 22:01:00 by fwong            ###   ########.fr       */
+/*   Updated: 2023/05/27 15:15:05 by khuynh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ft_not_allowed_in_rgb(int i, int j, char **rgb)
 	return (0);
 }
 
-static void	ft_count_numbers(char **rgb)
+static int	ft_count_numbers(char **rgb)
 {
 	int	i;
 	int	j;
@@ -50,8 +50,9 @@ static void	ft_count_numbers(char **rgb)
 	{
 		ft_putstr_fd("Error\nThere must be 3 numbers in RGB\n", 2);
 		ft_clean_rgb(rgb, NULL);
-		return (exit(0));
+		return (1);
 	}
+	return (0);
 }
 
 void	ft_check_numbers(char **rgb, t_map *map)
@@ -62,7 +63,8 @@ void	ft_check_numbers(char **rgb, t_map *map)
 
 	i = 0;
 	count = 0;
-	ft_count_numbers(rgb);
+	if (ft_count_numbers(rgb) == 1)
+		return (ft_clean(map, map->elements), exit(0));
 	while (rgb[i])
 	{
 		j = 0;
