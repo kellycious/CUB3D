@@ -6,7 +6,7 @@
 /*   By: khuynh <khuynh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 01:11:09 by khuynh            #+#    #+#             */
-/*   Updated: 2023/05/27 15:17:42 by khuynh           ###   ########.fr       */
+/*   Updated: 2023/05/27 20:42:25 by khuynh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	ft_copy_map(t_map *map)
 			map->map_fill[i][j] = '2';
 			j++;
 		}
+		map->map_fill[i][map->width + 1] = '\0';
 	}
 	i = -1;
 	while (++i < map->height)

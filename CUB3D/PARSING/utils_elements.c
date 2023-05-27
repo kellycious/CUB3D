@@ -6,7 +6,7 @@
 /*   By: khuynh <khuynh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 16:40:55 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/27 15:26:20 by khuynh           ###   ########.fr       */
+/*   Updated: 2023/05/27 19:05:10 by khuynh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_elements_error(char c, char c2, char c3, t_map *map)
 		ft_putstr_fd("Error\nElements can't be set more than once\n", 2);
 	else
 		ft_putstr_fd("Error\nElements are not well formated\n", 2);
-	ft_clean(map, NULL);
+	ft_clean(map, map->elements);
 	exit(0);
 }
 

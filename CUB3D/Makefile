@@ -58,11 +58,11 @@ all: ${NAME}
 
 ./OBJ/%.o: ./%.c
 	@mkdir -p ${@D}
-	@make -C ./LIB/libft/
-	@make -C ./LIB/minilibx-linux/
 	@cc ${CFLAGS} -o $@ -c $<
 	
 ${NAME} : ${OBJS}
+	@make -C ./LIB/minilibx-linux/
+	@make -C ./LIB/libft/
 	@echo "${MAGENTA}assembling in progress for cub3D...${RS}"
 	@echo "${GREEN}done and moved into obj directory${RS}"
 	@echo "${MAGENTA}compiling cub3D... ${RS}"
