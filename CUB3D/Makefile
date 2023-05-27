@@ -15,7 +15,6 @@ CFILES = main.c	\
 		 PARSING/utils_elements.c \
 		 PARSING/utils_map_fill.c \
 		 PARSING/utils_map.c \
-		 PARSING/fill_map.c \
 		 RAYCASTING/init_ray.c \
 		 RAYCASTING/rutil.c \
 		 RENDER/cleaner.c \

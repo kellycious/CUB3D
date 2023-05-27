@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
+/*   By: khuynh <khuynh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 01:11:09 by khuynh            #+#    #+#             */
-/*   Updated: 2023/05/26 21:58:58 by fwong            ###   ########.fr       */
+/*   Updated: 2023/05/27 14:58:50 by khuynh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,18 @@ void	ft_copy_map(t_map *map)
 			ft_clean(map, NULL), exit(0));
 	i = -1;
 	while (++i < map->height)
-		map->map_fill[i] = ft_strdup(map->map[i]);
+	{
+		map->map_fill[i] = ft_calloc((map->width + 2), sizeof(char));
+		int j = 0;
+		while (j <= (int)map->width)
+		{
+			map->map_fill[i][j] = '2';
+			j++;
+		}
+	}
+	i = -1;
+	while (++i < map->height)
+		ft_memcpy(map->map_fill[i], map->map[i], ft_strlen(map->map[i]));
 }
 
 void	ft_count_line_map(t_map *map, t_elements *elements)

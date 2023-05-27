@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
+/*   By: khuynh <khuynh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 00:49:43 by khuynh            #+#    #+#             */
-/*   Updated: 2023/05/26 20:01:34 by fwong            ###   ########.fr       */
+/*   Updated: 2023/05/27 15:04:18 by khuynh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,11 @@ int	main(int ac, char **av)
 {
 	t_map		*map;
 	t_elements	*elements;
-	(void)av;
 
-	ac = 2;
+
 	map = ft_calloc(sizeof(t_map), 1);
 	elements = ft_calloc(sizeof(t_elements), 1);
-	ft_parsing(map, elements, ac, "MAPS/space.cub");
+	ft_parsing(map, elements, ac, av[1]);
 	init_struct(map);
 	render_map(map);
 	exit_game(map);

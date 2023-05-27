@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
+/*   By: khuynh <khuynh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 00:50:55 by khuynh            #+#    #+#             */
-/*   Updated: 2023/05/26 22:17:10 by fwong            ###   ########.fr       */
+/*   Updated: 2023/05/27 14:56:52 by khuynh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -271,6 +271,5 @@ void			draw_texture(t_map *game);
 void			gtext_wall(t_map *game, int x, int y);
 void			texture_img(t_map *game);
 int				move_player(t_map *game);
-void			filler_map(t_map *game);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
+/*   By: khuynh <khuynh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 01:19:53 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/26 22:11:48 by fwong            ###   ########.fr       */
+/*   Updated: 2023/05/27 13:48:50 by khuynh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,6 @@ int	ft_change_to_player(t_map *map, int i, int j)
 
 int	ft_closed(t_map *map, int i, int j)
 {
-	printf("i = %d, j = %d, char = %c\n", i, j, map->map_fill[i][j]);
 	if ((map->map_fill[i][j] == 'N'
 		&& (map->player_x != i || map->player_y != j))
 		|| (map->map_fill[i][j] == 'E'
