@@ -6,7 +6,7 @@
 /*   By: khuynh <khuynh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 01:11:09 by khuynh            #+#    #+#             */
-/*   Updated: 2023/05/27 14:58:50 by khuynh           ###   ########.fr       */
+/*   Updated: 2023/05/27 15:17:42 by khuynh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	ft_copy_map(t_map *map)
 {
 	int	i;
+	int	j;
 
 	map->map_fill = ft_calloc((map->height + 1), sizeof(char *));
 	if (!map->map_fill)
@@ -24,7 +25,7 @@ void	ft_copy_map(t_map *map)
 	while (++i < map->height)
 	{
 		map->map_fill[i] = ft_calloc((map->width + 2), sizeof(char));
-		int j = 0;
+		j = 0;
 		while (j <= (int)map->width)
 		{
 			map->map_fill[i][j] = '2';

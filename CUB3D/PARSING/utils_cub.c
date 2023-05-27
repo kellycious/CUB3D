@@ -6,7 +6,7 @@
 /*   By: khuynh <khuynh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 01:08:01 by khuynh            #+#    #+#             */
-/*   Updated: 2023/05/27 15:10:12 by khuynh           ###   ########.fr       */
+/*   Updated: 2023/05/27 15:19:07 by khuynh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ int	ft_remove_nl(t_map *map)
 	int		i;
 	size_t	j;
 
-	i = 0;
-	while (i < map->height)
+	i = -1;
+	while (++i < map->height)
 	{
 		j = 0;
 		while (map->cub[i][j] == ' ')
@@ -64,7 +64,6 @@ int	ft_remove_nl(t_map *map)
 				map->cub[i][j] = '\0';
 			j++;
 		}
-		i++;
 	}
 	return (1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_elements.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
+/*   By: khuynh <khuynh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 19:42:08 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/26 19:56:39 by fwong            ###   ########.fr       */
+/*   Updated: 2023/05/27 15:27:08 by khuynh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,24 @@ void	ft_parse_textures(t_map *map)
 	}
 }
 
+static void	ft_get_texture2(t_map *map, int i, int j)
+{
+	if (map->cub[i][j] == 'W' && map->cub[i][j + 1] == 'E'
+		&& is_whitespace(map->cub[i][j + 2]))
+	{
+		while (map->cub[i][j + 2] == ' ' || map->cub[i][j + 2] == '\t')
+			j++;
+		map->we = ft_strdup(map->cub[i] + j + 2);
+	}
+	else if (map->cub[i][j] == 'E' && map->cub[i][j + 1] == 'A'
+		&& is_whitespace(map->cub[i][j + 2]))
+	{
+		while (map->cub[i][j + 2] == ' ' || map->cub[i][j + 2] == '\t')
+			j++;
+		map->ea = ft_strdup(map->cub[i] + j + 2);
+	}
+}
+
 // 3rd step: get the path of the textures
 void	ft_get_texture(t_map *map, int i, int j)
 {
@@ -102,52 +120,5 @@ void	ft_get_texture(t_map *map, int i, int j)
 			j++;
 		map->so = ft_strdup(map->cub[i] + j + 2);
 	}
-	else if (map->cub[i][j] == 'W' && map->cub[i][j + 1] == 'E'
-		&& is_whitespace(map->cub[i][j + 2]))
-	{
-		while (map->cub[i][j + 2] == ' ' || map->cub[i][j + 2] == '\t')
-			j++;
-		map->we = ft_strdup(map->cub[i] + j + 2);
-	}
-	else if (map->cub[i][j] == 'E' && map->cub[i][j + 1] == 'A'
-		&& is_whitespace(map->cub[i][j + 2]))
-	{
-		while (map->cub[i][j + 2] == ' ' || map->cub[i][j + 2] == '\t')
-			j++;
-		map->ea = ft_strdup(map->cub[i] + j + 2);
-	}
-}
-
-int	ft_count_elements(t_map *map, int count)
-{
-	int	i;
-	int	j;
-
-	i = -1;
-	while (map->cub[++i])
-	{
-		j = -1;
-		while (map->cub[i][++j])
-		{
-			if (map->cub[i][j] == 'N' && map->cub[i][j + 1] == 'O'
-				&& map->cub[i][j + 2] == ' ')
-				count++;
-			if (map->cub[i][j] == 'S' && map->cub[i][j + 1] == 'O'
-				&& map->cub[i][j + 2] == ' ')
-				count++;
-			if (map->cub[i][j] == 'W' && map->cub[i][j + 1] == 'E'
-				&& map->cub[i][j + 2] == ' ')
-				count++;
-			if (map->cub[i][j] == 'E' && map->cub[i][j + 1] == 'A'
-				&& map->cub[i][j + 2] == ' ')
-				count++;
-			if (map->cub[i][j] == 'C' && map->cub[i][j + 1] == ' ')
-				count++;
-			if (map->cub[i][j] == 'F' && map->cub[i][j + 1] == ' ')
-				count++;
-		}
-		if (count == 6)
-			return (i + 1);
-	}
-	return (0);
+	ft_get_texture2(map, i, j);
 }

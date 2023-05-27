@@ -6,7 +6,7 @@
 /*   By: khuynh <khuynh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 23:11:39 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/27 15:14:11 by khuynh           ###   ########.fr       */
+/*   Updated: 2023/05/27 15:26:59 by khuynh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,4 +87,11 @@ void	ft_clean_rgb_and_exit(char **rgb, char **rgb_final, t_map *map)
 	}
 	ft_clean(map, map->elements);
 	exit(0);
+}
+
+int	is_whitespace(char c)
+{
+	if (c == ' ' || c == '\t')
+		return (1);
+	return (0);
 }

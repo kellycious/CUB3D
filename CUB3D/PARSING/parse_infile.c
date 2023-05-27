@@ -6,7 +6,7 @@
 /*   By: khuynh <khuynh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 17:43:11 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/27 15:10:38 by khuynh           ###   ########.fr       */
+/*   Updated: 2023/05/27 15:18:05 by khuynh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	get_cub(t_map *map, int ac, char *argv)
 		map->cub[i] = NULL;
 		close(fd);
 		ft_remove_nl(map);
-		return(1);
+		return (1);
 	}
 	return (0);
 }

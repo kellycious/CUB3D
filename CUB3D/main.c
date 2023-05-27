@@ -6,7 +6,7 @@
 /*   By: khuynh <khuynh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 00:49:43 by khuynh            #+#    #+#             */
-/*   Updated: 2023/05/27 15:04:18 by khuynh           ###   ########.fr       */
+/*   Updated: 2023/05/27 15:28:57 by khuynh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ int	main(int ac, char **av)
 {
 	t_map		*map;
 	t_elements	*elements;
-
 
 	map = ft_calloc(sizeof(t_map), 1);
 	elements = ft_calloc(sizeof(t_elements), 1);

@@ -6,7 +6,7 @@
 /*   By: khuynh <khuynh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 00:50:55 by khuynh            #+#    #+#             */
-/*   Updated: 2023/05/27 14:56:52 by khuynh           ###   ########.fr       */
+/*   Updated: 2023/05/27 15:23:13 by khuynh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,7 +201,6 @@ void			ft_not_elements(char c, char c2, char c3);
 void			ft_assign_elements(char c, char c2, char c3, t_map *map);
 void			ft_parse_textures(t_map *map);
 void			ft_get_texture(t_map *map, int i, int j);
-int				ft_count_elements(t_map *map, int count);
 
 /* util_elements.c */
 
@@ -209,6 +208,7 @@ int				is_whitespace(char c);
 void			ft_elements_error(char c, char c2, char c3, t_map *map);
 int				ft_skip_spaces(int i, t_map *map);
 int				ft_check_other_char(t_map *map);
+int				ft_count_elements(t_map *map, int count);
 
 /* parse_infile.c */
 
