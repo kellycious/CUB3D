@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 01:19:53 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/28 17:08:09 by fwong            ###   ########.fr       */
+/*   Updated: 2023/05/28 17:07:41 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_find_map(t_map *map)
 	int		j;
 
 	i = ft_count_elements(map, 0) + 1;
-	if (map->cub[i] == NULL)
+	if (map->cub[i] == NULL || map->cub[i][0] == '\0')
 		return (ft_map_not_well_formated(map), 0);
 	while (map->cub[i][0] == '\0')
 		i++;
@@ -77,7 +77,7 @@ int	ft_flood_fill(t_map *map, bool player)
 				if (ft_change_to_player(map, i, j))
 					i = 0;
 				else
-					return (ft_not_closed_and_clean(map), 0);
+					return (printf("CACA\n"),ft_not_closed_and_clean(map), 0);
 			}
 		}
 		i++;
