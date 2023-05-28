@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_infile.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
+/*   By: khuynh <khuynh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 17:43:11 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/28 15:34:01 by fwong            ###   ########.fr       */
+/*   Updated: 2023/05/28 19:10:54 by khuynh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,7 @@ int	get_cub(t_map *map, int ac, char *argv)
 			map->cub[i++] = get_next_line(fd);
 		map->cub[i] = NULL;
 		close(fd);
-		ft_remove_nl(map);
-		return (1);
+		return (ft_remove_nl(map), 1);
 	}
 	return (0);
 }
