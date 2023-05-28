@@ -6,7 +6,7 @@
 /*   By: khuynh <khuynh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 01:08:01 by khuynh            #+#    #+#             */
-/*   Updated: 2023/05/27 15:19:07 by khuynh           ###   ########.fr       */
+/*   Updated: 2023/05/28 20:26:19 by khuynh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	ft_count_line_cub(char *argv, t_map *map)
 	char	*mappy;
 
 	count = 0;
+	is_dir(argv, map);
 	fd = open(argv, O_RDONLY);
 	if (fd <= -1)
 		return (0);

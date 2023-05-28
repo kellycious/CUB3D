@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
+/*   By: khuynh <khuynh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 00:50:55 by khuynh            #+#    #+#             */
-/*   Updated: 2023/05/28 15:22:10 by fwong            ###   ########.fr       */
+/*   Updated: 2023/05/28 20:26:55 by khuynh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <math.h>
+# include <sys/types.h>
+# include <sys/stat.h>
 # include <stdbool.h>
 # include <X11/Xlib.h>
 # include <X11/X.h>
@@ -218,6 +220,7 @@ int				ft_count_elements(t_map *map, int count);
 /* parse_infile.c */
 
 int				get_cub(t_map *map, int ac, char *argv);
+void			is_dir(const char *path, t_map *game);
 
 /* utils_cub.c */
 
