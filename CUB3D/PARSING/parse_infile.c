@@ -6,7 +6,7 @@
 /*   By: khuynh <khuynh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 17:43:11 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/28 20:26:27 by khuynh           ###   ########.fr       */
+/*   Updated: 2023/05/28 20:31:34 by khuynh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,12 @@ static int	check_arg(int ac)
 
 void	is_dir(const char *path, t_map *game)
 {
-	struct stat statbuf;
+	struct stat	statbuf;
+
 	if (stat(path, &statbuf) == 0)
 	{
 		if (S_ISDIR(statbuf.st_mode))
-			return (ft_putstr_fd("Error\n.cub file is a dir\n", 2), 
+			return (ft_putstr_fd("Error\n.cub file is a dir\n", 2),
 				ft_clean(game, game->elements), exit(0));
 	}
 }
@@ -43,8 +44,8 @@ int	get_cub(t_map *map, int ac, char *argv)
 		size = ft_count_line_cub(argv, map);
 		fd = open(argv, O_RDWR);
 		if (fd <= -1)
-			return (ft_putstr_fd("Error\n.cub file inexistant or is a dir\n", 
-				2), close(fd), 0);
+			return (ft_putstr_fd("Error\n.cub file does not exist\n",
+					2), close(fd), 0);
 		map->cub = ft_calloc(size + 1, sizeof(char *));
 		if (!map->cub)
 			return (close(fd), 0);
