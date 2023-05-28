@@ -1,0 +1,14 @@
+    	NO         xpm/colorstone.xpm
+		SO  	 	xpm/greystone.xpm
+	EA 	 	 	xpm/purplestone.xpm
+	WE  	 	 xpm/wood.xpm
+
+F  	  122  , 0 , 50
+C    0 , 0 , 255
+
+
+1111111
+1000001
+110W001
+1000001
+1111111
