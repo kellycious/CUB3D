@@ -6,7 +6,7 @@
 /*   By: khuynh <khuynh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 17:43:11 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/28 19:10:54 by khuynh           ###   ########.fr       */
+/*   Updated: 2023/05/28 19:28:48 by khuynh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int	get_cub(t_map *map, int ac, char *argv)
 		if (ft_check_cub_ext(argv) == 1)
 			return (ft_clean(map, map->elements), exit(0), 0);
 		size = ft_count_line_cub(argv, map);
-		printf("size = %d\n", size);
 		fd = open(argv, O_RDONLY);
 		if (fd <= -1)
 			return (ft_putstr_fd("Error: does your .cub file exist ?\n", 2),

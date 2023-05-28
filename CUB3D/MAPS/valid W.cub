@@ -1,14 +1,28 @@
-    NO      XPM/1.xpm
-	SO  	 	XPM/2.xpm
+
+NO      XPM/1.xpm
+		SO  	 	XPM/2.xpm
 	EA 	 	 	XPM/3.xpm
 	WE  	 	 XPM/4.xpm
 
 F  	  0  , 0 , 0
-C     ,  , 
-
+C    12, 23 ,11
 
 1111111
 1000011
 11000W1
 1100001
 1111111
+
+
+
+
+
+ 
+  
+   
+
+
+
+
+
+
