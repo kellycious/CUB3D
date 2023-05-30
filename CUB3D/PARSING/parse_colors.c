@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_colors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
+/*   By: khuynh <khuynh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 14:00:40 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/30 07:22:36 by fwong            ###   ########.fr       */
+/*   Updated: 2023/05/30 20:01:35 by khuynh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ char	**ft_get_rgb(int j, int l, char **rgb, t_map *map)
 		}
 		rgb_final[i] = ft_calloc(j + 1, sizeof(char));
 	}
-	rgb_final[i] = '\0';
+	rgb_final[i] = 0;
 	ft_get_rgb_final(rgb_final, rgb, 0, false);
 	return (rgb_final);
 }

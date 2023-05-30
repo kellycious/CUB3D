@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
+/*   By: khuynh <khuynh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 00:46:55 by khuynh            #+#    #+#             */
-/*   Updated: 2023/05/26 16:15:34 by fwong            ###   ########.fr       */
+/*   Updated: 2023/05/30 19:59:40 by khuynh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	init_mlx(t_map *map)
 {
 	map->mlx = mlx_init();
 	if (!map->mlx)
-		return (ft_putstr_fd("Error\nmlx init\n", 2), 1);
+		return (ft_cleaner(map, "Error\nmlx init\n"), 1);
 	return (0);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
+/*   By: khuynh <khuynh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 01:11:09 by khuynh            #+#    #+#             */
-/*   Updated: 2023/05/28 15:21:36 by fwong            ###   ########.fr       */
+/*   Updated: 2023/05/30 20:49:05 by khuynh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,26 @@ void	ft_copy_map(t_map *map)
 	int	i;
 	int	j;
 
-	map->map_fill = ft_calloc((map->height + 1), sizeof(char *));
+	map->map_fill = ft_calloc((map->height + 3), sizeof(char *));
 	if (!map->map_fill)
 		return (ft_putstr_fd("Error\nMalloc error!\n", 2),
 			ft_clean(map, NULL), exit(0));
 	i = -1;
-	while (++i < map->height)
+	while (++i < map->height + 2)
 	{
 		map->map_fill[i] = ft_calloc((map->width + 2), sizeof(char));
-		j = 0;
-		while (j <= (int)map->width)
-		{
+		j = -1;
+		while (++j <= (int)map->width)
 			map->map_fill[i][j] = '2';
-			j++;
-		}
 		map->map_fill[i][map->width + 1] = '\0';
 	}
-	i = -1;
-	while (++i < map->height)
-		ft_memcpy(map->map_fill[i], map->map[i], ft_strlen(map->map[i]));
+	i = 0;
+	j = 0;
+	while (++i < map->height + 1)
+	{
+		ft_memcpy(map->map_fill[i], map->map[j], ft_strlen(map->map[j]));
+		j++;
+	}
 }
 
 void	ft_count_line_map(t_map *map)
@@ -70,7 +71,7 @@ int	ft_check_players(t_map *map)
 				|| map->map[i][j] == 'E' || map->map[i][j] == 'W')
 			{
 				if (player == true)
-					return (ft_putstr_fd("Error\nToo many players!\n", 2), 0);
+					return (ft_putstr_fd("Error\nToo many players\n", 2), 0);
 				player = true;
 			}
 			j++;

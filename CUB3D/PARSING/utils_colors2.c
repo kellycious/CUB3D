@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_colors2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
+/*   By: khuynh <khuynh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 00:50:14 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/30 07:06:49 by fwong            ###   ########.fr       */
+/*   Updated: 2023/05/30 20:49:40 by khuynh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	ft_check_if_only_one_num(char **rgb)
 int	ft_skip_zero(char **rgb, int i, int j)
 {
 	int	k;
-	
+
 	k = 0;
 	while (rgb[i][j] == ' ' || rgb[i][j] == '\t')
 		j++;

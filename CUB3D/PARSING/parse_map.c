@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
+/*   By: khuynh <khuynh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 01:19:53 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/28 17:08:09 by fwong            ###   ########.fr       */
+/*   Updated: 2023/05/30 20:48:53 by khuynh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	ft_flood_fill(t_map *map, bool player)
 	int	j;
 
 	i = 0;
-	while (map->map_fill[i])
+	while (i < map->height + 2)
 	{
 		j = -1;
 		while (map->map_fill[i][++j])
@@ -83,7 +83,7 @@ int	ft_flood_fill(t_map *map, bool player)
 		i++;
 	}
 	if (player == false)
-		return (ft_putstr_fd("Error\nNo player\n", 2),
+		return (ft_putstr_fd("Error\nInvalid map\n", 2),
 			ft_clean(map, map->elements), exit(0), 0);
 	return (1);
 }

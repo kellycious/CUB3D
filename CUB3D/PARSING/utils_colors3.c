@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils_colors3.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
+/*   By: khuynh <khuynh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 00:50:14 by fwong             #+#    #+#             */
-/*   Updated: 2023/05/30 05:45:41 by fwong            ###   ########.fr       */
+/*   Updated: 2023/05/30 20:49:47 by khuynh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../LIB/cub3d.h"
-
 
 void	ft_only_numbers(char **rgb, t_map *map)
 {
